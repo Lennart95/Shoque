@@ -26,6 +26,17 @@
             android:name="com.shoque.seashoque.Tim"
             android:label="@string/title_activity_tim" >
         </activity>
+        <activity
+            android:name="com.example.shoque.StartMenu"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_start_menu"
+            android:theme="@style/FullscreenTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
