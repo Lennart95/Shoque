@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.shoque.Home"
+            android:name="com.shoque.seashoque.Home"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.shoque.Tim"
+            android:name="com.shoque.seashoque.Tim"
             android:label="@string/title_activity_tim" >
         </activity>
     </application>

@@ -1,4 +1,6 @@
-package com.example.shoque;
+package com.shoque.seashoque;
+
+import com.example.shoque.R;
 
 import android.os.Bundle;
 import android.app.Activity;
