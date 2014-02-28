@@ -8,5 +8,9 @@
     <string name="title_activity_start_menu">StartMenu</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="desc_bckgimg">Background Image</string>
+    <string name="descimg">Image</string>
+    <string name="menu_playvscpu">PLAY VS CPU</string>
+    <string name="menu_stats">STATISTICS</string>
 
 </resources>
