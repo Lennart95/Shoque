@@ -17,7 +17,7 @@
             android:name="com.example.shoque.StartMenu"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_start_menu"
-            android:theme="@style/FullscreenTheme"
+            android:theme="@android:style/Theme.NoTitleBar"
             android:screenOrientation="portrait" >
             	
             <intent-filter>
