@@ -1,4 +1,4 @@
-package com.example.shoque;
+package com.saxion.shoque;
 
 public class SimpleAI {
 	

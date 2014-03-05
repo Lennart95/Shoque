@@ -1,4 +1,4 @@
-package com.example.shoque.util;
+package com.saxion.shoque.util;
 
 import android.app.Activity;
 import android.os.Build;

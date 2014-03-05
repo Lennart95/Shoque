@@ -1,6 +1,7 @@
-package com.example.shoque;
+package com.saxion.shoque;
 
-import com.example.shoque.util.SystemUiHider;
+import com.example.shoque.R;
+import com.saxion.shoque.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
