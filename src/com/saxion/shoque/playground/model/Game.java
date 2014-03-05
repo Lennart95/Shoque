@@ -10,15 +10,18 @@ package com.saxion.shoque.playground.model;
  */
 public abstract class Game {
 	private GameBoard gameBoard;
+
 	private int turn;
 	private boolean isValid = false;
-	
+	private static final int DIM = 10;
+
+
 	/**
 	 * Called when you create a new game.
 	 * @param gameBoard
 	 */
-	public Game(GameBoard gameBoard) {
-		this.gameBoard = gameBoard;
+	public Game() {
+		this.gameBoard = new GameBoard(DIM, DIM);
 		gameBoard.setGame(this);
 	}
 

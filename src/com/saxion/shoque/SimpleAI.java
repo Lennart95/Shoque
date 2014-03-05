@@ -1,5 +1,7 @@
 package com.saxion.shoque;
 
+import com.saxion.shoque.playground.model.Game;
+
 public class SimpleAI {
 	
 	private Game game;
