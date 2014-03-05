@@ -1,4 +1,4 @@
-package com.example.shoque.util;
+package com.saxion.shoque.util;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
