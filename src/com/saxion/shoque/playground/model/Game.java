@@ -63,9 +63,15 @@ public abstract class Game {
 		return gameBoard.getDim();
 	}
 	
-	public int shoot(int shots){
-		if (shots = 0){
+	/**
+	 * shoot checks if the first shot has been fired.
+	 * @param shots
+	 */
+	public void shoot(int shots){
+		if (shots == 0){
+			// NOT DONE!
 			
+		
 		}
 		
 		
