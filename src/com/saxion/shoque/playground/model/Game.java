@@ -11,6 +11,7 @@ package com.saxion.shoque.playground.model;
 public abstract class Game {
 	private SeashoqueBoard gameBoard;
 	private int turn = 1;
+	private int shots = 0;
 
 	/**
 	 * Called when you create a new game.
@@ -51,4 +52,18 @@ public abstract class Game {
 	public int getDim(){
 		return gameBoard.getDim();
 	}
+	
+	public int shoot(int shots){
+		if (shots = 0){
+			
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 }
