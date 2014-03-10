@@ -25,7 +25,9 @@ public abstract class Game {
 		enemyBoard.setGame(this);
 	}
 
-	/** Returns a reference to the game board. */
+	/** 
+	 * Returns a reference to the game board. 
+	 */
 	public GameBoard getGameBoard() {
 		return gameBoard;
 	}
@@ -39,18 +41,33 @@ public abstract class Game {
 		}
 		return turn;
 	}
-
+	
+	/**
+	 * Return 
+	 * @return
+	 */
 	public boolean isFull() {
-		// TODO: Auto-generated method stub
+		// TODO: check if there is an empty field.
 		return false;
 	}
+	
+	/**
+	 * Get the dimensions
+	 * @return
+	 */
 	public int getDim(){
 		return gameBoard.getDim();
 	}
 	
-	public int shoot(int shots){
-		if (shots = 0){
+	/**
+	 * shoot checks if the first shot has been fired.
+	 * @param shots
+	 */
+	public void shoot(int shots){
+		if (shots == 0){
+			// NOT DONE!
 			
+		
 		}
 		
 		

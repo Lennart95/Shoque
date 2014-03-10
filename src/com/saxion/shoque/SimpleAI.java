@@ -7,7 +7,8 @@ public class SimpleAI {
 	private Game game;
 	
 	/**
-	 * 
+	 * Instantieert SimpleAI zodat deze aangesproken kan worden. 
+	 * Ook wordt game gezet welk game dit object moet aanspreken.
 	 * @param game
 	 */
 	public SimpleAI(Game game){
