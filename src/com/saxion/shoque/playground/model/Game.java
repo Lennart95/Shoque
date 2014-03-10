@@ -10,7 +10,7 @@ package com.saxion.shoque.playground.model;
  */
 public abstract class Game {
 	private GameBoard gameBoard;
-
+	private int turn = 1;
 
 	/**
 	 * Called when you create a new game.
@@ -26,11 +26,11 @@ public abstract class Game {
 		return gameBoard;
 	}
 	
-	public static int nextPlayer(int turn) {
-		if (turn == 1){
+	public int nextPlayer(int t) {
+		if (t == 1){
 			turn = 2;
 		}
-		else if (turn == 2){
+		else {
 			turn = 1;
 		}
 		return turn;
