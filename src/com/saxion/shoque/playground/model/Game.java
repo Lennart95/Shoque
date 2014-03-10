@@ -39,14 +39,6 @@ public abstract class Game {
 		}
 		return turn;
 	}
-	
-	public static boolean validTurn (boolean isValid){
-		isValid = false;
-		
-		
-		
-		return isValid;
-	}
 
 	public boolean isFull() {
 		// TODO: Auto-generated method stub
