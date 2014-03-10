@@ -1,5 +1,6 @@
 package com.saxion.shoque;
 
+
 import android.content.Context;
 import android.util.AttributeSet;
 
@@ -25,6 +26,12 @@ public class ShoqueGameBoardView extends GameBoardView {
 		
 		loadTile("empty", R.drawable.cell);
 		setEmptyTile("empty");
+		
+		// Load the images for the GameObjects
+		//loadTile(Leaf.LEAF_IMAGE, R.drawable.leaf);
+		//loadTile(Rock.ROCK_IMAGE, R.drawable.rock);
+		//loadTile(Rock.RED_ROCK_IMAGE, R.drawable.rock2);
+		//loadTile(Wombat.WOMBAT_IMAGE, R.drawable.wombat);
 	}
 	
 }

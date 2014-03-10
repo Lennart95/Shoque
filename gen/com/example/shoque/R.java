@@ -51,6 +51,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int button_stats=0x7f080006;
         public static final int image_logo=0x7f080003;
         public static final int img_background=0x7f080000;
+        public static final int shoqueGameBoardView1=0x7f080007;
     }
     public static final class layout {
         public static final int activity_start_menu=0x7f030000;
