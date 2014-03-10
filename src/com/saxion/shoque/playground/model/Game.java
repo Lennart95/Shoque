@@ -46,11 +46,19 @@ public abstract class Game {
 		isValid = false;
 		return isValid;
 	}
-
+	/**
+	 * Return 
+	 * @return
+	 */
 	public boolean isFull() {
 		// TODO: check if there is an empty field.
 		return false;
 	}
+	
+	/**
+	 * Get the dimensions
+	 * @return
+	 */
 	public int getDim(){
 		return gameBoard.getDim();
 	}
