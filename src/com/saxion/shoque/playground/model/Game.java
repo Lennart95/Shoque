@@ -10,6 +10,7 @@ package com.saxion.shoque.playground.model;
  */
 public abstract class Game {
 	private SeashoqueBoard gameBoard;
+	private SeashoqueBoard enemyBoard;
 	private int turn = 1;
 
 	/**
@@ -18,7 +19,9 @@ public abstract class Game {
 	 */
 	public Game() {
 		this.gameBoard = new SeashoqueBoard();
+		this.enemyBoard = new SeashoqueBoard();
 		gameBoard.setGame(this);
+		enemyBoard.setGame(this);
 	}
 
 	/** Returns a reference to the game board. */
