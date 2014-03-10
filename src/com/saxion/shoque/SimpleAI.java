@@ -35,7 +35,7 @@ public class SimpleAI {
 	 * @return
 	 */
 	public int[] getMove(){
-		int i;
+		int i = 0;
 		
 		boolean legal = false;
 		
@@ -43,15 +43,15 @@ public class SimpleAI {
 		// and the loop must stop as soon as it has found a legal spot
 		while (!legal && !game.isFull()) {
 			i = (int)Math.random()*99;			//Generate Random between 0 and 99
-			if (game.getBoard().isEmpty(i)){	//Check if random is emtpy
+			if (game.getGameBoard().isEmpty(i)){	//Check if random is emtpy
 				legal = true;					//If so, break the loop and submit empty spot
 			}
 		}
 		
 		int x = 0;
-			x = i % game.DIM;
+			x = i % game.getDim();
 		int y = 0;
-			y = i / game.DIM;
+			y = i / game.getDim();
 		
 		int[] move = {x, y};
 		return move;

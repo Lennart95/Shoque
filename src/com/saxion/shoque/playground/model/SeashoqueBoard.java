@@ -21,6 +21,8 @@ public class SeashoqueBoard extends GameBoard {
 		
 	}
 	
-	
+	public int getDim(){
+		return DIM;
+	}
 	
 }

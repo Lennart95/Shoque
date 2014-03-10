@@ -153,4 +153,9 @@ public abstract class GameBoard extends Observable {
 	void setGame(Game game) {
 		this.game = game;
 	}
+
+	public boolean isEmpty(int i) {
+		// TODO: is the given index empty?
+		return false;
+	}
 }

@@ -9,7 +9,7 @@ package com.saxion.shoque.playground.model;
  * @author Paul de Groot
  */
 public abstract class Game {
-	private GameBoard gameBoard;
+	private SeashoqueBoard gameBoard;
 	private int turn = 1;
 
 	/**
@@ -42,5 +42,13 @@ public abstract class Game {
 		
 		
 		return isValid;
+	}
+
+	public boolean isFull() {
+		// TODO: Auto-generated method stub
+		return false;
+	}
+	public int getDim(){
+		return gameBoard.getDim();
 	}
 }
