@@ -24,7 +24,9 @@ public abstract class Game {
 		enemyBoard.setGame(this);
 	}
 
-	/** Returns a reference to the game board. */
+	/** 
+	 * Returns a reference to the game board. 
+	 */
 	public GameBoard getGameBoard() {
 		return gameBoard;
 	}
@@ -41,14 +43,11 @@ public abstract class Game {
 	
 	public static boolean validTurn (boolean isValid){
 		isValid = false;
-		
-		
-		
 		return isValid;
 	}
 
 	public boolean isFull() {
-		// TODO: Auto-generated method stub
+		// TODO: check if there is an empty field.
 		return false;
 	}
 	public int getDim(){
