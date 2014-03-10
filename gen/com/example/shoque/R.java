@@ -38,9 +38,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int button_gear_ontouch=0x7f020003;
         public static final int button_ontouch=0x7f020004;
         public static final int buttonselector=0x7f020005;
-        public static final int gearbuttonselector=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
-        public static final int logo=0x7f020008;
+        public static final int cell=0x7f020006;
+        public static final int gearbuttonselector=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int logo=0x7f020009;
     }
     public static final class id {
         public static final int LLbuttons=0x7f080004;
@@ -53,6 +54,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class layout {
         public static final int activity_start_menu=0x7f030000;
+        public static final int playground=0x7f030001;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;

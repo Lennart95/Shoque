@@ -1,0 +1,30 @@
+package com.saxion.shoque;
+
+import android.content.Context;
+import android.util.AttributeSet;
+
+import com.example.shoque.R;
+import com.saxion.shoque.playground.view.GameBoardView;
+
+public class ShoqueGameBoardView extends GameBoardView {
+
+	public ShoqueGameBoardView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		initGameView();
+	}
+	
+	public ShoqueGameBoardView(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		initGameView();
+	}
+
+	private void initGameView()
+	{
+		// Load the 'empty' cell bitmap and tell the tile view that this is the
+		// image to use for cells without GameObject
+		
+		loadTile("empty", R.drawable.cell);
+		setEmptyTile("empty");
+	}
+	
+}
