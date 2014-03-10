@@ -2,11 +2,15 @@ package com.saxion.shoque.playground.model;
 
 public class SeashoqueBoard extends GameBoard {
 
+
+	private int turn;
+	private boolean isValid = false;
+	private static final int DIM = 10;
 	
 	
-	public SeashoqueBoard(int width, int height) 
+	public SeashoqueBoard() 
 	{
-		super(width, height);
+		super(DIM, DIM);
 		
 	}
 
