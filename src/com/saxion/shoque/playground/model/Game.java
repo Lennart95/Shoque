@@ -9,10 +9,25 @@ package com.saxion.shoque.playground.model;
  * @author Paul de Groot
  */
 public abstract class Game {
+	/**
+	 * Variables containing the 2 boards maintained by Game
+	 */
 	private SeashoqueBoard gameBoard;
 	private SeashoqueBoard enemyBoard;
+	
+	/**
+	 * Integer to keep track of current player
+	 */
 	private int turn = 1;
-	private int shots = 0;
+	/**
+	 * ??
+	 */
+	private int shots = 0; //what does this mean?
+	
+	/**
+	 * Should be true if the game is over, false if the game is still running.
+	 */
+	private boolean gameover;
 
 	/**
 	 * Called when you create a new game.
@@ -26,29 +41,46 @@ public abstract class Game {
 	}
 
 	/** 
-	 * Returns a reference to the game board. 
+	 * Returns the gameboard of the human player. 
 	 */
-	public GameBoard getGameBoard() {
+	public SeashoqueBoard getGameBoard() {
 		return gameBoard;
 	}
+	/** 
+	 * Returns the gameboard of the AI. 
+	 */
+	public SeashoqueBoard getEnemyBoard() {
+		return enemyBoard;
+	}
 	
-	public int nextPlayer(int t) {
+	/**
+	 * Handles stuff when next player should do it's thingey. 
+	 * @param t
+	 */
+	public void nextPlayer(int t) {
 		if (t == 1){
 			turn = 2;
 		}
 		else {
 			turn = 1;
 		}
-		return turn;
+		//TODO: update some visual to alert the next player it's his turn
 	}
 	
 	/**
-	 * Return 
+	 * Return true if the all the fields of the given board have a gameObject. Return false if an empty field has been found.
 	 * @return
 	 */
-	public boolean isFull() {
-		// TODO: check if there is an empty field.
-		return false;
+	public boolean isFull(SeashoqueBoard board) {
+		boolean result = true;
+		for (int x = 0; x<board.getDim(); x++){
+			for (int y = 0; y<board.getDim(); y++){
+				if (board.getObject(x, y)==null){
+					result = false;
+				}
+			}
+		}
+		return result;
 	}
 	
 	/**
@@ -60,22 +92,43 @@ public abstract class Game {
 	}
 	
 	/**
-	 * shoot checks if the first shot has been fired.
+	 * isFirstShot checks if the first shot has been fired.
 	 * @param shots
 	 */
-	public void shoot(int shots){
+	public void isFirstShot(int shots){
 		if (shots == 0){
-			// NOT DONE!
-			
-		
-		}
-		
-		
-		
+			// TODO: ??
+		}	
 	}
 	
+	/**
+	 * Most important function: this is what the game consists of.
+	 * @param target
+	 * @param x
+	 * @param y
+	 */
+	public void shoot(SeashoqueBoard target, int x, int y){
+		//TODO: check if opposite of target is allowed to shoot yet
+		//TODO: check hit/miss
+		//TODO: update board
+		//TODO: on hit: ask for another move, on miss: call nextPlayer();
+	}
 	
+	/**
+	 * isGameOver is called to check whether all ships of one board are dead. Should be called after every shot.
+	 */
+	public boolean isGameOver(){
+		//TODO: check is there is a board with no alive gameObjects.
+		return false;
+	}
 	
-	
+	/**
+	 * Run the game, keep turns, accept moves etc.
+	 */
+	public void run(){
+		while(!isFull(gameBoard) ||!isFull(enemyBoard) || !gameover){
+			//TODO: constant check for input (is this necessary in android?)
+		}
+	}
 	
 }

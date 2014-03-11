@@ -42,7 +42,7 @@ public class SimpleAI {
 		
 		// Board must not be full (so there are no empty spots) 
 		// and the loop must stop as soon as it has found a legal spot
-		while (!legal && !game.isFull()) {
+		while (!legal && !game.isFull(game.getGameBoard())) {
 			i = (int)Math.random()*99;			//Generate Random between 0 and 99
 			if (game.getGameBoard().isEmpty(i)){	//Check if random is emtpy
 				legal = true;					//If so, break the loop and submit empty spot
