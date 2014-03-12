@@ -32,12 +32,14 @@ public class StartMenu extends Activity {
 	 * user interaction before hiding the system UI.
 	 */
 	private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
+	private Button playGame;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_start_menu);
+		playGame = (Button) findViewById(R.id.button_playgame);
 		
 		//--- Use Custom Font ---// 
 		//TODO:CRASHES ON SET FONT
@@ -95,9 +97,17 @@ public class StartMenu extends Activity {
         txt.setTypeface(tf);
 	}
 	
+	private class StartGameListener implements View.OnClickListener
+	{
+		public void onClick(View v) 
+		{
+			Intent intent = new Intent();
+			startActivity(intent);
+		}
+	}
+	
 	private void startGame()
 	{
-		Intent intent = new Intent (this, StartGame.class);
-		startActivity(intent);
+		
 	}
 }

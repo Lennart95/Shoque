@@ -122,6 +122,7 @@ public abstract class Game {
 				nextPlayer(currentplayer);
 			}
 		}
+		isGameOver();
 	}
 //	x	TODO: check if opposite of target is allowed to shoot yet 
 //	x	TODO: check hit/miss
