@@ -94,4 +94,9 @@ public class StartMenu extends Activity {
         // Applying font
         txt.setTypeface(tf);
 	}
+	
+	private void startGame()
+	{
+		
+	}
 }
