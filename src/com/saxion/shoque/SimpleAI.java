@@ -1,8 +1,11 @@
 package com.saxion.shoque;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import com.saxion.shoque.playground.model.Game;
 
-public class SimpleAI {
+public class SimpleAI extends Observable{
 	
 	private Game game;
 	
@@ -32,10 +35,11 @@ public class SimpleAI {
 	}
 	
 	/**
-	 * When getMove() is called, return an random field that has not yet been hit.
+	 * When doMove() is called, return an random field that has not yet been hit and notify's observers.
+	 * Also calls game.shoot
 	 * @return
 	 */
-	public int[] getMove(){
+	public void doMove(){
 		int i = 0;
 		
 		boolean legal = false;
@@ -44,7 +48,7 @@ public class SimpleAI {
 		// and the loop must stop as soon as it has found a legal spot
 		while (!legal && !game.isFull(game.getGameBoard())) {
 			i = (int)Math.random()*99;			//Generate Random between 0 and 99
-			if (game.getGameBoard().isEmpty(i)){	//Check if random is emtpy
+			if (game.getGameBoard().isEmpty(game.intToX(i), game.intToY(i))){	//Check if random is emtpy
 				legal = true;					//If so, break the loop and submit empty spot
 			}
 		}
@@ -55,6 +59,16 @@ public class SimpleAI {
 			y = i / game.getDim();
 		
 		int[] move = {x, y};
-		return move;
+		game.shoot(game.getGameBoard(), x, y);
+		
+		setChanged();
+		notifyObservers();
+		
+		
+	}
+
+	public void update(Observable arg0, Object arg1) {
+		//Todo: update with Userinterface.
+		
 	}
 }
