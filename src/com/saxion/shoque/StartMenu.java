@@ -106,7 +106,7 @@ public class StartMenu extends Activity implements OnClickListener {
 	    startActivity(intent);
 	}
 
-	@Override
+	
 	public void onClick(View v) {
 		switch (v.getId()){
 		case R.id.button_playgame:
