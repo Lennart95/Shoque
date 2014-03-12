@@ -9,6 +9,7 @@ package com.saxion.shoque.playground.model;
  * @author Paul de Groot
  */
 public abstract class Game {
+	
 	/**
 	 * Variables containing the 2 boards maintained by Game
 	 */
@@ -19,6 +20,7 @@ public abstract class Game {
 	 * Integer to keep track of current player
 	 */
 	private int turn = 1;
+	
 	/**
 	 * ??
 	 */
@@ -46,6 +48,7 @@ public abstract class Game {
 	public SeashoqueBoard getGameBoard() {
 		return gameBoard;
 	}
+	
 	/** 
 	 * Returns the gameboard of the AI. 
 	 */
@@ -60,12 +63,20 @@ public abstract class Game {
 	public void nextPlayer(int t) {
 		if (t == 1){
 			turn = 2;
-		}
-		else {
+		} else {
 			turn = 1;
 		}
 		//TODO: update some visual to alert the next player it's his turn
 	}
+
+	//------------ ------------- ------------- ------------- -------------//
+	//------------ ------------- ------------- ------------- -------------//
+	//------------ ------------- ------------- ------------- -------------//
+	//----   TODO: some part where the game asks the user for ships  -----//
+	//------------ ------------- ------------- ------------- -------------//
+	//------------ ------------- ------------- ------------- -------------//
+	//------------ ------------- ------------- ------------- -------------//
+	
 	
 	/**
 	 * Return true if the all the fields of the given board have a gameObject. Return false if an empty field has been found.
@@ -84,7 +95,7 @@ public abstract class Game {
 	}
 	
 	/**
-	 * Get the dimensions
+	 * Get the dimensions of the board
 	 * @return
 	 */
 	public int getDim(){
@@ -92,10 +103,10 @@ public abstract class Game {
 	}
 	
 	/**
-	 * isFirstShot checks if the first shot has been fired.
+	 * isFirstShot checks if the first shot has been fired. 
 	 * @param shots
 	 */
-	public void isFirstShot(int shots){
+	public void isFirstShot(int shots){ //There are better solutions -casper
 		if (shots == 0){
 			// TODO: ??
 		}	

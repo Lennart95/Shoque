@@ -12,7 +12,14 @@ public class SeashoqueBoard extends GameBoard {
 	public SeashoqueBoard() {
 		super(DIM, DIM);
 	}
-
+	
+	/**
+	 * Set fields as 'alive' from array containing info on which ships are to be set.
+	 */
+	public void setShips(int[][] list){
+		//TODO: verwerk arrayarray
+	}
+	
 	@Override
 	public void onEmptyTileClicked(int x, int y) 
 	{
