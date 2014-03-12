@@ -39,12 +39,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int button_ontouch=0x7f020004;
         public static final int buttonselector=0x7f020005;
         public static final int cell=0x7f020006;
-        public static final int color_alive=0x7f020007;
-        public static final int color_hit=0x7f020008;
-        public static final int color_missed=0x7f020009;
-        public static final int gearbuttonselector=0x7f02000a;
-        public static final int ic_launcher=0x7f02000b;
-        public static final int logo=0x7f02000c;
+        public static final int gearbuttonselector=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int logo=0x7f020009;
     }
     public static final class id {
         public static final int LLbuttons=0x7f080004;
@@ -54,10 +51,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int button_stats=0x7f080006;
         public static final int image_logo=0x7f080003;
         public static final int img_background=0x7f080000;
-        public static final int shoqueGameBoardAIView1=0x7f080007;
-        public static final int shoqueGameBoardView1=0x7f080008;
-        public static final int textViewAantalZetten=0x7f080009;
-        public static final int textViewAantalZettenGetal=0x7f08000a;
+        public static final int shoqueGameBoardView1=0x7f080007;
     }
     public static final class layout {
         public static final int activity_start_menu=0x7f030000;
