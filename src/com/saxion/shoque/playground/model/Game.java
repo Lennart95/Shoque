@@ -71,15 +71,9 @@ public abstract class Game {
 	 * 
 	 * @param t
 	 */
-<<<<<<< HEAD
 	public void nextPlayer(int current) {
 		if (current == 1){
 			currentplayer = 2;
-=======
-	public void nextPlayer(int t) {
-		if (t == 1) {
-			turn = 2;
->>>>>>> 2518e9b7cebef5fa8c2eae855fc2bb50950e6045
 		} else {
 			currentplayer = 1;
 		}
@@ -126,21 +120,18 @@ public abstract class Game {
 	 * 
 	 * @param shots
 	 */
-<<<<<<< HEAD
 //	public void isFirstShot(int shots){ //There are better solutions -casper
 //		if (shots == 0){
 //			// TODO: ??
 //		}	
 //	}
 	
-=======
 	public void isFirstShot(int shots) { // There are better solutions -casper
 		if (shots == 0) {
 			// TODO: ??
 		}
 	}
 
->>>>>>> 2518e9b7cebef5fa8c2eae855fc2bb50950e6045
 	/**
 	 * Most important function: this is what the game consists of.
 	 * 
@@ -148,7 +139,6 @@ public abstract class Game {
 	 * @param x
 	 * @param y
 	 */
-<<<<<<< HEAD
 	public void shoot(SeashoqueBoard target, int x, int y){
 //		boolean miss = true;
 //		while (miss){
@@ -178,19 +168,12 @@ public abstract class Game {
 				nextPlayer(currentplayer);
 			}
 		}
+	}
 //	x	TODO: check if opposite of target is allowed to shoot yet 
 //		TODO: check hit/miss
 //		TODO: update board
 //		TODO: on hit: ask for another move, on miss: call nextPlayer();
-=======
-	public void shoot(SeashoqueBoard target, int x, int y) {
 
-		// TODO: check if opposite of target is allowed to shoot yet
-		// TODO: check hit/miss
-		// TODO: update board
-		// TODO: on hit: ask for another move, on miss: call nextPlayer();
->>>>>>> 2518e9b7cebef5fa8c2eae855fc2bb50950e6045
-	}
 
 	/**
 	 * isGameOver is called to check whether all ships of one board are dead.
