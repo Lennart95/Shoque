@@ -4,10 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
-
 import com.saxion.shoque.playground.model.GameBoard;
 import com.saxion.shoque.playground.model.GameObject;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -360,3 +358,5 @@ public abstract class GameBoardView extends View implements Observer {
 		}
 	}
 }
+
+	
