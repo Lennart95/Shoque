@@ -6,14 +6,16 @@ import android.widget.TextView;
 
 import com.example.shoque.R;
 import com.saxion.shoque.playground.model.Game;
+import com.saxion.shoque.playground.model.SeashoqueBoard;
 import com.saxion.shoque.playground.view.GameBoardView;
+
 
 public class StartGame extends Activity {
 
-	private Game game;
+	private SeashoqueBoard game;
 	private GameBoardView gameView;
 	private GameBoardView gameAiView;
-	private TextView zettenLabel;
+	private TextView setsLabel;
 	
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -22,7 +24,9 @@ public class StartGame extends Activity {
 		
 		gameView = (GameBoardView) findViewById(R.id.shoqueGameBoardView1);
 		gameAiView = (GameBoardView) findViewById(R.id.shoqueGameBoardAIView1);
-		zettenLabel = (TextView) findViewById(R.id.textViewAantalZettenGetal);
+		setsLabel = (TextView) findViewById(R.id.textViewAantalZettenGetal);
+		
+		game = new SeashoqueBoard();
 	}
 	
 	

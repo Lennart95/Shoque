@@ -2,7 +2,7 @@ package com.saxion.shoque;
 
 import com.example.shoque.R;
 import com.saxion.shoque.util.SystemUiHider;
-
+import android.content.Intent;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Typeface;
@@ -97,6 +97,7 @@ public class StartMenu extends Activity {
 	
 	private void startGame()
 	{
-		
+		Intent intent = new Intent (this, StartGame.class);
+		startActivity(intent);
 	}
 }
