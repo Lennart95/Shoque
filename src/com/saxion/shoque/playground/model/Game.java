@@ -1,5 +1,8 @@
 package com.saxion.shoque.playground.model;
 
+import android.content.Context;
+import android.widget.Toast;
+
 /**
  * Superclass for all games. 
 * 
@@ -19,7 +22,7 @@ public abstract class Game {
 	/**
 	 * Integer to keep track of current player
 	 */
-	private int turn = 1;
+	private int currentplayer = 1;
 	
 	/**
 	 * ??
@@ -31,6 +34,11 @@ public abstract class Game {
 	 */
 	private boolean gameover;
 
+	
+	
+	private boolean hit;
+	
+	private int hits;
 	/**
 	 * Called when you create a new game.
 	 * @param gameBoard
@@ -60,11 +68,11 @@ public abstract class Game {
 	 * Handles stuff when next player should do it's thingey. 
 	 * @param t
 	 */
-	public void nextPlayer(int t) {
-		if (t == 1){
-			turn = 2;
+	public void nextPlayer(int current) {
+		if (current == 1){
+			currentplayer = 2;
 		} else {
-			turn = 1;
+			currentplayer = 1;
 		}
 		//TODO: update some visual to alert the next player it's his turn
 	}
@@ -106,11 +114,11 @@ public abstract class Game {
 	 * isFirstShot checks if the first shot has been fired. 
 	 * @param shots
 	 */
-	public void isFirstShot(int shots){ //There are better solutions -casper
-		if (shots == 0){
-			// TODO: ??
-		}	
-	}
+//	public void isFirstShot(int shots){ //There are better solutions -casper
+//		if (shots == 0){
+//			// TODO: ??
+//		}	
+//	}
 	
 	/**
 	 * Most important function: this is what the game consists of.
@@ -119,10 +127,38 @@ public abstract class Game {
 	 * @param y
 	 */
 	public void shoot(SeashoqueBoard target, int x, int y){
-		//TODO: check if opposite of target is allowed to shoot yet
-		//TODO: check hit/miss
-		//TODO: update board
-		//TODO: on hit: ask for another move, on miss: call nextPlayer();
+//		boolean miss = true;
+//		while (miss){
+//			if (getGameBoard().isEmpty(i)){
+//				if (miss){
+//					nextPlayer(turn);
+//					//Fill grid missed.getImageId 
+//					getGameBoard().addGameObject(obj, x, y);
+//				}
+//				else if(!miss){
+//					hits++;
+//					//Fill grid Hit.getImageId
+//					getGameBoard().addGameObject(obj, x, y);
+//					
+//				}
+//				}
+//			else{
+//			}}}
+		
+		if ((target == enemyBoard && currentplayer == 2)||(target == gameBoard && currentplayer == 1)){
+			if (target.isEmpty(x, y)){
+				target.addGameObject(new Missed(), x, y);
+			}
+			else if (target.getObject(x, y) instanceof Alive){
+				target.removeObject(target.getObject(x, y));
+				target.addGameObject(new Hit(), x, y);
+				nextPlayer(currentplayer);
+			}
+		}
+//	x	TODO: check if opposite of target is allowed to shoot yet 
+//		TODO: check hit/miss
+//		TODO: update board
+//		TODO: on hit: ask for another move, on miss: call nextPlayer();
 	}
 	
 	/**

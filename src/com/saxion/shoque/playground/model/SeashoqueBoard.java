@@ -31,4 +31,11 @@ public class SeashoqueBoard extends GameBoard {
 		return DIM;
 	}
 	
+
+
+	public boolean isEmpty(int x, int y) {
+		// TODO: is the given index empty?
+		return false;
+	}
+	
 }
