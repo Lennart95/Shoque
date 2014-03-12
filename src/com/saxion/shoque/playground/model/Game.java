@@ -26,20 +26,10 @@ public abstract class Game {
 	private int currentplayer = 1;
 	
 	/**
-	 * ??
-	 */
-	private int shots = 0; // what does this mean?
-
-	/**
 	 * Should be true if the game is over, false if the game is still running.
 	 */
 	private boolean gameover;
 
-	
-	
-	private boolean hit;
-	
-	private int hits;
 	/**
 	 * Called when you create a new game.
 	 * 
@@ -116,23 +106,6 @@ public abstract class Game {
 	}
 
 	/**
-	 * isFirstShot checks if the first shot has been fired.
-	 * 
-	 * @param shots
-	 */
-//	public void isFirstShot(int shots){ //There are better solutions -casper
-//		if (shots == 0){
-//			// TODO: ??
-//		}	
-//	}
-	
-	public void isFirstShot(int shots) { // There are better solutions -casper
-		if (shots == 0) {
-			// TODO: ??
-		}
-	}
-
-	/**
 	 * Most important function: this is what the game consists of.
 	 * 
 	 * @param target
@@ -140,23 +113,6 @@ public abstract class Game {
 	 * @param y
 	 */
 	public void shoot(SeashoqueBoard target, int x, int y){
-//		boolean miss = true;
-//		while (miss){
-//			if (getGameBoard().isEmpty(i)){
-//				if (miss){
-//					nextPlayer(turn);
-//					//Fill grid missed.getImageId 
-//					getGameBoard().addGameObject(obj, x, y);
-//				}
-//				else if(!miss){
-//					hits++;
-//					//Fill grid Hit.getImageId
-//					getGameBoard().addGameObject(obj, x, y);
-//					
-//				}
-//				}
-//			else{
-//			}}}
 		
 		if ((target == enemyBoard && currentplayer == 2)||(target == gameBoard && currentplayer == 1)){
 			if (target.isEmpty(x, y)){
@@ -170,7 +126,7 @@ public abstract class Game {
 		}
 	}
 //	x	TODO: check if opposite of target is allowed to shoot yet 
-//		TODO: check hit/miss
+//	x	TODO: check hit/miss
 //		TODO: update board
 //		TODO: on hit: ask for another move, on miss: call nextPlayer();
 
@@ -189,8 +145,23 @@ public abstract class Game {
 	 */
 	public void run() {
 		while (!isFull(gameBoard) || !isFull(enemyBoard) || !gameover) {
-			// TODO: constant check for input (is this necessary in android?)
+			
 		}
+	}
+	
+	/**
+	 * Convert indices and coordinates 
+	 * @param i
+	 * @return
+	 */
+	public int intToX(int i){
+		return i%gameBoard.getDim();
+	}
+	public int intToY(int i){
+		return i/gameBoard.getDim();
+	}
+	public int toIndex(int x, int y){
+		return ((y*gameBoard.getDim())+x);
 	}
 
 }
