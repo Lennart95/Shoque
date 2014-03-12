@@ -1,10 +1,10 @@
 package com.saxion.shoque.playground.model;
 
-public class SeashoqueBoard extends GameBoard {
+public class SeashoqueBoard extends GameBoard  {
 
 	private boolean isValid = false;
 	private static final int DIM = 10;
-	
+	private Game game;
 	
 	/**
 	 * Instantiate 10X10 gameboard
@@ -23,7 +23,8 @@ public class SeashoqueBoard extends GameBoard {
 	@Override
 	public void onEmptyTileClicked(int x, int y) 
 	{
-		//TODO: schiet als degene aan de beurt was
+		game.shoot(game.getEnemyBoard(), x, y);
+		//TODOxxx: schiet als degene aan de beurt was
 		
 	}
 	
