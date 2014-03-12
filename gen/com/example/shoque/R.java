@@ -47,6 +47,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int logo=0x7f02000c;
     }
     public static final class id {
+        public static final int GridLayout1=0x7f08000b;
         public static final int LLbuttons=0x7f080004;
         public static final int RLcontent=0x7f080002;
         public static final int button_playgame=0x7f080005;
@@ -62,6 +63,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class layout {
         public static final int activity_start_menu=0x7f030000;
         public static final int playground=0x7f030001;
+        public static final int seashoquegameboard=0x7f030002;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
