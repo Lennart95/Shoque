@@ -68,7 +68,8 @@
                 android:background="@drawable/buttonselector"
                 android:text="@string/menu_playvscpu"
                 android:textSize="40sp"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF" 
+                android:onClick="startGame"/>
 
             <Button
                 android:id="@+id/button_stats"

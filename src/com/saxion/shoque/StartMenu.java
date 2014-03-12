@@ -1,18 +1,17 @@
 package com.saxion.shoque;
 
-import com.example.shoque.R;
-import com.saxion.shoque.util.SystemUiHider;
-import android.content.Intent;
-import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
+
+import com.example.shoque.R;
+import com.saxion.shoque.util.SystemUiHider;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -20,7 +19,7 @@ import android.widget.TextView;
  * 
  * @see SystemUiHider
  */
-public class StartMenu extends Activity {
+public class StartMenu extends Activity implements OnClickListener {
 	/**
 	 * Whether or not the system UI should be auto-hidden after
 	 * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -33,6 +32,7 @@ public class StartMenu extends Activity {
 	 */
 	private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
 	private Button playGame;
+	private Button stats;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,10 @@ public class StartMenu extends Activity {
 
 		setContentView(R.layout.activity_start_menu);
 		playGame = (Button) findViewById(R.id.button_playgame);
+		stats = (Button) findViewById(R.id.button_stats);
+
+		playGame.setOnClickListener(this);
+		stats.setOnClickListener(this);
 		
 		//--- Use Custom Font ---// 
 		//TODO:CRASHES ON SET FONT
@@ -97,17 +101,24 @@ public class StartMenu extends Activity {
         txt.setTypeface(tf);
 	}
 	
-	private class StartGameListener implements View.OnClickListener
-	{
-		public void onClick(View v) 
-		{
-			Intent intent = new Intent();
-			startActivity(intent);
-		}
+	private void startGame(){
+	    Intent intent = new Intent(this, StartGame.class);
+	    startActivity(intent);
 	}
-	
-	private void startGame()
-	{
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()){
+		case R.id.button_playgame:
+			startGame();
+			break;
+		case R.id.button_settings:
+			//settings();
+			break;
+		case R.id.button_stats:
+			//stats();
+			break;
+		}
 		
 	}
 }
