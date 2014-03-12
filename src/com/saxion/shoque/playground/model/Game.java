@@ -1,7 +1,5 @@
 package com.saxion.shoque.playground.model;
 
-import android.content.Context;
-import android.widget.Toast;
 
 /**
  * Superclass for all games.
@@ -128,7 +126,7 @@ public abstract class Game {
 //	x	TODO: check if opposite of target is allowed to shoot yet 
 //	x	TODO: check hit/miss
 //		TODO: update board
-//		TODO: on hit: ask for another move, on miss: call nextPlayer();
+//	x	TODO: on hit: ask for another move, on miss: call nextPlayer();
 
 
 	/**
@@ -136,8 +134,17 @@ public abstract class Game {
 	 * Should be called after every shot.
 	 */
 	public boolean isGameOver() {
+		boolean result = true;
+		for (int i = 0; i < (gameBoard.getDim()^2); i++){
+			if (gameBoard.getObject(intToX(i), intToY(i)) instanceof Alive){
+				result = false;
+			}
+			if (enemyBoard.getObject(intToX(i), intToY(i)) instanceof Alive){
+				result = false;
+			}
+		}
 		// TODO: check is there is a board with no alive gameObjects.
-		return false;
+		return result;
 	}
 
 	/**
@@ -158,7 +165,7 @@ public abstract class Game {
 		return i%gameBoard.getDim();
 	}
 	public int intToY(int i){
-		return i/gameBoard.getDim();
+		return (int) i/gameBoard.getDim();
 	}
 	public int toIndex(int x, int y){
 		return ((y*gameBoard.getDim())+x);
