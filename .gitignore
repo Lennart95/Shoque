@@ -11,7 +11,6 @@
 # Generated files
 bin/
 gen/
-<<<<<<< HEAD
 
 # Gradle files
 .gradle/
@@ -53,7 +52,3 @@ local.properties
 
 # TeXlipse plugin
 .texlipse
-=======
-bin/classes/com/example/shoque/R.java
-bin/classes/com/example/shoque/GameStats.class
->>>>>>> 1110d1b7140001dd03cbbb519db647533ccd4eee
