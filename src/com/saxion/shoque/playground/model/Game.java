@@ -149,15 +149,6 @@ public abstract class Game {
 	}
 
 	/**
-	 * Run the game, keep turns, accept moves etc.
-	 */
-	public void run() {
-		while (!isFull(gameBoard) || !isFull(enemyBoard) || !gameover) {
-			
-		}
-	}
-	
-	/**
 	 * Convert indices and coordinates 
 	 * @param i
 	 * @return
