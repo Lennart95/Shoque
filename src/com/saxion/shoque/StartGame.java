@@ -27,7 +27,7 @@ public class StartGame extends Activity {
 		
 		gameView = (GameBoardView) findViewById(R.id.shoqueGameBoardView1);
 		gameAiView = (GameBoardView) findViewById(R.id.shoqueGameBoardAIView1);
-		setsLabel = (TextView) findViewById(R.id.textViewAantalZettenGetal);
+//		setsLabel = (TextView) findViewById(R.id.textViewAantalZettenGetal);
 		
 		game = new SeashoqueBoard();
 	}

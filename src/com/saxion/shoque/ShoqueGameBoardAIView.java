@@ -27,6 +27,8 @@ public class ShoqueGameBoardAIView extends GameBoardView {
 		loadTile("empty", R.drawable.cell);
 		setEmptyTile("empty");
 		
+		
+		
 		// Load the images for the GameObjects
 		//loadTile(Leaf.LEAF_IMAGE, R.drawable.leaf);
 		//loadTile(Rock.ROCK_IMAGE, R.drawable.rock);

@@ -112,12 +112,12 @@ public class StartMenu extends Activity implements OnClickListener {
 		case R.id.button_playgame:
 			startGame();
 			break;
-		case R.id.button_settings:
-			//settings();
-			break;
-		case R.id.button_stats:
-			//stats();
-			break;
+//		case R.id.button_settings:
+//			//settings();
+//			break;
+//		case R.id.button_stats:
+//			//stats();
+//			break;
 		}
 		
 	}
