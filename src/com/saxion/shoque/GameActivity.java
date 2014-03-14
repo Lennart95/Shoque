@@ -12,7 +12,7 @@ import com.saxion.shoque.playground.view.GameBoardView;
 
 
 
-public class StartGame extends Activity {
+public class GameActivity extends Activity {
 
 	private SeashoqueBoard game;
 	private GameBoardView gameView;
@@ -30,7 +30,7 @@ public class StartGame extends Activity {
 		gameAiView = (GameBoardView) findViewById(R.id.shoqueGameBoardView1);
 //		setsLabel = (TextView) findViewById(R.id.textViewAantalZettenGetal);
 		
-		game = new Game(this);
+		game = new SeashoqueBoard();
 	}
 	
 	public void toastClicks(int x, int y){

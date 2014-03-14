@@ -1,6 +1,6 @@
 package com.saxion.shoque.playground.model;
 
-import com.saxion.shoque.StartGame;
+import com.saxion.shoque.GameActivity;
 
 import android.widget.Toast;
 
@@ -8,7 +8,7 @@ public class SeashoqueBoard extends GameBoard  {
 
 	private boolean isValid = false;
 	private static final int DIM = 10;
-	private StartGame parentactivity;
+	private GameActivity parentactivity;
 	
 	/**
 	 * Instantiate 10X10 gameboard
@@ -27,7 +27,7 @@ public class SeashoqueBoard extends GameBoard  {
 	@Override
 	public void onEmptyTileClicked(int x, int y) 
 	{
-		game.shoot(game.getEnemyBoard(), x, y);
+		//getGame().shoot(getGame().getEnemyBoard(), x, y);
 		//TODOxxx: schiet als degene aan de beurt was
 		
 	}

@@ -1,4 +1,7 @@
-package com.saxion.shoque.playground.model;
+package com.saxion.shoque.util;
+
+import com.saxion.shoque.playground.model.GameBoard;
+import com.saxion.shoque.playground.model.GameObject;
 
 public class Hit extends GameObject {
 

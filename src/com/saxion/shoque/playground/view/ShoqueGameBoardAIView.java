@@ -1,11 +1,10 @@
-package com.saxion.shoque;
+package com.saxion.shoque.playground.view;
 
 
 import android.content.Context;
 import android.util.AttributeSet;
 
 import com.example.shoque.R;
-import com.saxion.shoque.playground.view.GameBoardView;
 
 public class ShoqueGameBoardAIView extends GameBoardView {
 

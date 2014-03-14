@@ -11,7 +11,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.example.shoque.R;
-import com.saxion.shoque.util.SystemUiHider;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -19,7 +18,7 @@ import com.saxion.shoque.util.SystemUiHider;
  * 
  * @see SystemUiHider
  */
-public class StartMenu extends Activity implements OnClickListener {
+public class SeaShoque extends Activity implements OnClickListener {
 	/**
 	 * Whether or not the system UI should be auto-hidden after
 	 * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -102,7 +101,7 @@ public class StartMenu extends Activity implements OnClickListener {
 	}
 	
 	private void startGame(){
-	    Intent intent = new Intent(this, StartGame.class);
+	    Intent intent = new Intent(this, GameActivity.class);
 	    startActivity(intent);
 	}
 

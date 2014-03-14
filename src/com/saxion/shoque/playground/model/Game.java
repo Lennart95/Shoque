@@ -1,5 +1,9 @@
 package com.saxion.shoque.playground.model;
 
+import com.saxion.shoque.util.Alive;
+import com.saxion.shoque.util.Hit;
+import com.saxion.shoque.util.Missed;
+
 
 /**
  * Superclass for all games.

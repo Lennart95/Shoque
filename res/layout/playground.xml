@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="20dip" >
 
-        <com.saxion.shoque.ShoqueGameBoardView
+        <com.saxion.shoque.playground.view.ShoqueGameBoardView
             android:id="@+id/shoqueGameBoardView1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
     		android:background="@drawable/background_grid"
     		android:layout_margin="5dip"/>
 
-        <com.saxion.shoque.ShoqueGameBoardView
+        <com.saxion.shoque.playground.view.ShoqueGameBoardView
             android:id="@+id/shoqueGameBoardView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
