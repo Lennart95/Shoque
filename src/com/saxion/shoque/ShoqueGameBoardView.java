@@ -34,14 +34,18 @@ public class ShoqueGameBoardView extends GameBoardView {
 	
 // Dit moet er wss staan, dit stond ook in de voorbeelden van school, je kunt hier volgens mij de de 
 // plaatjes laden en plaatsten (door zoals hier onder staat	board.addGameObject(Alive, 3, 3);)
+		
+//		
 //		GameBoard board = 
+//				
+//				
 //		board.removeAllObjects();
 //
 //		
 //		// Add a player object
-//		loadTile(ALIVE_IMAGE, R.drawable.color_alive);
-//		board.addGameObject(Alive, 3, 3);
-//		
+		loadTile(ALIVE_IMAGE, R.drawable.color_alive);
+		
+		
 //		
 //		// Add some rocks
 //		board.addGameObject(new Rock(false), 3, 3);

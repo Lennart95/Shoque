@@ -153,4 +153,5 @@ public abstract class GameBoard extends Observable {
 	void setGame(Game game) {
 		this.game = game;
 	}
+	
 }
