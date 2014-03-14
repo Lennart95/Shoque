@@ -11,6 +11,8 @@ import com.saxion.shoque.playground.model.GameObject;
 import com.saxion.shoque.playground.view.GameBoardView;
 
 public class ShoqueGameBoardView extends GameBoardView {
+	public static final String ALIVE_IMAGE = "Alive";
+	private static final GameObject Alive = null;
 
 	public ShoqueGameBoardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -21,10 +23,23 @@ public class ShoqueGameBoardView extends GameBoardView {
 		super(context, attrs, defStyle);
 		initGameView();
 	}
-	public static final String ALIVE_IMAGE = "Alive";
-	private static final GameObject Alive = null;
-	private void initGameView()
-	{
+	
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+	    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+	    int size = 0;
+	    int width = getMeasuredWidth();
+	    int height = getMeasuredHeight();
+	 
+	    if (width > height) {
+	        size = height;
+	    } else {
+	        size = width;
+	    }
+	    setMeasuredDimension(size, size);
+	}
+	
+	private void initGameView()	{
 		// Load the 'empty' cell bitmap and tell the tile view that this is the
 		// image to use for cells without GameObject
 		
@@ -66,12 +81,5 @@ public class ShoqueGameBoardView extends GameBoardView {
 		//loadTile(Rock.ROCK_IMAGE, R.drawable.rock);
 		//loadTile(Rock.RED_ROCK_IMAGE, R.drawable.rock2);
 		//loadTile(Wombat.WOMBAT_IMAGE, R.drawable.wombat);
-	}
-
-		
-	}
-
-
-
-
-	
+	}	
+}
