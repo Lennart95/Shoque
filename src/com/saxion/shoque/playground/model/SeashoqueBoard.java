@@ -1,10 +1,14 @@
 package com.saxion.shoque.playground.model;
 
+import com.saxion.shoque.StartGame;
+
+import android.widget.Toast;
+
 public class SeashoqueBoard extends GameBoard  {
 
 	private boolean isValid = false;
 	private static final int DIM = 10;
-	private Game game;
+	private StartGame parentactivity;
 	
 	/**
 	 * Instantiate 10X10 gameboard

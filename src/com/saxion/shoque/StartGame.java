@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shoque.R;
 import com.saxion.shoque.playground.model.SeashoqueBoard;
@@ -26,11 +27,16 @@ public class StartGame extends Activity {
 		Intent intent = getIntent();
 		
 		gameView = (GameBoardView) findViewById(R.id.shoqueGameBoardView1);
-		gameAiView = (GameBoardView) findViewById(R.id.shoqueGameBoardAIView1);
+		gameAiView = (GameBoardView) findViewById(R.id.shoqueGameBoardView1);
 //		setsLabel = (TextView) findViewById(R.id.textViewAantalZettenGetal);
 		
-		game = new SeashoqueBoard();
+		game = new Game(this);
 	}
 	
+	public void toastClicks(int x, int y){
+
+		//display in short period of time
+		Toast.makeText(getApplicationContext(), "msg msg", Toast.LENGTH_SHORT).show();
+	}
 	
 }
