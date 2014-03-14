@@ -3,18 +3,26 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/first_grid"
+    android:gravity="center_horizontal|clip_vertical"
     android:orientation="horizontal" >
 
-    <com.saxion.shoque.ShoqueGameBoardAIView
-        android:id="@+id/shoqueGameBoardAIView1"
-        android:layout_width="238dp"
-        android:layout_height="242dp"
-        android:layout_marginLeft="22dp" />
+    <LinearLayout
+        android:layout_width="502dp"
+        android:layout_height="236dp"
+        android:layout_marginTop="20dip" >
 
-    <com.saxion.shoque.ShoqueGameBoardView
-        android:id="@+id/shoqueGameBoardView1"
-        android:layout_width="240dp"
-        android:layout_height="259dp"
-        android:layout_marginLeft="15dp" />
+        <com.saxion.shoque.ShoqueGameBoardView
+            android:id="@+id/shoqueGameBoardView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <com.saxion.shoque.ShoqueGameBoardAIView
+            android:id="@+id/shoqueGameBoardAIView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+   	<!-- test -->
 
 </LinearLayout>
