@@ -8,13 +8,14 @@ import android.widget.Toast;
 
 import com.example.shoque.R;
 import com.saxion.shoque.playground.model.SeashoqueBoard;
+import com.saxion.shoque.playground.model.SeashoqueGame;
 import com.saxion.shoque.playground.view.GameBoardView;
 
 
 
 public class GameActivity extends Activity {
 
-	private SeashoqueBoard game;
+	private SeashoqueGame game;
 	private GameBoardView gameView;
 	private GameBoardView gameAiView;
 	private TextView setsLabel;
@@ -30,7 +31,7 @@ public class GameActivity extends Activity {
 		gameAiView = (GameBoardView) findViewById(R.id.shoqueGameBoardView1);
 //		setsLabel = (TextView) findViewById(R.id.textViewAantalZettenGetal);
 		
-		game = new SeashoqueBoard();
+		game = new SeashoqueGame();
 	}
 	
 	public void toastClicks(int x, int y){

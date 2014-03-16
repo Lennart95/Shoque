@@ -5,9 +5,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.example.shoque.R;
-import com.saxion.shoque.playground.model.Game;
-import com.saxion.shoque.playground.model.GameBoard;
 import com.saxion.shoque.playground.model.GameObject;
+import com.saxion.shoque.util.Hit;
+import com.saxion.shoque.util.Missed;
 
 public class ShoqueGameBoardView extends GameBoardView {
 	public static final String ALIVE_IMAGE = "Alive";
@@ -59,26 +59,13 @@ public class ShoqueGameBoardView extends GameBoardView {
 //		// Add a player object
 		loadTile(ALIVE_IMAGE, R.drawable.color_alive);
 		
-		
-//		
-//		// Add some rocks
-//		board.addGameObject(new Rock(false), 3, 3);
-//		board.addGameObject(new Rock(false), 2, 7);
-//		board.addGameObject(new Rock(true),  8, 5);
-//		board.addGameObject(new Rock(true),  1, 4);
-//		board.addGameObject(new Rock(false), 6, 10);
 //
 //		// Add some leafs
 //		board.addGameObject(new Leaf(), 7, 7);
-//		board.addGameObject(new Leaf(), 9, 5);
-//		board.addGameObject(new Leaf(), 3, 6);
-//		board.addGameObject(new Leaf(), 4, 7);
-//		board.addGameObject(new Leaf(), 1, 9);
 //		
 		// Load the images for the GameObjects
-		//loadTile(Leaf.LEAF_IMAGE, R.drawable.leaf);
-		//loadTile(Rock.ROCK_IMAGE, R.drawable.rock);
-		//loadTile(Rock.RED_ROCK_IMAGE, R.drawable.rock2);
-		//loadTile(Wombat.WOMBAT_IMAGE, R.drawable.wombat);
+		loadTile("alive", R.drawable.color_alive);
+		loadTile("hit", R.drawable.color_hit);
+		loadTile("missed", R.drawable.color_missed);
 	}	
 }
