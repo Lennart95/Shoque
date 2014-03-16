@@ -1,20 +1,20 @@
 package com.saxion.shoque.util;
 
 import java.util.Observable;
-import java.util.Observer;
 
 import com.saxion.shoque.playground.model.Game;
+import com.saxion.shoque.playground.model.SeashoqueGame;
 
 public class SimpleAI extends Observable{
 	
-	private Game game;
+	private SeashoqueGame game;
 	
 	/**
 	 * Instantieert SimpleAI zodat deze aangesproken kan worden. 
 	 * Ook wordt game gezet welk game dit object moet aanspreken.
 	 * @param game
 	 */
-	public SimpleAI(Game game){
+	public SimpleAI(SeashoqueGame game){
 		this.game = game;
 	}
 	
