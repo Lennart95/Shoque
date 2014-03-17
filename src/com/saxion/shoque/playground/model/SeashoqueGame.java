@@ -36,6 +36,10 @@ public class SeashoqueGame extends Game {
 		// Create 2 boards
 		super(new SeashoqueBoard(), new SeashoqueBoard());
 		
+		// Create links from boards to Game
+		getGameBoard().setGame(this);
+		getEnemyBoard().setGame(this);
+		
 		// Create reference to the main menu
 		this.gameactivity = activity;
 
@@ -73,12 +77,12 @@ public class SeashoqueGame extends Game {
 		getGameBoard().addGameObject(new Alive(), 3, 7);
 		Log.d(TAG, "Added Alive on (3,7)");
 		
-		getGameBoard().addGameObject(new Alive(), 1, 1);
+		getGameBoard().addGameObject(new Alive(), 5, 1);
 		getGameBoard().addGameObject(new Alive(), 2, 1);
 		getGameBoard().addGameObject(new Alive(), 3, 1);
 		getGameBoard().addGameObject(new Alive(), 4, 1);
 
-		getGameBoard().addGameObject(new Alive(), 6, 9);
+		getGameBoard().addGameObject(new Alive(), 6, 6);
 		getGameBoard().addGameObject(new Alive(), 6, 8);
 		getGameBoard().addGameObject(new Alive(), 6, 7);
 
@@ -175,19 +179,26 @@ public class SeashoqueGame extends Game {
 	 */
 	public void shoot(SeashoqueBoard target, int x, int y){
 		
-		if ((target == getEnemyBoard() && currentplayer == 2)||(target == getGameBoard() && currentplayer == 1)){
-			if (target.isEmpty(x, y)){
-				target.addGameObject(new Missed(), x, y);
-			}
-			else if (target.getObject(x, y) instanceof Alive){
-				target.removeObject(target.getObject(x, y));
-				target.addGameObject(new Hit(), x, y);
-				nextPlayer(currentplayer);
-			}
+		if (target.getObject(x, y) == null){
+			target.addGameObject(new Missed(), x, y);
 		}
-		if (isGameOver()){
-			Log.d(TAG, "GameOver!");
-		}
+		
+//		if ((target == getEnemyBoard() && currentplayer == 2)||(target == getGameBoard() && currentplayer == 1)){
+//			if (target.isEmpty(x, y)){
+//				target.addGameObject(new Missed(), x, y);
+//			}
+//			else if (target.getObject(x, y) instanceof Alive){
+//				target.removeObject(target.getObject(x, y));
+//				target.addGameObject(new Hit(), x, y);
+//				nextPlayer(currentplayer);
+//			}
+//		}
+//		Log.d(TAG, "Shoot! " + x + " " + y);
+//		if (isGameOver()){
+//			Log.d(TAG, "GameOver!");
+//		}
+		getGameBoard().updateView();
+		getEnemyBoard().updateView();
 	}
 //	x	TODO: check if opposite of target is allowed to shoot yet 
 //	x	TODO: check hit/miss
@@ -203,19 +214,19 @@ public class SeashoqueGame extends Game {
 		boolean result = false;
 		
 		// Check if there is one or more Alive instances on the player board
-		for (int i = 0; i < (getGameBoard().getDim()^2); i++){
+		for (int i = 0; i < (getGameBoard().getDim()*getGameBoard().getDim()); i++){
 			result = result | (getGameBoard().getObject(intToX(i), intToY(i)) instanceof Alive);
 		}
 		//If there is one or more instance of alive on playerboard, check CPU board.
 		if (result) {
 			result = false;
-			for (int i = 0; i < (getGameBoard().getDim()^2); i++){
+			for (int i = 0; i < (getGameBoard().getDim()*getGameBoard().getDim()); i++){
 				result = result | (getEnemyBoard().getObject(intToX(i), intToY(i)) instanceof Alive);
 			}
 		}
 		// TODO: check is there is a board with no alive gameObjects.
-		gameover = result;
-		return result;
+		gameover = !result;
+		return !result;
 	}
 
 	/**

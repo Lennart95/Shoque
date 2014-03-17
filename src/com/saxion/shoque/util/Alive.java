@@ -6,7 +6,8 @@ import com.saxion.shoque.playground.model.GameBoard;
 import com.saxion.shoque.playground.model.GameObject;
 
 public class Alive extends GameObject {
-	public static final String ALIVE_IMAGE = "alive";
+	private static final String TAG = "GameObject";
+	public static final String ALIVE_IMAGE = "color_alive";
 	public static final String ALIVE_ANIMATION = "alive_anim";
 	
 	public Alive(){

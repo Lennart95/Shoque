@@ -6,7 +6,8 @@ import com.saxion.shoque.playground.model.GameBoard;
 import com.saxion.shoque.playground.model.GameObject;
 
 public class Hit extends GameObject {
-	public static final String HIT_IMAGE = "hit";
+	private static final String TAG = "GameObject";
+	public static final String HIT_IMAGE = "color_hit";
 	public static final String HIT_ANIMATION = "hits_anim";
 	
 	public Hit(){

@@ -24,7 +24,6 @@ public abstract class Game {
 	public Game(GameBoard gameBoard, GameBoard enemyBoard) {
 		this.gameBoard = gameBoard;
 		this.enemyBoard = enemyBoard;
-		gameBoard.setGame(this);
 	}
 	/** Returns a reference to the game board. */
 	public SeashoqueBoard getGameBoard() {

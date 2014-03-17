@@ -3,6 +3,7 @@ package com.saxion.shoque.playground.model;
 public class SeashoqueBoard extends GameBoard  {
 
 	private static final int DIM = 10;
+	private SeashoqueGame game;
 	
 	/**
 	 * Instantiate 10X10 gameboard
@@ -21,7 +22,7 @@ public class SeashoqueBoard extends GameBoard  {
 	@Override
 	public void onEmptyTileClicked(int x, int y) 
 	{
-		//getGame().shoot(getGame().getEnemyBoard(), x, y);
+		game.shoot(game.getEnemyBoard(), x, y);
 		//TODO: schiet als degene aan de beurt was
 		
 	}
@@ -38,6 +39,11 @@ public class SeashoqueBoard extends GameBoard  {
 			result = false;
 		}
 		return result;
+	}
+
+	/** Used by Game. */
+	void setGame(SeashoqueGame game) {
+		this.game = game;
 	}
 	
 }

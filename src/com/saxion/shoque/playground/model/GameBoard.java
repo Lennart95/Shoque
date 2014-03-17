@@ -63,6 +63,7 @@ public abstract class GameBoard extends Observable {
 		
 		gameBoard[x][y] = obj;
 		obj.setPosition(x,  y);
+		Log.d(TAG, "Added game Object: " + obj.toString());
 	}
 
 	/**
@@ -149,9 +150,5 @@ public abstract class GameBoard extends Observable {
 	 */
 	public abstract void onEmptyTileClicked(int x, int y);
 
-	/** Used by Game. */
-	void setGame(Game game) {
-		this.game = game;
-	}
 	
 }
