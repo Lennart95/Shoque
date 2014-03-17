@@ -41,10 +41,12 @@ public class SeashoqueGame extends Game {
 
 		ShoqueGameBoardView gameViewPlayer = activity.getGameBoardView();
 		GameBoard gameBoard = getGameBoard();
+		gameBoard.setGame(this);
 		gameViewPlayer.setGameBoard(gameBoard);
 		
 		ShoqueGameBoardView gameViewCPU = activity.getEnemyGameBoardView();
 		GameBoard enemyBoard = getEnemyBoard();
+		enemyBoard.setGame(this);
 		gameViewCPU.setGameBoard(enemyBoard);
 		
 
@@ -72,47 +74,26 @@ public class SeashoqueGame extends Game {
 		Log.d(TAG, "Added Alive on (3,6)");
 		getGameBoard().addGameObject(new Alive(), 3, 7);
 		Log.d(TAG, "Added Alive on (3,7)");
-		
-		getGameBoard().addGameObject(new Alive(), 1, 1);
-		getGameBoard().addGameObject(new Alive(), 2, 1);
-		getGameBoard().addGameObject(new Alive(), 3, 1);
-		getGameBoard().addGameObject(new Alive(), 4, 1);
 
-		getGameBoard().addGameObject(new Alive(), 6, 9);
-		getGameBoard().addGameObject(new Alive(), 6, 8);
-		getGameBoard().addGameObject(new Alive(), 6, 7);
+		getGameBoard().addGameObject(new Hit(), 5, 5);
+		getGameBoard().addGameObject(new Hit(), 5, 6);
 
-		getGameBoard().addGameObject(new Alive(), 9, 9);
-		getGameBoard().addGameObject(new Alive(), 8, 9);
-		getGameBoard().addGameObject(new Alive(), 7, 9);
-
-		getGameBoard().addGameObject(new Alive(), 0, 0);
-		getGameBoard().addGameObject(new Alive(), 0, 1);
-
+		getGameBoard().addGameObject(new Missed(), 8, 6);
+		getGameBoard().addGameObject(new Missed(), 8, 7);
 
 		// CPU board
-		getEnemyBoard().addGameObject(new Alive(), 3, 4);
-		getEnemyBoard().addGameObject(new Alive(), 3, 5);
-		getEnemyBoard().addGameObject(new Alive(), 3, 6);
-		getEnemyBoard().addGameObject(new Alive(), 3, 7);
-		
-		getEnemyBoard().addGameObject(new Alive(), 1, 1);
-		getEnemyBoard().addGameObject(new Alive(), 2, 1);
-		getEnemyBoard().addGameObject(new Alive(), 3, 1);
-		getEnemyBoard().addGameObject(new Alive(), 4, 1);
-
-		getEnemyBoard().addGameObject(new Alive(), 6, 9);
-		getEnemyBoard().addGameObject(new Alive(), 6, 8);
-		getEnemyBoard().addGameObject(new Alive(), 6, 7);
-
-		getEnemyBoard().addGameObject(new Alive(), 9, 9);
-		getEnemyBoard().addGameObject(new Alive(), 8, 9);
-		getEnemyBoard().addGameObject(new Alive(), 7, 9);
 
 		getEnemyBoard().addGameObject(new Alive(), 0, 0);
 		Log.d(TAG, "Added Alive on Enemy Board (0,0)");
 		getEnemyBoard().addGameObject(new Alive(), 0, 1);
 		Log.d(TAG, "Added Alive on Enemy Board (0,1)");
+		
+
+		getEnemyBoard().addGameObject(new Hit(), 5, 5);
+		getEnemyBoard().addGameObject(new Hit(), 5, 6);
+
+		getEnemyBoard().addGameObject(new Missed(), 8, 6);
+		getEnemyBoard().addGameObject(new Missed(), 8, 7);
 
 		// Hard code setup ships -------------------------------//
 		
@@ -188,6 +169,7 @@ public class SeashoqueGame extends Game {
 		if (isGameOver()){
 			Log.d(TAG, "GameOver!");
 		}
+		target.updateView();
 	}
 //	x	TODO: check if opposite of target is allowed to shoot yet 
 //	x	TODO: check hit/miss

@@ -1,7 +1,6 @@
 package com.saxion.shoque.playground.model;
 
 public class SeashoqueBoard extends GameBoard  {
-
 	private static final int DIM = 10;
 	
 	/**
@@ -14,14 +13,13 @@ public class SeashoqueBoard extends GameBoard  {
 	/**
 	 * Set fields as 'alive' from array containing info on which ships are to be set.
 	 */
-	public void setShips(int[][] list){
+	public void setShip(int[] sequence){
 		//TODO: verwerk arrayarray
 	}
 	
 	@Override
-	public void onEmptyTileClicked(int x, int y) 
-	{
-		//getGame().shoot(getGame().getEnemyBoard(), x, y);
+	public void onEmptyTileClicked(int x, int y) {
+		((SeashoqueGame) getGame()).shoot(this, x, y);
 		//TODO: schiet als degene aan de beurt was
 		
 	}
@@ -39,5 +37,4 @@ public class SeashoqueBoard extends GameBoard  {
 		}
 		return result;
 	}
-	
 }
