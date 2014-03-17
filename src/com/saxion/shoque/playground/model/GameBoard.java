@@ -150,5 +150,9 @@ public abstract class GameBoard extends Observable {
 	 */
 	public abstract void onEmptyTileClicked(int x, int y);
 
+	public void setGame(SeashoqueGame seashoqueGame) {
+		this.game = seashoqueGame;
+	}
+
 	
 }
