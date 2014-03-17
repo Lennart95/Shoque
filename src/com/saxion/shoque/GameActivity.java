@@ -4,40 +4,43 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.shoque.R;
-import com.saxion.shoque.playground.model.SeashoqueBoard;
 import com.saxion.shoque.playground.model.SeashoqueGame;
 import com.saxion.shoque.playground.view.GameBoardView;
+import com.saxion.shoque.playground.view.ShoqueGameBoardView;
 
 
 
 public class GameActivity extends Activity {
 
 	private SeashoqueGame game;
-	private GameBoardView gameView;
-	private GameBoardView gameAiView;
-	private TextView setsLabel;
+	private ShoqueGameBoardView gameViewPlayer;
+	private ShoqueGameBoardView gameViewCPU;
 	
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.playground);
+				
+		gameViewPlayer = (ShoqueGameBoardView) findViewById(R.id.shoqueGameBoardView1);
+		gameViewCPU = (ShoqueGameBoardView) findViewById(R.id.shoqueGameBoardView2);
 		
-		Intent intent = getIntent();
-		
-		gameView = (GameBoardView) findViewById(R.id.shoqueGameBoardView1);
-		gameAiView = (GameBoardView) findViewById(R.id.shoqueGameBoardView1);
-//		setsLabel = (TextView) findViewById(R.id.textViewAantalZettenGetal);
-		
-		game = new SeashoqueGame();
+		game = new SeashoqueGame(this);
 	}
 	
-	public void toastClicks(int x, int y){
-
-		//display in short period of time
-		Toast.makeText(getApplicationContext(), "msg msg", Toast.LENGTH_SHORT).show();
+	/**
+	 * Returns the view on the own game board view.
+	 */
+	public ShoqueGameBoardView getGameBoardView() {
+		return gameViewPlayer;
 	}
+	/**
+	 * Returns the view on the enemy game board view.
+	 */
+	public ShoqueGameBoardView getEnemyGameBoardView() {
+		return gameViewCPU;
+	}
+
 	
 }
