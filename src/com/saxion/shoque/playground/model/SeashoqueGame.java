@@ -1,6 +1,7 @@
 package com.saxion.shoque.playground.model;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.saxion.shoque.GameActivity;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
@@ -66,15 +67,15 @@ public class SeashoqueGame extends Game {
 		
 		// Hard code setup ships -------------------------------//
 		// Player board
-		getGameBoard().addGameObject(new Alive(), 3, 3);
+		getGameBoard().addGameObject(new Alive(this), 3, 3);
 		Log.d(TAG, "Added Alive on (3,3)");
-		getGameBoard().addGameObject(new Alive(), 3, 4);
+		getGameBoard().addGameObject(new Alive(this), 3, 4);
 		Log.d(TAG, "Added Alive on (3,4)");
-		getGameBoard().addGameObject(new Alive(), 3, 5);
+		getGameBoard().addGameObject(new Alive(this), 3, 5);
 		Log.d(TAG, "Added Alive on (3,5)");
-		getGameBoard().addGameObject(new Alive(), 3, 6);
+		getGameBoard().addGameObject(new Alive(this), 3, 6);
 		Log.d(TAG, "Added Alive on (3,6)");
-		getGameBoard().addGameObject(new Alive(), 3, 7);
+		getGameBoard().addGameObject(new Alive(this), 3, 7);
 		Log.d(TAG, "Added Alive on (3,7)");
 
 		getGameBoard().addGameObject(new Hit(), 5, 5);
@@ -85,9 +86,9 @@ public class SeashoqueGame extends Game {
 
 		// CPU board
 
-		getEnemyBoard().addGameObject(new Alive(), 0, 0);
+		getEnemyBoard().addGameObject(new Alive(this), 0, 0);
 		Log.d(TAG, "Added Alive on Enemy Board (0,0)");
-		getEnemyBoard().addGameObject(new Alive(), 0, 1);
+		getEnemyBoard().addGameObject(new Alive(this), 0, 1);
 		Log.d(TAG, "Added Alive on Enemy Board (0,1)");
 		
 
@@ -130,12 +131,8 @@ public class SeashoqueGame extends Game {
 	 * 
 	 * @param t
 	 */
-	public void nextPlayer(int current) {
-		if (current == 1){
-			currentplayer = 2;
-		} else {
-			currentplayer = 1;
-		}
+	public void nextPlayer() {
+		this.currentplayer = (currentplayer+1) % 2;
 		// TODO: update some visual to alert the next player it's his turn
 	}
 
@@ -158,19 +155,29 @@ public class SeashoqueGame extends Game {
 	public void shoot(SeashoqueBoard target, int x, int y){
 		
 		if ((target == getEnemyBoard() && currentplayer == 2)||(target == getGameBoard() && currentplayer == 1)){
+			//Missed!
 			if (target.isEmpty(x, y)){
 				target.addGameObject(new Missed(), x, y);
 			}
+			//HIT!
 			else if (target.getObject(x, y) instanceof Alive){
+				Log.d(TAG, "I'm shooting a ALIVE object");
+				
 				target.removeObject(target.getObject(x, y));
+				Log.d(TAG, "Removed Object");
+				
 				target.addGameObject(new Hit(), x, y);
-				nextPlayer(currentplayer);
+				Log.d(TAG, "Added Hit object");
+				
 			}
 		}
 		if (isGameOver()){
 			Log.d(TAG, "GameOver!");
+			newGame();
+			gameactivity.toast("You might have won! Let's start over!");
 		}
 		target.updateView();
+		nextPlayer();
 	}
 
 	/**

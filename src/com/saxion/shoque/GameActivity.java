@@ -1,13 +1,11 @@
 package com.saxion.shoque;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shoque.R;
 import com.saxion.shoque.playground.model.SeashoqueGame;
-import com.saxion.shoque.playground.view.GameBoardView;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
 
 
@@ -40,6 +38,11 @@ public class GameActivity extends Activity {
 	 */
 	public ShoqueGameBoardView getEnemyGameBoardView() {
 		return gameViewCPU;
+	}
+	
+	public void toast(String msg){
+		Toast.makeText(getApplicationContext(), msg,
+				Toast.LENGTH_SHORT).show();
 	}
 
 	
