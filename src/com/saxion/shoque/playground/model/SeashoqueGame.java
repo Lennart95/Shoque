@@ -40,12 +40,12 @@ public class SeashoqueGame extends Game {
 		this.gameactivity = activity;
 
 		ShoqueGameBoardView gameViewPlayer = activity.getGameBoardView();
-		GameBoard gameBoard = getGameBoard();
+		SeashoqueBoard gameBoard = (SeashoqueBoard) getGameBoard();
 		gameBoard.setGame(this);
 		gameViewPlayer.setGameBoard(gameBoard);
 		
 		ShoqueGameBoardView gameViewCPU = activity.getEnemyGameBoardView();
-		GameBoard enemyBoard = getEnemyBoard();
+		SeashoqueBoard enemyBoard = (SeashoqueBoard) getEnemyBoard();
 		enemyBoard.setGame(this);
 		gameViewCPU.setGameBoard(enemyBoard);
 		
@@ -55,7 +55,9 @@ public class SeashoqueGame extends Game {
 		newGame();
 	}
 
-	
+	/**
+	 * Create a new game: delete all existing objects and put in some new ones.
+	 */
 	public void newGame(){
 		gameover = false;
 		currentplayer = 1;
@@ -139,7 +141,6 @@ public class SeashoqueGame extends Game {
 
 	/**
 	 * Get the dimensions of the board
-	 * 
 	 * @return
 	 */
 	public int getDim() {
@@ -171,11 +172,6 @@ public class SeashoqueGame extends Game {
 		}
 		target.updateView();
 	}
-//	x	TODO: check if opposite of target is allowed to shoot yet 
-//	x	TODO: check hit/miss
-//		TODO: update board
-//	x	TODO: on hit: ask for another move, on miss: call nextPlayer();
-
 
 	/**
 	 * isGameOver is called to check whether all ships of one board are dead.
@@ -185,13 +181,13 @@ public class SeashoqueGame extends Game {
 		boolean result = false;
 		
 		// Check if there is one or more Alive instances on the player board
-		for (int i = 0; i < (getGameBoard().getDim()^2); i++){
+		for (int i = 0; i < (((SeashoqueBoard) getGameBoard()).getDim()^2); i++){
 			result = result | (getGameBoard().getObject(intToX(i), intToY(i)) instanceof Alive);
 		}
 		//If there is one or more instance of alive on playerboard, check CPU board.
 		if (result) {
 			result = false;
-			for (int i = 0; i < (getGameBoard().getDim()^2); i++){
+			for (int i = 0; i < (((SeashoqueBoard) getGameBoard()).getDim()^2); i++){
 				result = result | (getEnemyBoard().getObject(intToX(i), intToY(i)) instanceof Alive);
 			}
 		}
@@ -206,13 +202,13 @@ public class SeashoqueGame extends Game {
 	 * @return
 	 */
 	public int intToX(int i){
-		return i%getGameBoard().getDim();
+		return i%((SeashoqueBoard) getGameBoard()).getDim();
 	}
 	public int intToY(int i){
-		return (int) i/getGameBoard().getDim();
+		return (int) i/((SeashoqueBoard) getGameBoard()).getDim();
 	}
 	public int toIndex(int x, int y){
-		return ((y*getGameBoard().getDim())+x);
+		return ((y*((SeashoqueBoard) getGameBoard()).getDim())+x);
 	}
 
 

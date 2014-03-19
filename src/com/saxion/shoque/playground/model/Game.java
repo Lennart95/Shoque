@@ -1,10 +1,5 @@
 package com.saxion.shoque.playground.model;
 
-import com.saxion.shoque.util.Alive;
-import com.saxion.shoque.util.Hit;
-import com.saxion.shoque.util.Missed;
-
-
 /**
  * Superclass for all games.
  * 
@@ -15,23 +10,24 @@ import com.saxion.shoque.util.Missed;
  */
 public abstract class Game {
 	private GameBoard gameBoard;
-	private GameBoard enemyBoard;
+	private GameBoard enemyBoard; //Custom code in framework
 
 	/**
 	 * Called when you create a new game.
 	 * @param gameBoard
+	 * @param enemyBoard 	 //Custom code in framework
 	 */
 	public Game(GameBoard gameBoard, GameBoard enemyBoard) {
 		this.gameBoard = gameBoard;
-		this.enemyBoard = enemyBoard;
+		this.enemyBoard = enemyBoard;	 //Custom code in framework
 	}
 	/** Returns a reference to the game board. */
-	public SeashoqueBoard getGameBoard() {
-		return (SeashoqueBoard) gameBoard;
+	public GameBoard getGameBoard() {
+		return (GameBoard) gameBoard;
 	}	
 	
-	/** Returns a reference to the game board. */
-	public SeashoqueBoard getEnemyBoard() {
-		return (SeashoqueBoard) enemyBoard;
-	}
+	/** Returns a reference to the game board. */	 //Custom code in framework
+	public GameBoard getEnemyBoard() {				 //Custom code in framework
+		return (GameBoard) enemyBoard;				 //Custom code in framework
+	}												 //Custom code in framework
 }
