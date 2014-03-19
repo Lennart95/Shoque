@@ -3,6 +3,7 @@ package com.saxion.shoque.util;
 import java.util.Observable;
 
 import com.saxion.shoque.playground.model.Game;
+import com.saxion.shoque.playground.model.SeashoqueBoard;
 import com.saxion.shoque.playground.model.SeashoqueGame;
 
 public class SimpleAI extends Observable{
@@ -46,9 +47,9 @@ public class SimpleAI extends Observable{
 		
 		// Board must not be full (so there are no empty spots) 
 		// and the loop must stop as soon as it has found a legal spot
-		while (!legal && !game.isFull(game.getGameBoard())) {
+		while (!legal && !game.isFull((SeashoqueBoard) game.getGameBoard())) {
 			i = (int)Math.random()*99;			//Generate Random between 0 and 99
-			if (game.getGameBoard().isEmpty(game.intToX(i), game.intToY(i))){	//Check if random is emtpy
+			if (((SeashoqueBoard) game.getGameBoard()).isEmpty(game.intToX(i), game.intToY(i))){	//Check if random is emtpy
 				legal = true;					//If so, break the loop and submit empty spot
 			}
 		}
@@ -59,7 +60,7 @@ public class SimpleAI extends Observable{
 			y = i / game.getDim();
 		
 		int[] move = {x, y};
-		game.shoot(game.getGameBoard(), x, y);
+		game.shoot((SeashoqueBoard) game.getGameBoard(), x, y);
 		
 		setChanged();
 		notifyObservers();

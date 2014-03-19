@@ -10,18 +10,10 @@ public class SeashoqueBoard extends GameBoard  {
 		super(DIM, DIM);
 	}
 	
-	/**
-	 * Set fields as 'alive' from array containing info on which ships are to be set.
-	 */
-	public void setShip(int[] sequence){
-		//TODO: verwerk arrayarray
-	}
-	
 	@Override
 	public void onEmptyTileClicked(int x, int y) {
 		((SeashoqueGame) getGame()).shoot(this, x, y);
 		//TODO: schiet als degene aan de beurt was
-		
 	}
 	
 	public int getDim(){

@@ -6,8 +6,8 @@ import com.saxion.shoque.playground.model.GameBoard;
 import com.saxion.shoque.playground.model.GameObject;
 
 public class Missed extends GameObject {
-	public static final String MISS_IMAGE = "miss";
-	public static final String MISS_ANIMATION = "miss_anim";
+	public static final String MISSED_IMAGE = "color_missed";
+	public static final String MISSED_ANIMATION = "miss_anim";
 	
 	public Missed(){
 		super();
@@ -15,7 +15,7 @@ public class Missed extends GameObject {
 	
 	@Override
 	public String getImageId() {
-		return MISS_IMAGE;
+		return MISSED_IMAGE;
 	}
 
 	@Override

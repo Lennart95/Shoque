@@ -6,12 +6,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 
 import com.example.shoque.R;
-import com.saxion.shoque.playground.model.GameObject;
 
 public class ShoqueGameBoardView extends GameBoardView {
 	private static final String TAG = "GameBoardView";
-	public static final String ALIVE_IMAGE = "Alive";
-	private static final GameObject Alive = null;
 
 	public ShoqueGameBoardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -41,10 +38,13 @@ public class ShoqueGameBoardView extends GameBoardView {
 	private void initGameView()	{
 		Log.d(TAG, "Loading all images");
 
+//		Want a cookie? Fuck you. Remove those comment-slahses and have a laugh.
+//		loadTile("alive", R.drawable.color_alive);
+//	 	setEmptyTile("alive");
+
 		// Add a player object
-		loadTile(ALIVE_IMAGE, R.drawable.color_alive);
-		loadTile("alive", R.drawable.color_alive);
-		loadTile("hit", R.drawable.color_hit);
-		loadTile("missed", R.drawable.color_missed);
+		loadTile("color_alive", R.drawable.color_alive);
+		loadTile("color_hit", R.drawable.color_hit);
+		loadTile("color_missed", R.drawable.color_missed);
 	}	
 }

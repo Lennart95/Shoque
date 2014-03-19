@@ -4,14 +4,17 @@ import android.util.Log;
 
 import com.saxion.shoque.playground.model.GameBoard;
 import com.saxion.shoque.playground.model.GameObject;
+import com.saxion.shoque.playground.model.SeashoqueBoard;
+import com.saxion.shoque.playground.model.SeashoqueGame;
 
 public class Alive extends GameObject {
-	private static final String TAG = "GameObject";
+	private SeashoqueGame game;
 	public static final String ALIVE_IMAGE = "color_alive";
 	public static final String ALIVE_ANIMATION = "alive_anim";
 	
-	public Alive(){
+	public Alive(SeashoqueGame game){
 		super();
+		this.game = game;
 	}
 	
 	@Override
@@ -21,7 +24,7 @@ public class Alive extends GameObject {
 
 	@Override
 	public void onTouched(GameBoard gameBoard) {
-		//NOTHING SHOULD HAPPEN
+		game.shoot( (SeashoqueBoard) gameBoard, getPositionX(), getPositionY());
 		Log.d(gameBoard.TAG, "Touched alive");
 	}
 

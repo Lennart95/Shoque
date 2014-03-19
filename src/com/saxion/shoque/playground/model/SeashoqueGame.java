@@ -1,6 +1,7 @@
 package com.saxion.shoque.playground.model;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.saxion.shoque.GameActivity;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
@@ -40,12 +41,12 @@ public class SeashoqueGame extends Game {
 		this.gameactivity = activity;
 
 		ShoqueGameBoardView gameViewPlayer = activity.getGameBoardView();
-		GameBoard gameBoard = getGameBoard();
+		SeashoqueBoard gameBoard = (SeashoqueBoard) getGameBoard();
 		gameBoard.setGame(this);
 		gameViewPlayer.setGameBoard(gameBoard);
 		
 		ShoqueGameBoardView gameViewCPU = activity.getEnemyGameBoardView();
-		GameBoard enemyBoard = getEnemyBoard();
+		SeashoqueBoard enemyBoard = (SeashoqueBoard) getEnemyBoard();
 		enemyBoard.setGame(this);
 		gameViewCPU.setGameBoard(enemyBoard);
 		
@@ -55,7 +56,9 @@ public class SeashoqueGame extends Game {
 		newGame();
 	}
 
-	
+	/**
+	 * Create a new game: delete all existing objects and put in some new ones.
+	 */
 	public void newGame(){
 		gameover = false;
 		currentplayer = 1;
@@ -64,15 +67,15 @@ public class SeashoqueGame extends Game {
 		
 		// Hard code setup ships -------------------------------//
 		// Player board
-		getGameBoard().addGameObject(new Alive(), 3, 3);
+		getGameBoard().addGameObject(new Alive(this), 3, 3);
 		Log.d(TAG, "Added Alive on (3,3)");
-		getGameBoard().addGameObject(new Alive(), 3, 4);
+		getGameBoard().addGameObject(new Alive(this), 3, 4);
 		Log.d(TAG, "Added Alive on (3,4)");
-		getGameBoard().addGameObject(new Alive(), 3, 5);
+		getGameBoard().addGameObject(new Alive(this), 3, 5);
 		Log.d(TAG, "Added Alive on (3,5)");
-		getGameBoard().addGameObject(new Alive(), 3, 6);
+		getGameBoard().addGameObject(new Alive(this), 3, 6);
 		Log.d(TAG, "Added Alive on (3,6)");
-		getGameBoard().addGameObject(new Alive(), 3, 7);
+		getGameBoard().addGameObject(new Alive(this), 3, 7);
 		Log.d(TAG, "Added Alive on (3,7)");
 
 		getGameBoard().addGameObject(new Hit(), 5, 5);
@@ -83,9 +86,9 @@ public class SeashoqueGame extends Game {
 
 		// CPU board
 
-		getEnemyBoard().addGameObject(new Alive(), 0, 0);
+		getEnemyBoard().addGameObject(new Alive(this), 0, 0);
 		Log.d(TAG, "Added Alive on Enemy Board (0,0)");
-		getEnemyBoard().addGameObject(new Alive(), 0, 1);
+		getEnemyBoard().addGameObject(new Alive(this), 0, 1);
 		Log.d(TAG, "Added Alive on Enemy Board (0,1)");
 		
 
@@ -128,18 +131,13 @@ public class SeashoqueGame extends Game {
 	 * 
 	 * @param t
 	 */
-	public void nextPlayer(int current) {
-		if (current == 1){
-			currentplayer = 2;
-		} else {
-			currentplayer = 1;
-		}
+	public void nextPlayer() {
+		this.currentplayer = (currentplayer+1) % 2;
 		// TODO: update some visual to alert the next player it's his turn
 	}
 
 	/**
 	 * Get the dimensions of the board
-	 * 
 	 * @return
 	 */
 	public int getDim() {
@@ -157,25 +155,30 @@ public class SeashoqueGame extends Game {
 	public void shoot(SeashoqueBoard target, int x, int y){
 		
 		if ((target == getEnemyBoard() && currentplayer == 2)||(target == getGameBoard() && currentplayer == 1)){
+			//Missed!
 			if (target.isEmpty(x, y)){
 				target.addGameObject(new Missed(), x, y);
 			}
+			//HIT!
 			else if (target.getObject(x, y) instanceof Alive){
+				Log.d(TAG, "I'm shooting a ALIVE object");
+				
 				target.removeObject(target.getObject(x, y));
+				Log.d(TAG, "Removed Object");
+				
 				target.addGameObject(new Hit(), x, y);
-				nextPlayer(currentplayer);
+				Log.d(TAG, "Added Hit object");
+				
 			}
 		}
 		if (isGameOver()){
 			Log.d(TAG, "GameOver!");
+			newGame();
+			gameactivity.toast("You might have won! Let's start over!");
 		}
 		target.updateView();
+		nextPlayer();
 	}
-//	x	TODO: check if opposite of target is allowed to shoot yet 
-//	x	TODO: check hit/miss
-//		TODO: update board
-//	x	TODO: on hit: ask for another move, on miss: call nextPlayer();
-
 
 	/**
 	 * isGameOver is called to check whether all ships of one board are dead.
@@ -185,13 +188,13 @@ public class SeashoqueGame extends Game {
 		boolean result = false;
 		
 		// Check if there is one or more Alive instances on the player board
-		for (int i = 0; i < (getGameBoard().getDim()^2); i++){
+		for (int i = 0; i < (((SeashoqueBoard) getGameBoard()).getDim()^2); i++){
 			result = result | (getGameBoard().getObject(intToX(i), intToY(i)) instanceof Alive);
 		}
 		//If there is one or more instance of alive on playerboard, check CPU board.
 		if (result) {
 			result = false;
-			for (int i = 0; i < (getGameBoard().getDim()^2); i++){
+			for (int i = 0; i < (((SeashoqueBoard) getGameBoard()).getDim()^2); i++){
 				result = result | (getEnemyBoard().getObject(intToX(i), intToY(i)) instanceof Alive);
 			}
 		}
@@ -206,13 +209,13 @@ public class SeashoqueGame extends Game {
 	 * @return
 	 */
 	public int intToX(int i){
-		return i%getGameBoard().getDim();
+		return i%((SeashoqueBoard) getGameBoard()).getDim();
 	}
 	public int intToY(int i){
-		return (int) i/getGameBoard().getDim();
+		return (int) i/((SeashoqueBoard) getGameBoard()).getDim();
 	}
 	public int toIndex(int x, int y){
-		return ((y*getGameBoard().getDim())+x);
+		return ((y*((SeashoqueBoard) getGameBoard()).getDim())+x);
 	}
 
 
