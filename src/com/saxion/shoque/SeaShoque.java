@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -104,6 +105,13 @@ public class SeaShoque extends Activity implements OnClickListener {
 	    Intent intent = new Intent(this, GameActivity.class);
 	    startActivity(intent);
 	}
+	/**
+	 * TIJDELIJK!!!!!!!!
+	 */
+	private void stats(){
+		Intent intent = new Intent(this, SetUpActivity.class);
+		startActivity(intent);
+	}
 
 	
 	public void onClick(View v) {
@@ -112,11 +120,12 @@ public class SeaShoque extends Activity implements OnClickListener {
 			startGame();
 			break;
 //		case R.id.button_settings:
-//			//settings();
+//			settings();
 //			break;
-//		case R.id.button_stats:
-//			//stats();
-//			break;
+		case R.id.button_stats:
+			Log.d("Clicked", "Gelukt");
+			stats();
+			break;
 		}
 		
 	}

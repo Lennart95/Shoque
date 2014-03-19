@@ -17,24 +17,30 @@
             android:name="com.saxion.shoque.SeaShoque"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_start_menu"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" >
-            	
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity 
+        <activity
             android:name="com.saxion.shoque.GameActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_start_menu"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="landscape" >
-            ></activity>
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.saxion.shoque.SetUpActivity"
+            android:label="Set-up" >
+        </activity>
         
+<!--         <activity -->
+<!--             android:name="com.example.shoque.MainActivity" -->
+<!--             android:label="@string/title_activity_main" > -->
+<!--         </activity> -->
     </application>
 
 </manifest>
