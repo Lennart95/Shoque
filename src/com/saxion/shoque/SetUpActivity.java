@@ -19,6 +19,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	private Button buttonCruiser;
 	private Button buttonSubmarine;
 	private Button buttonDestroyer;
+	private int length;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 			buttonCruiser.setTextColor(Color.BLACK);
 			buttonSubmarine.setTextColor(Color.BLACK);
 			buttonDestroyer.setTextColor(Color.BLACK);
+			length = 5;
 		}
 
 	}
@@ -62,6 +64,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 			buttonCruiser.setTextColor(Color.BLACK);
 			buttonSubmarine.setTextColor(Color.BLACK);
 			buttonDestroyer.setTextColor(Color.BLACK);
+			length = 4;
 		}
 	}
 
@@ -74,6 +77,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 			buttonCruiser.setTextColor(Color.BLUE);
 			buttonSubmarine.setTextColor(Color.BLACK);
 			buttonDestroyer.setTextColor(Color.BLACK);
+			length = 3;
 		}
 	}
 
@@ -86,6 +90,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 			buttonCruiser.setTextColor(Color.BLACK);
 			buttonSubmarine.setTextColor(Color.BLUE);
 			buttonDestroyer.setTextColor(Color.BLACK);
+			length = 3;
 		}
 	}
 
@@ -98,6 +103,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 			buttonCruiser.setTextColor(Color.BLACK);
 			buttonSubmarine.setTextColor(Color.BLACK);
 			buttonDestroyer.setTextColor(Color.BLUE);
+			length = 2;
 		}
 	}
 
