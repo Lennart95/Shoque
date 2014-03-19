@@ -1,5 +1,8 @@
 package com.saxion.shoque;
 
+
+import com.example.shoque.R;
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,7 +11,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.example.shoque.R;
 
 public class SetUpActivity extends Activity implements OnClickListener {
 
@@ -23,18 +25,18 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setup);
 
-		// buttonCarrier = (Button) findViewById(R.id.buttonCarrier);
-		// buttonBattleship = (Button) findViewById(R.id.buttonBattleship);
-		// buttonCruiser = (Button) findViewById(R.id.buttonCruiser);
-		// buttonSubmarine = (Button) findViewById(R.id.buttonSubmarine);
-		// buttonDestroyer = (Button) findViewById(R.id.buttonDestroyer);
-		//
-		//
-		// buttonCarrier.setOnClickListener(new buttonCarrierListener());
-		// buttonBattleship.setOnClickListener(new buttonBattleshipListener());
-		// buttonCruiser.setOnClickListener(new buttonCruiserListener());
-		// buttonSubmarine.setOnClickListener(new buttonSubmarineListener());
-		// buttonDestroyer.setOnClickListener(new buttonDestroyerListener());
+		 buttonCarrier = (Button) findViewById(R.id.buttonCarrier);
+		 buttonBattleship = (Button) findViewById(R.id.buttonBattleship);
+		 buttonCruiser = (Button) findViewById(R.id.buttonCruiser);
+		 buttonSubmarine = (Button) findViewById(R.id.buttonSubmarine);
+		 buttonDestroyer = (Button) findViewById(R.id.buttonDestroyer);
+		
+		
+		 buttonCarrier.setOnClickListener(new buttonCarrierListener());
+		 buttonBattleship.setOnClickListener(new buttonBattleshipListener());
+		 buttonCruiser.setOnClickListener(new buttonCruiserListener());
+		 buttonSubmarine.setOnClickListener(new buttonSubmarineListener());
+		 buttonDestroyer.setOnClickListener(new buttonDestroyerListener());
 
 	}
 
@@ -102,7 +104,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.menu, menu);
 		return true;
 	}
 

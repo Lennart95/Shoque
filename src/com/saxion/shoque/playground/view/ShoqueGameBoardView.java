@@ -1,11 +1,13 @@
 package com.saxion.shoque.playground.view;
 
 
+
+import com.example.shoque.R;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 
-import com.example.shoque.R;
 
 public class ShoqueGameBoardView extends GameBoardView {
 	private static final String TAG = "GameBoardView";

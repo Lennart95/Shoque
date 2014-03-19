@@ -12,5 +12,11 @@
     <string name="descimg">Image</string>
     <string name="menu_playvscpu">PLAY VS CPU</string>
     <string name="menu_stats">STATISTICS</string>
+    <string name="ship_carrier">Carrier</string>
+    <string name="ship_battleship">Battleship</string>
+    <string name="ship_cruiser">Cruiser</string>
+    <string name="ship_submarine">Submarine</string>
+    <string name="ship_destroyer">Destroyer</string>
+    <string name="menu_settings">menu</string>
 
 </resources>
