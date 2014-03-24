@@ -34,6 +34,8 @@ public class SeashoqueGame extends Game {
 	
 	private AI cpu;
 
+	private String winner = "";
+
 	/**
 	 * Constructor
 	 * Called when you create a new game.
@@ -187,7 +189,7 @@ public class SeashoqueGame extends Game {
 			if (isGameOver()){
 				Log.d(TAG, "GameOver!");
 				newGame();
-				gameactivity.toast("You might have won! Let's start over!");
+				gameactivity.toast("Game over! " + winner + " has won!");
 			}
 		}
 	}
@@ -213,6 +215,14 @@ public class SeashoqueGame extends Game {
 		// TODO: check is there is a board with no alive gameObjects.
 		gameover = !isPlayerAlive || !isCPUAlive;
 		Log.d(TAG, "Player alive? " + isPlayerAlive + ". CPU Alive? " + isCPUAlive + "." + "Game Over: " + gameover);
+		if (gameover){
+			if (!isPlayerAlive){
+				winner = "CPU";
+			}
+			else {
+				winner = "Player";
+			}
+		}
 		return !isPlayerAlive || !isCPUAlive;
 	}
 
