@@ -32,7 +32,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_start_menu"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="sensorLandscape" >
             </activity>
         
          <activity 
