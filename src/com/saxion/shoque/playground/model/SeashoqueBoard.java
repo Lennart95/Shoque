@@ -1,5 +1,7 @@
 package com.saxion.shoque.playground.model;
 
+import com.saxion.shoque.util.Hit;
+
 public class SeashoqueBoard extends GameBoard  {
 	private static final int DIM = 10;
 	
@@ -28,5 +30,9 @@ public class SeashoqueBoard extends GameBoard  {
 			result = false;
 		}
 		return result;
+	}
+
+	public boolean isHit(int x, int y) {
+		return getObject(x,y) instanceof Hit;
 	}
 }

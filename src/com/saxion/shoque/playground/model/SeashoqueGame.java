@@ -19,9 +19,9 @@ public class SeashoqueGame extends Game {
 	
 	/**
 	 * Integer to keep track of current player
-	 * 1 is human player, 2 is AI
+	 * 1 is human player, 0 is AI
 	 */
-	private int currentplayer = 1;
+	public int currentplayer = 1;
 	
 	/**
 	 * Should be true if the game is over, false if the game is still running.
@@ -135,8 +135,8 @@ public class SeashoqueGame extends Game {
 		Log.d(TAG, "Next player!");
 		this.currentplayer = (currentplayer+1) % 2;
 		// TODO: update some visual to alert the next player it's his turn
-		
-		// TODO: Call doMove() from AI
+
+		// Call doMove() from AI
 		cpu.doMove();
 	}
 
@@ -145,7 +145,7 @@ public class SeashoqueGame extends Game {
 	 * @return
 	 */
 	public int getDim() {
-		return ((SeashoqueBoard) getGameBoard()).getDim();
+		return (getGameBoard()).getDim();
 	}
 
 
@@ -179,6 +179,9 @@ public class SeashoqueGame extends Game {
 				Log.d(TAG, "Added Hit object");
 
 				target.updateView();
+				if (currentplayer == 0){
+					cpu.doMove();
+				}
 			}
 		
 			if (isGameOver()){
