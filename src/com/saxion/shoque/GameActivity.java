@@ -2,6 +2,8 @@ package com.saxion.shoque;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import com.example.shoque.R;
@@ -25,6 +27,15 @@ public class GameActivity extends Activity {
 		gameViewCPU = (ShoqueGameBoardView) findViewById(R.id.shoqueGameBoardView2);
 		
 		game = new SeashoqueGame(this);
+		
+		gameViewPlayer.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+				if (game.isGameOver()){
+					game.newGame();
+				}
+			}
+		});
 	}
 	
 	/**
@@ -42,7 +53,7 @@ public class GameActivity extends Activity {
 	
 	public void toast(String msg){
 		Toast.makeText(getApplicationContext(), msg,
-				Toast.LENGTH_SHORT).show();
+				Toast.LENGTH_LONG).show();
 	}
 
 	

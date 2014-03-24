@@ -2,6 +2,7 @@ package com.saxion.shoque.playground.model;
 
 import android.util.Log;
 
+import com.example.shoque.R;
 import com.saxion.shoque.GameActivity;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
 import com.saxion.shoque.util.AI;
@@ -27,7 +28,12 @@ public class SeashoqueGame extends Game {
 	 * Should be true if the game is over, false if the game is still running.
 	 */
 	private boolean gameover = false;
+
+	// Save gameview so we can change background!
+	private ShoqueGameBoardView gameViewPlayer;
+	private ShoqueGameBoardView gameViewCPU;
 	
+	// Save boards so we can call shoot();
 	private SeashoqueBoard gameBoard;
 	private SeashoqueBoard enemyBoard;
 	
@@ -48,12 +54,12 @@ public class SeashoqueGame extends Game {
 		// Create reference to the main menu
 		this.gameactivity = activity;
 
-		ShoqueGameBoardView gameViewPlayer = activity.getGameBoardView();
+		gameViewPlayer = activity.getGameBoardView();
 		gameBoard = (SeashoqueBoard) super.getGameBoard();
 		gameBoard.setGame(this);
 		gameViewPlayer.setGameBoard(gameBoard);
 		
-		ShoqueGameBoardView gameViewCPU = activity.getEnemyGameBoardView();
+		gameViewCPU = activity.getEnemyGameBoardView();
 		enemyBoard = (SeashoqueBoard) super.getEnemyBoard();
 		enemyBoard.setGame(this);
 		gameViewCPU.setGameBoard(enemyBoard);
@@ -140,6 +146,16 @@ public class SeashoqueGame extends Game {
 
 		// Call doMove() from AI
 		cpu.doMove();
+		
+		// Change backgrounds of the views
+		if (currentplayer == 1){
+			gameViewCPU.setBackgroundResource(R.drawable.background_grid_active);
+			gameViewPlayer.setBackgroundResource(R.drawable.background_grid);
+		}
+		else {
+			gameViewCPU.setBackgroundResource(R.drawable.background_grid);
+			gameViewPlayer.setBackgroundResource(R.drawable.background_grid_active);
+		}
 	}
 
 	/**
@@ -189,7 +205,7 @@ public class SeashoqueGame extends Game {
 			if (isGameOver()){
 				Log.d(TAG, "GameOver!");
 				newGame();
-				gameactivity.toast("Game over! " + winner + " has won!");
+				gameactivity.toast("Game over! " + winner + " has won! Press anywhere to start new game.");
 			}
 		}
 	}
@@ -207,14 +223,16 @@ public class SeashoqueGame extends Game {
 		for (int i = 0; i < (getGameBoard().getDim()*getGameBoard().getDim()); i++){
 			isPlayerAlive = isPlayerAlive | (getGameBoard().getObject(intToX(i), intToY(i)) instanceof Alive);
 		}
-		//If there is one or more instance of alive on playerboard, check CPU board.
+		// If there is one or more instance of alive on playerboard, check CPU board.
 		// If not, isCPUAlive remains false, thus cpu is Dead;
 		for (int i = 0; i < (getEnemyBoard().getDim()*getEnemyBoard().getDim()); i++){
 			isCPUAlive = isCPUAlive | (getEnemyBoard().getObject(intToX(i), intToY(i)) instanceof Alive);
 		}
-		// TODO: check is there is a board with no alive gameObjects.
+		// Check is there is a board with no alive gameObjects.
 		gameover = !isPlayerAlive || !isCPUAlive;
 		Log.d(TAG, "Player alive? " + isPlayerAlive + ". CPU Alive? " + isCPUAlive + "." + "Game Over: " + gameover);
+		
+		// Update variable 'winner' with the winner of the game.
 		if (gameover){
 			if (!isPlayerAlive){
 				winner = "CPU";
@@ -229,7 +247,7 @@ public class SeashoqueGame extends Game {
 	/**
 	 * Convert indices and coordinates 
 	 * @param i
-	 * @return
+	 * @return x coordinate or y coordinate or index.
 	 */
 	public int intToX(int i){
 		return i%((SeashoqueBoard) getGameBoard()).getDim();

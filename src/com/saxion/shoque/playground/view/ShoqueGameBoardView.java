@@ -2,6 +2,8 @@ package com.saxion.shoque.playground.view;
 
 
 
+import java.util.Observable;
+
 import com.example.shoque.R;
 
 import android.content.Context;
@@ -48,5 +50,5 @@ public class ShoqueGameBoardView extends GameBoardView {
 		loadTile("color_alive", R.drawable.color_alive);
 		loadTile("color_hit", R.drawable.color_hit);
 		loadTile("color_missed", R.drawable.color_missed);
-	}	
+	}
 }
