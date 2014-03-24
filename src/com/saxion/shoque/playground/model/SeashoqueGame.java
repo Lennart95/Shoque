@@ -197,22 +197,23 @@ public class SeashoqueGame extends Game {
 	 * Should be called after every shot.
 	 */
 	public boolean isGameOver() {
-		boolean result = false;
+		boolean isPlayerAlive = false;
+		boolean isCPUAlive = false;
 		
 		// Check if there is one or more Alive instances on the player board
-		for (int i = 0; i < (((SeashoqueBoard) getGameBoard()).getDim()^2); i++){
-			result = result | (getGameBoard().getObject(intToX(i), intToY(i)) instanceof Alive);
+		// If not, isPlayerAlive remains false, thus player is Dead;
+		for (int i = 0; i < (getGameBoard().getDim()*getGameBoard().getDim()); i++){
+			isPlayerAlive = isPlayerAlive | (getGameBoard().getObject(intToX(i), intToY(i)) instanceof Alive);
 		}
 		//If there is one or more instance of alive on playerboard, check CPU board.
-		if (result) {
-			result = false;
-			for (int i = 0; i < (((SeashoqueBoard) getGameBoard()).getDim()^2); i++){
-				result = result | (getEnemyBoard().getObject(intToX(i), intToY(i)) instanceof Alive);
-			}
+		// If not, isCPUAlive remains false, thus cpu is Dead;
+		for (int i = 0; i < (getEnemyBoard().getDim()*getEnemyBoard().getDim()); i++){
+			isCPUAlive = isCPUAlive | (getEnemyBoard().getObject(intToX(i), intToY(i)) instanceof Alive);
 		}
 		// TODO: check is there is a board with no alive gameObjects.
-		gameover = result;
-		return result;
+		gameover = !isPlayerAlive || !isCPUAlive;
+		Log.d(TAG, "Player alive? " + isPlayerAlive + ". CPU Alive? " + isCPUAlive + "." + "Game Over: " + gameover);
+		return !isPlayerAlive || !isCPUAlive;
 	}
 
 	/**
