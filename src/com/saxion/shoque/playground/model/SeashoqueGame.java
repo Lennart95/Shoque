@@ -1,13 +1,14 @@
 package com.saxion.shoque.playground.model;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.saxion.shoque.GameActivity;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
+import com.saxion.shoque.util.AI;
 import com.saxion.shoque.util.Alive;
 import com.saxion.shoque.util.Hit;
 import com.saxion.shoque.util.Missed;
+import com.saxion.shoque.util.SimpleAI;
 
 public class SeashoqueGame extends Game {
 	/** Tag used in Logcat */
@@ -27,6 +28,11 @@ public class SeashoqueGame extends Game {
 	 */
 	private boolean gameover = false;
 	
+	private SeashoqueBoard gameBoard;
+	private SeashoqueBoard enemyBoard;
+	
+	
+	private AI cpu;
 
 	/**
 	 * Constructor
@@ -41,16 +47,17 @@ public class SeashoqueGame extends Game {
 		this.gameactivity = activity;
 
 		ShoqueGameBoardView gameViewPlayer = activity.getGameBoardView();
-		SeashoqueBoard gameBoard = (SeashoqueBoard) getGameBoard();
+		gameBoard = (SeashoqueBoard) super.getGameBoard();
 		gameBoard.setGame(this);
 		gameViewPlayer.setGameBoard(gameBoard);
 		
 		ShoqueGameBoardView gameViewCPU = activity.getEnemyGameBoardView();
-		SeashoqueBoard enemyBoard = (SeashoqueBoard) getEnemyBoard();
+		enemyBoard = (SeashoqueBoard) super.getEnemyBoard();
 		enemyBoard.setGame(this);
 		gameViewCPU.setGameBoard(enemyBoard);
 		
-
+		// Initiate the AI
+		cpu = new SimpleAI(this);
 		
 		// Initialise new game
 		newGame();
@@ -68,15 +75,10 @@ public class SeashoqueGame extends Game {
 		// Hard code setup ships -------------------------------//
 		// Player board
 		getGameBoard().addGameObject(new Alive(this), 3, 3);
-		Log.d(TAG, "Added Alive on (3,3)");
 		getGameBoard().addGameObject(new Alive(this), 3, 4);
-		Log.d(TAG, "Added Alive on (3,4)");
 		getGameBoard().addGameObject(new Alive(this), 3, 5);
-		Log.d(TAG, "Added Alive on (3,5)");
 		getGameBoard().addGameObject(new Alive(this), 3, 6);
-		Log.d(TAG, "Added Alive on (3,6)");
 		getGameBoard().addGameObject(new Alive(this), 3, 7);
-		Log.d(TAG, "Added Alive on (3,7)");
 
 		getGameBoard().addGameObject(new Hit(), 5, 5);
 		getGameBoard().addGameObject(new Hit(), 5, 6);
@@ -87,9 +89,7 @@ public class SeashoqueGame extends Game {
 		// CPU board
 
 		getEnemyBoard().addGameObject(new Alive(this), 0, 0);
-		Log.d(TAG, "Added Alive on Enemy Board (0,0)");
 		getEnemyBoard().addGameObject(new Alive(this), 0, 1);
-		Log.d(TAG, "Added Alive on Enemy Board (0,1)");
 		
 
 		getEnemyBoard().addGameObject(new Hit(), 5, 5);
@@ -98,7 +98,7 @@ public class SeashoqueGame extends Game {
 		getEnemyBoard().addGameObject(new Missed(), 8, 6);
 		getEnemyBoard().addGameObject(new Missed(), 8, 7);
 
-		// Hard code setup ships -------------------------------//
+		///Hard code setup ships -------------------------------//
 		
 	}
 	
@@ -132,8 +132,12 @@ public class SeashoqueGame extends Game {
 	 * @param t
 	 */
 	public void nextPlayer() {
+		Log.d(TAG, "Next player!");
 		this.currentplayer = (currentplayer+1) % 2;
 		// TODO: update some visual to alert the next player it's his turn
+		
+		// TODO: Call doMove() from AI
+		cpu.doMove();
 	}
 
 	/**
@@ -153,31 +157,36 @@ public class SeashoqueGame extends Game {
 	 * @param y
 	 */
 	public void shoot(SeashoqueBoard target, int x, int y){
+		Log.d(TAG, "Shots fired at (" + target + ", " + x + ", " + y + ")");
 		
-		if ((target == getEnemyBoard() && currentplayer == 2)||(target == getGameBoard() && currentplayer == 1)){
+		if ((target == getEnemyBoard() && currentplayer == 1)||(target == getGameBoard() && currentplayer == 0)){
 			//Missed!
 			if (target.isEmpty(x, y)){
+				Log.d(TAG, "Missed!");
 				target.addGameObject(new Missed(), x, y);
+				
+				target.updateView();
+				nextPlayer();
 			}
 			//HIT!
 			else if (target.getObject(x, y) instanceof Alive){
-				Log.d(TAG, "I'm shooting a ALIVE object");
+				Log.d(TAG, "Hit!");
 				
 				target.removeObject(target.getObject(x, y));
 				Log.d(TAG, "Removed Object");
 				
 				target.addGameObject(new Hit(), x, y);
 				Log.d(TAG, "Added Hit object");
-				
+
+				target.updateView();
+			}
+		
+			if (isGameOver()){
+				Log.d(TAG, "GameOver!");
+				newGame();
+				gameactivity.toast("You might have won! Let's start over!");
 			}
 		}
-		if (isGameOver()){
-			Log.d(TAG, "GameOver!");
-			newGame();
-			gameactivity.toast("You might have won! Let's start over!");
-		}
-		target.updateView();
-		nextPlayer();
 	}
 
 	/**
@@ -218,6 +227,15 @@ public class SeashoqueGame extends Game {
 		return ((y*((SeashoqueBoard) getGameBoard()).getDim())+x);
 	}
 
+	@Override
+	public SeashoqueBoard getGameBoard(){
+		return gameBoard;
+	}
+	
+	@Override
+	public SeashoqueBoard getEnemyBoard(){
+		return enemyBoard;
+	}
 
 
 }
