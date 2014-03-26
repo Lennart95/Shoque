@@ -18,5 +18,7 @@
     <string name="ship_submarine">Submarine</string>
     <string name="ship_destroyer">Destroyer</string>
     <string name="menu_settings">menu</string>
+    <string name="button_Startgame">Start Game!</string>
+    <string name="button_Orientation">Horizontal</string>
 
 </resources>

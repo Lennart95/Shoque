@@ -223,6 +223,7 @@ public abstract class GameBoardView extends View implements Observer {
 		int x = (int) ((event.getX() - borderSizeX) / mTileSize);
 		int y = (int) ((event.getY() - borderSizeY) / mTileSize);
 		if (x < tileCountX && y < tileCountY
+			
 				&& (event.getX() - borderSizeX) >= 0
 				&& (event.getY() - borderSizeY) >= 0) {
 			Log.d(TAG, "Touched (" + x + ", " + y + ")\n");
@@ -239,7 +240,7 @@ public abstract class GameBoardView extends View implements Observer {
 						object.onTouched(board);
 					} else {
 						board.onEmptyTileClicked(x, y);
-					}
+	  				}
 				}
 			}
 		}
