@@ -142,8 +142,6 @@ public class SeashoqueGame extends Game {
 	public void nextPlayer() {
 		Log.d(TAG, "Next player!");
 		this.currentplayer = (currentplayer+1) % 2;
-		// TODO: update some visual to alert the next player it's his turn
-
 		// Call doMove() from AI
 		cpu.doMove();
 		
@@ -175,9 +173,9 @@ public class SeashoqueGame extends Game {
 	 * @param y
 	 */
 	public void shoot(SeashoqueBoard target, int x, int y){
-		Log.d(TAG, "Shots fired at (" + target + ", " + x + ", " + y + ")");
 		
 		if ((target == getEnemyBoard() && currentplayer == 1)||(target == getGameBoard() && currentplayer == 0)){
+		Log.d(TAG, "Shots fired at (" + target + ", " + x + ", " + y + ")");
 			//Missed!
 			if (target.isEmpty(x, y)){
 				Log.d(TAG, "Missed!");

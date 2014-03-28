@@ -36,6 +36,14 @@ public class GameActivity extends Activity {
 				}
 			}
 		});
+		gameViewCPU.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+				if (game.isGameOver()){
+					game.newGame();
+				}
+			}
+		});
 	}
 	
 	/**
