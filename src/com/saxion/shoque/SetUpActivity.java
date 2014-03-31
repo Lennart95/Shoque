@@ -14,12 +14,9 @@ import com.saxion.shoque.playground.view.ShoqueGameBoardView;
 public class SetUpActivity extends Activity implements OnClickListener {
 
 	private ShoqueGameBoardView gameViewPlayer;
-<<<<<<< HEAD
 
-=======
 	private int[][] boats;
 	
->>>>>>> 0a592b3464b44cfef927b416c8435d6d4b6de567
 	/**
 	 * A variable to keep track of the selected boat
 	 */
@@ -94,11 +91,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	public void saveBoatLocation(int x, int y){
 		boats[x][y] = x + y;
 	}
-<<<<<<< HEAD
-
-=======
 	
->>>>>>> 0a592b3464b44cfef927b416c8435d6d4b6de567
 	/**
 	 * a method to select the orientation for the boat.
 	 * 
