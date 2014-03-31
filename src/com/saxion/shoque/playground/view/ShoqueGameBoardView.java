@@ -51,4 +51,11 @@ public class ShoqueGameBoardView extends GameBoardView {
 		loadTile("color_hit", R.drawable.color_hit);
 		loadTile("color_missed", R.drawable.color_missed);
 	}
+
+	/**
+	 * Hide the alive boats on the enemy playboard
+	 */
+	public void hideBoats() {
+		loadTile("color_alive", R.drawable.transparent);
+	}
 }
