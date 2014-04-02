@@ -1,22 +1,42 @@
 package com.saxion.shoque;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.shoque.R;
+import com.saxion.shoque.playground.model.SeashoqueGame;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
+import com.saxion.shoque.util.Alive;
 
 public class SetUpActivity extends Activity implements OnClickListener {
 
 	private ShoqueGameBoardView gameViewPlayer;
+	
+	private SeashoqueGame game;
+	
+	Context context = getApplicationContext();
 
 	private int[][] boats;
-	
+
+	/** Number of tiles in X-direction. */
+	private int tileCountX = 10;
+
+	/** Number of tiles in Y-direction. */
+	private int tileCountY = 10;
+
+	/** Size (in pixels) of the tiles. */
+	private int mTileSize = 20;
+
 	/**
 	 * A variable to keep track of the selected boat
 	 */
@@ -53,6 +73,11 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	private Button buttonOrientation;
 
 	/**
+	 * Button to start the game
+	 */
+
+	private Button startButton;
+	/**
 	 * a variable to check if the boat is horizontal or not
 	 */
 	private boolean horizontal;
@@ -71,6 +96,8 @@ public class SetUpActivity extends Activity implements OnClickListener {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setup);
+		
+		game = new SeashoqueGame(null);
 
 		buttonCarrier = (Button) findViewById(R.id.buttonCarrier);
 		buttonBattleship = (Button) findViewById(R.id.buttonBattleship);
@@ -78,6 +105,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		buttonSubmarine = (Button) findViewById(R.id.buttonSubmarine);
 		buttonDestroyer = (Button) findViewById(R.id.buttonDestroyer);
 		buttonOrientation = (Button) findViewById(R.id.buttonOrientation);
+		startButton = (Button) findViewById(R.id.buttonStartGame);
 
 		buttonCarrier.setOnClickListener(new buttonCarrierListener());
 		buttonBattleship.setOnClickListener(new buttonBattleshipListener());
@@ -85,13 +113,50 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		buttonSubmarine.setOnClickListener(new buttonSubmarineListener());
 		buttonDestroyer.setOnClickListener(new buttonDestroyerListener());
 		buttonOrientation.setOnClickListener(new buttonOrientationListener());
+		startButton.setOnClickListener(new buttonStartListener());
 
-	
 	}
-	public void saveBoatLocation(int x, int y){
-		boats[x][y] = x + y;
+
+	public void saveBoatLocation(int x, int y) {
+		if(horizontal){
+			if(placeHorizontal(x)){
+				boats[x][y] = x + y;
+				game.getGameBoard().addGameObject(
+						new Alive(game), x, y);
+			}
+			else{
+				Toast toast = Toast.makeText(context, "Not valid", Toast.LENGTH_LONG);
+				toast.show();
+			}
+		}
+		else{
+			if(placeVertical(y)){
+				boats[x][y] = x + y;
+				game.getGameBoard().addGameObject(
+						new Alive(game), x, y);
+			}
+			else{
+				Toast toast = Toast.makeText(context, "Not valid", Toast.LENGTH_LONG);
+				toast.show();
+			}
+		}
+		
 	}
-	
+
+
+	public boolean onTouchEvent(MotionEvent event) {
+		int x = (int) ((event.getX()) / mTileSize);
+		int y = (int) ((event.getY()) / mTileSize);
+		if (x < tileCountX && y < tileCountY
+
+		&& (event.getX()) >= 0
+				&& (event.getY()) >= 0) {
+			// Log.d(TAG, "Touched (" + x + ", " + y + ")\n");
+			saveBoatLocation(x, y);
+		}
+		return super.onTouchEvent(event);
+	}
+
 	/**
 	 * a method to select the orientation for the boat.
 	 * 
@@ -153,6 +218,16 @@ public class SetUpActivity extends Activity implements OnClickListener {
 			setSelectedBoat(4);
 		}
 	}
+	
+	private class buttonStartListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(SetUpActivity.this, GameActivity.class);
+		    startActivity(intent);
+			
+		}
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -166,6 +241,22 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		// getGameBoard().addGameObject(new Alive(this), 3, 3);
 		// Log.d(TAG, "Added Alive on (3,3)");
 	}
+	
+	public boolean placeHorizontal(int x){
+		if(x + length < 10){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean placeVertical(int y){
+		if(y + length < 10){
+			return true;
+		}
+		return false;
+	}
+	
+	
 
 	public void setTextViewsBlack() {
 		buttonCarrier.setTextColor(Color.BLACK);
@@ -211,10 +302,10 @@ public class SetUpActivity extends Activity implements OnClickListener {
 			length = 2;
 			selectedBoat = 4;
 			break;
-		
 
 		}
 
+		
 	}
 
 }
