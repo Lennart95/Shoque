@@ -41,6 +41,8 @@ public class SeashoqueGame extends Game {
 	private AI cpu;
 
 	private String winner = "";
+	
+	private int score;
 
 	/**
 	 * Constructor
@@ -203,11 +205,19 @@ public class SeashoqueGame extends Game {
 			if (isGameOver()){
 				Log.d(TAG, "GameOver!");
 				newGame();
-				gameactivity.toast("Game over! " + winner + " has won! Press anywhere to start new game.");
+				if(winner.equals("CPU"))
+				{
+					gameactivity.toast("Game over! " + winner + " has won! Press anywhere to start new game.");
+				}
+				else
+				{
+					gameactivity.toast(winner + " has won with score: " + score + "\n" +  
+									   "Press anywhere to start a new game.");
+				}
 			}
 		}
 	}
-
+	
 	/**
 	 * isGameOver is called to check whether all ships of one board are dead.
 	 * Should be called after every shot.
