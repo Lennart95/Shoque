@@ -14,15 +14,21 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.shoque.R;
+import com.saxion.shoque.playground.model.SeashoqueBoard;
 import com.saxion.shoque.playground.model.SeashoqueGame;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
 import com.saxion.shoque.util.Alive;
 
+/**
+ * SetUpActivity functions as model and controller for the game feature: setting up ships.
+ * @author Casper
+ *
+ */
 public class SetUpActivity extends Activity implements OnClickListener {
 
 	private ShoqueGameBoardView gameViewPlayer;
-	
-	private SeashoqueGame game;
+	private SeashoqueBoard setupBoard;
+	private ShoqueGameBoardView setupBoardView;
 	
 //	Context context = getApplicationContext();
 
@@ -92,12 +98,13 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		gameViewPlayer = (ShoqueGameBoardView) findViewById(R.id.shoqueGameBoardView1);
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setup);
 		
-//		game = new SeashoqueGame(null);
+		setupBoardView = (ShoqueGameBoardView) findViewById(R.id.shoqueGameBoardView1);
+		setupBoard = new SeashoqueBoard();
+		setupBoard.setParent(this);
+		setupBoard.setSetupState(true);
 
 		buttonCarrier = (Button) findViewById(R.id.buttonCarrier);
 		buttonBattleship = (Button) findViewById(R.id.buttonBattleship);
@@ -128,10 +135,6 @@ public class SetUpActivity extends Activity implements OnClickListener {
 						xboot++;}
 
 			}
-			else{
-//				Toast toast = Toast.makeText(context, "Not valid", Toast.LENGTH_LONG);
-//				toast.show();
-			}
 		}
 		else{
 			if(placeVertical(y)){
@@ -142,26 +145,8 @@ public class SetUpActivity extends Activity implements OnClickListener {
 //					new Alive(game), x, y);
 					yboot++;}
 			}
-			else{
-//				Toast toast = Toast.makeText(context, "Not valid", Toast.LENGTH_LONG);
-//				toast.show();
-			}
 		}
 		
-	}
-
-
-	public boolean onTouchEvent(MotionEvent event) {
-		int x = (int) ((event.getX()) / mTileSize);
-		int y = (int) ((event.getY()) / mTileSize);
-		if (x < tileCountX && y < tileCountY
-
-		&& (event.getX()) >= 0
-				&& (event.getY()) >= 0) {
-			// Log.d(TAG, "Touched (" + x + ", " + y + ")\n");
-			saveBoatLocation(x, y);
-		}
-		return super.onTouchEvent(event);
 	}
 
 	/**
@@ -236,12 +221,6 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.menu, menu);
-		return true;
-	}
 
 	@Override
 	public void onClick(View v) {
@@ -249,6 +228,11 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		// Log.d(TAG, "Added Alive on (3,3)");
 	}
 	
+	/**
+	 * Check if the ship remains within board boundaries
+	 * @param x
+	 * @return
+	 */
 	public boolean placeHorizontal(int x){
 		if(x + length < 10){
 			return true;
