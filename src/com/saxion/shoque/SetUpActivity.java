@@ -24,7 +24,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	
 	private SeashoqueGame game;
 	
-	Context context = getApplicationContext();
+//	Context context = getApplicationContext();
 
 	private int[][] boats;
 
@@ -97,7 +97,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setup);
 		
-		game = new SeashoqueGame(null);
+//		game = new SeashoqueGame(null);
 
 		buttonCarrier = (Button) findViewById(R.id.buttonCarrier);
 		buttonBattleship = (Button) findViewById(R.id.buttonBattleship);
@@ -120,24 +120,31 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	public void saveBoatLocation(int x, int y) {
 		if(horizontal){
 			if(placeHorizontal(x)){
-				boats[x][y] = x + y;
-				game.getGameBoard().addGameObject(
-						new Alive(game), x, y);
+				int xboot = x;
+				for(int i = 0; i < length - 1; i++){
+						boats[xboot][y] = xboot + y;
+//						game.getGameBoard().addGameObject(
+//						new Alive(game), x, y);
+						xboot++;}
+
 			}
 			else{
-				Toast toast = Toast.makeText(context, "Not valid", Toast.LENGTH_LONG);
-				toast.show();
+//				Toast toast = Toast.makeText(context, "Not valid", Toast.LENGTH_LONG);
+//				toast.show();
 			}
 		}
 		else{
 			if(placeVertical(y)){
-				boats[x][y] = x + y;
-				game.getGameBoard().addGameObject(
-						new Alive(game), x, y);
+				int yboot = y;
+				for(int i = 0; i < length - 1; i++){
+					boats[x][yboot] = x + yboot;
+//					game.getGameBoard().addGameObject(
+//					new Alive(game), x, y);
+					yboot++;}
 			}
 			else{
-				Toast toast = Toast.makeText(context, "Not valid", Toast.LENGTH_LONG);
-				toast.show();
+//				Toast toast = Toast.makeText(context, "Not valid", Toast.LENGTH_LONG);
+//				toast.show();
 			}
 		}
 		
