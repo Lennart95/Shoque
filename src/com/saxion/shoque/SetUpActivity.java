@@ -128,10 +128,9 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		if(horizontal){
 			if(placeHorizontal(x)){
 				int xboot = x;
-				for(int i = 0; i < length - 1; i++){
+				for(int i = 0; i < length; i++){
 						boats[xboot][y] = xboot + y;
-//						game.getGameBoard().addGameObject(
-//						new Alive(game), x, y);
+						//TODO: Check if legit, add according gameobjects on 'setUpBoard'
 						xboot++;}
 
 			}
@@ -139,10 +138,9 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		else{
 			if(placeVertical(y)){
 				int yboot = y;
-				for(int i = 0; i < length - 1; i++){
+				for(int i = 0; i < length; i++){
 					boats[x][yboot] = x + yboot;
-//					game.getGameBoard().addGameObject(
-//					new Alive(game), x, y);
+					//TODO: Check if legit, add according gameobjects on 'setUpBoard'
 					yboot++;}
 			}
 		}
@@ -217,6 +215,8 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		public void onClick(View v) {
 			Intent intent = new Intent(SetUpActivity.this, GameActivity.class);
 		    startActivity(intent);
+		    
+		    //TODO: meegeven van bestaand GameBoard 'setupBoard' object is waarschijnlijk heel makkelijk en heel efficient!
 			
 		}
 	}
@@ -224,8 +224,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// getGameBoard().addGameObject(new Alive(this), 3, 3);
-		// Log.d(TAG, "Added Alive on (3,3)");
+		//Do nothing
 	}
 	
 	/**
