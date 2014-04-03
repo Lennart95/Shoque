@@ -1,6 +1,9 @@
 package com.saxion.shoque.playground.model;
 
 import java.util.Observable;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 /**
@@ -14,7 +17,7 @@ import android.util.Log;
  * 
  * @author Paul de Groot
  */
-public abstract class GameBoard extends Observable {
+public abstract class GameBoard extends Observable implements Parcelable {
 	public static final String TAG = "Playground";
 
 	/** The game this game board is a part of. */
@@ -31,6 +34,11 @@ public abstract class GameBoard extends Observable {
 	 */
 	public GameBoard(int width, int height) {
 		this.gameBoard = new GameObject[width][height];
+	}
+
+	public GameBoard(Parcel in) {
+        in.readArray(in);
+        this.gameBoard = data[0][0];;
 	}
 
 	/**

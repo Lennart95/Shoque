@@ -214,6 +214,10 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			Intent intent = new Intent(SetUpActivity.this, GameActivity.class);
+			
+			//Pass through existing playerBoard (known as setupBoard)
+			intent.putExtra("setupBoard", setupBoard);
+			
 		    startActivity(intent);
 		    
 		    //TODO: meegeven van bestaand GameBoard 'setupBoard' object is waarschijnlijk heel makkelijk en heel efficient!

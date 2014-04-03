@@ -1,11 +1,12 @@
 package com.saxion.shoque.playground.model;
 
-import android.app.Activity;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import com.saxion.shoque.util.Hit;
 import com.saxion.shoque.SetUpActivity;
+import com.saxion.shoque.util.Hit;
 
-public class SeashoqueBoard extends GameBoard  {
+public class SeashoqueBoard extends GameBoard {
 	private static final int DIM = 10;
 	private boolean setupState = false;
 	private SetUpActivity parent;
@@ -51,6 +52,18 @@ public class SeashoqueBoard extends GameBoard  {
 
 	public void setSetupState(boolean setupState) {
 		this.setupState = setupState;
+	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
