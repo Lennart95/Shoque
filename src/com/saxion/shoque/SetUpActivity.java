@@ -1,21 +1,16 @@
 package com.saxion.shoque;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.shoque.R;
 import com.saxion.shoque.playground.model.SeashoqueBoard;
-import com.saxion.shoque.playground.model.SeashoqueGame;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
 import com.saxion.shoque.util.Alive;
 
@@ -26,13 +21,14 @@ import com.saxion.shoque.util.Alive;
  */
 public class SetUpActivity extends Activity implements OnClickListener {
 
+	private static final String TAG = "SetUpActivity";
 	private ShoqueGameBoardView gameViewPlayer;
 	private SeashoqueBoard setupBoard;
 	private ShoqueGameBoardView setupBoardView;
 	
 //	Context context = getApplicationContext();
 
-	private int[][] boats;
+//	private int[][] boats;
 
 	/** Number of tiles in X-direction. */
 	private int tileCountX = 10;
@@ -52,26 +48,31 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	 * Button for selecting a Carrier with selectedBoat = 0
 	 */
 	private Button buttonCarrier;
+	private boolean carrierSet = false;
 
 	/**
 	 * Button for selecting a Battleship with selectedBoat = 1
 	 */
 	private Button buttonBattleship;
+	private boolean battleshipSet = false;
 
 	/**
 	 * Button for selecting a Cruiser with selectedBoat = 2
 	 */
 	private Button buttonCruiser;
+	private boolean cruiserSet = false;
 
 	/**
 	 * Button for selecting a Submarine with selectedBoat = 3
 	 */
 	private Button buttonSubmarine;
+	private boolean submarineSet = false;
 
 	/**
 	 * Button for selecting a Destroyer with selectedBoat = 4
 	 */
 	private Button buttonDestroyer;
+	private boolean destroyerSet = false;
 
 	/**
 	 * Button for the orientation of the ships, horizontal or vertical
@@ -105,6 +106,9 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		setupBoard = new SeashoqueBoard();
 		setupBoard.setParent(this);
 		setupBoard.setSetupState(true);
+		
+		//Link board and view to each other
+		setupBoardView.setGameBoard(setupBoard);
 
 		buttonCarrier = (Button) findViewById(R.id.buttonCarrier);
 		buttonBattleship = (Button) findViewById(R.id.buttonBattleship);
@@ -123,26 +127,86 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		startButton.setOnClickListener(new buttonStartListener());
 
 	}
-
+	
+	/**
+	 * This method is called when onEmptyTile(x, y) is clicked on the board. It ignores the click if the location is invalid 
+	 * (other boat is in the way, or overlaps the boarder of the board), but saves it when saving is ok. It requires 
+	 * @param x
+	 * @param y
+	 */
 	public void saveBoatLocation(int x, int y) {
+		Log.d(TAG, "savedBoatLocation() is being executed: " + x + ", " + y );
 		if(horizontal){
-			if(placeHorizontal(x)){
-				int xboot = x;
+			if(isValidX(x) && !isBoatAlreadySet(selectedBoat)){
 				for(int i = 0; i < length; i++){
-						boats[xboot][y] = xboot + y;
-						//TODO: Check if legit, add according gameobjects on 'setUpBoard'
-						xboot++;}
-
+					setupBoard.addGameObject(new Alive(),x + i, y);
+				}
+				setBoat(selectedBoat);
+				setupBoard.updateView();
+				setTextViewsInit();
+				selectedBoat = -1;
+				length = 0;
 			}
 		}
 		else{
-			if(placeVertical(y)){
-				int yboot = y;
+			if(isValidY(y) && !isBoatAlreadySet(selectedBoat)){
 				for(int i = 0; i < length; i++){
-					boats[x][yboot] = x + yboot;
-					//TODO: Check if legit, add according gameobjects on 'setUpBoard'
-					yboot++;}
+					setupBoard.addGameObject(new Alive(),x, y + i);
+				}
+				setBoat(selectedBoat);
+				setupBoard.updateView();
+				setTextViewsInit();
+				selectedBoat = -1;
+				length = 0;
 			}
+		}
+		
+	}
+	
+	/**
+	 * Called to check if a boat has been set or not.
+	 * @param i Index of the boat.
+	 * @return	boolean, whether the boat has been set or not.
+	 */
+	private boolean isBoatAlreadySet(int i){
+		Log.d(TAG, "Boats set: Carrier " + carrierSet + ", Battleship " + 
+				battleshipSet + ", Cruiser " + cruiserSet + ", Submarine " 
+				+ submarineSet + ", Destroyer " + destroyerSet);
+		boolean result = false;
+		switch (i){
+			case 0: result = carrierSet;
+				break;
+			case 1: result = battleshipSet;
+				break;
+			case 2: result = cruiserSet;
+				break;
+			case 3: result = submarineSet;
+				break;
+			case 4: result = destroyerSet;
+				break;
+		}
+		Log.d(TAG, "Boats set: Carrier " + carrierSet + ", Battleship " + 
+				battleshipSet + ", Cruiser " + cruiserSet + ", Submarine " 
+				+ submarineSet + ", Destroyer " + destroyerSet);
+		return result;
+	}
+	
+	/**
+	 * Set a boolean accordingly if a ship has been set.
+	 * @param selectedBoat2
+	 */
+	private void setBoat(int s) {
+		switch (s){
+		case 0: carrierSet = true;
+			break;
+		case 1: battleshipSet = true;
+			break;
+		case 2: cruiserSet = true;
+			break;
+		case 3: submarineSet = true;
+			break;
+		case 4: destroyerSet = true;
+			break;
 		}
 		
 	}
@@ -213,15 +277,20 @@ public class SetUpActivity extends Activity implements OnClickListener {
 
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(SetUpActivity.this, GameActivity.class);
+			Log.d(TAG, "StartGameClicked");
+			if (carrierSet && battleshipSet && cruiserSet && submarineSet && destroyerSet){
+//			    Intent intent = new Intent(SetUpActivity.this, GameActivity.class);
+//			    startActivity(intent);
+			}
 			
-			//Pass through existing playerBoard (known as setupBoard)
-			intent.putExtra("setupBoard", setupBoard);
-			
-		    startActivity(intent);
-		    
-		    //TODO: meegeven van bestaand GameBoard 'setupBoard' object is waarschijnlijk heel makkelijk en heel efficient!
-			
+//		
+//			//Pass through existing playerBoard (known as setupBoard)
+//			intent.putExtra("setupBoard", setupBoard);
+//			
+//		    startActivity(intent);
+//		    
+//		    //TODO: meegeven van bestaand GameBoard 'setupBoard' object is waarschijnlijk heel makkelijk en heel efficient!
+//			
 		}
 	}
 
@@ -236,15 +305,15 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	 * @param x
 	 * @return
 	 */
-	public boolean placeHorizontal(int x){
-		if(x + length < 10){
+	public boolean isValidX(int x){
+		if(x + length <= 10){
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean placeVertical(int y){
-		if(y + length < 10){
+	public boolean isValidY(int y){
+		if(y + length <= 10){
 			return true;
 		}
 		return false;
@@ -252,54 +321,75 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	
 	
 
-	public void setTextViewsBlack() {
+	public void setTextViewsInit() {
 		buttonCarrier.setTextColor(Color.BLACK);
 		buttonBattleship.setTextColor(Color.BLACK);
 		buttonCruiser.setTextColor(Color.BLACK);
 		buttonSubmarine.setTextColor(Color.BLACK);
 		buttonDestroyer.setTextColor(Color.BLACK);
-	}
-
-	public void setSelectedBoat(int SelectedBoat) {
-		switch (SelectedBoat) {
-		case 0:
-			setTextViewsBlack();
-			buttonCarrier.setTextColor(Color.BLUE);
-			length = 5;
-			selectedBoat = 0;
-			break;
-
-		case 1:
-			setTextViewsBlack();
-			buttonBattleship.setTextColor(Color.BLUE);
-			length = 4;
-			selectedBoat = 1;
-			break;
-
-		case 2:
-			setTextViewsBlack();
-			buttonCruiser.setTextColor(Color.BLUE);
-			length = 3;
-			selectedBoat = 2;
-			break;
-
-		case 3:
-			setTextViewsBlack();
-			buttonSubmarine.setTextColor(Color.BLUE);
-			length = 3;
-			selectedBoat = 3;
-			break;
-
-		case 4:
-			setTextViewsBlack();
-			buttonDestroyer.setTextColor(Color.BLUE);
-			length = 2;
-			selectedBoat = 4;
-			break;
-
-		}
-
+		
+		//Set Red if already set
+		if (carrierSet) {
+			buttonCarrier.setTextColor(Color.RED);}
+		if (battleshipSet) {
+			buttonBattleship.setTextColor(Color.RED);}
+		if (cruiserSet) {
+			buttonCruiser.setTextColor(Color.RED);}
+		if (submarineSet) {
+			buttonSubmarine.setTextColor(Color.RED);}
+		if (destroyerSet) {
+			buttonDestroyer.setTextColor(Color.RED);}
 		
 	}
 
+	public void setSelectedBoat(int s) {
+		switch (s) {
+		case 0:
+			setTextViewsInit();
+			if (!carrierSet){
+				buttonCarrier.setTextColor(Color.BLUE);
+				length = 5;
+				selectedBoat = 0;
+			}
+			break;
+
+		case 1:
+			setTextViewsInit();
+			if (!battleshipSet){
+			buttonBattleship.setTextColor(Color.BLUE);
+			length = 4;
+			selectedBoat = 1;
+			}
+			break;
+
+		case 2:
+			setTextViewsInit();
+			if (!cruiserSet){
+			buttonCruiser.setTextColor(Color.BLUE);
+			length = 3;
+			selectedBoat = 2;
+			}
+			break;
+
+		case 3:
+			setTextViewsInit();
+			if (!submarineSet){
+			buttonSubmarine.setTextColor(Color.BLUE);
+			length = 3;
+			selectedBoat = 3;
+			}
+			break;
+
+		case 4:
+			setTextViewsInit();
+			if (!destroyerSet){
+			buttonDestroyer.setTextColor(Color.BLUE);
+			length = 2;
+			selectedBoat = 4;
+			}
+			break;
+
+		}
+		Log.d(TAG, "setSelectedBoat is called " + s);
+	}
 }

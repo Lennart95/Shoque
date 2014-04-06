@@ -33,7 +33,7 @@ import android.view.View;
  * @author Paul de Groot
  */
 public abstract class GameBoardView extends View implements Observer {
-	private static final String TAG = "Playground";
+	private static final String TAG = "GameBoardView";
 
 	/** When true, the number of tiles in the view remains the same. */
 	private boolean fixedGrid = true;

@@ -18,7 +18,7 @@ import android.util.Log;
  * @author Paul de Groot
  */
 public abstract class GameBoard extends Observable implements Parcelable {
-	public static final String TAG = "Playground";
+	public static final String TAG = "GameBoard";
 
 	/** The game this game board is a part of. */
 	private Game game;
@@ -36,9 +36,8 @@ public abstract class GameBoard extends Observable implements Parcelable {
 		this.gameBoard = new GameObject[width][height];
 	}
 
-	public GameBoard(Parcel in) {
-        in.readArray(in);
-        this.gameBoard = data[0][0];;
+	public GameBoard(ClassLoader in) {
+		//TODO: read serializable string of alive objects
 	}
 
 	/**

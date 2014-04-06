@@ -1,7 +1,7 @@
 package com.saxion.shoque.playground.model;
 
 import android.os.Parcel;
-import android.os.Parcelable;
+import android.util.Log;
 
 import com.saxion.shoque.SetUpActivity;
 import com.saxion.shoque.util.Hit;
@@ -20,6 +20,7 @@ public class SeashoqueBoard extends GameBoard {
 	
 	@Override
 	public void onEmptyTileClicked(int x, int y) {
+		Log.d(GameBoard.TAG, "onemptytileclicked" + x + ", " + y);
 		if (setupState){
 			parent.saveBoatLocation(x, y);
 		}
