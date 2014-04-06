@@ -137,7 +137,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	public void saveBoatLocation(int x, int y) {
 		Log.d(TAG, "savedBoatLocation() is being executed: " + x + ", " + y );
 		if(horizontal){
-			if(isValidX(x) && !isBoatAlreadySet(selectedBoat)){
+			if(isShipValidXY(setupBoard, x, y) && !isBoatAlreadySet(selectedBoat)){
 				for(int i = 0; i < length; i++){
 					setupBoard.addGameObject(new Alive(),x + i, y);
 				}
@@ -149,7 +149,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 			}
 		}
 		else{
-			if(isValidY(y) && !isBoatAlreadySet(selectedBoat)){
+			if(isShipValidXY(setupBoard, x, y) && !isBoatAlreadySet(selectedBoat)){
 				for(int i = 0; i < length; i++){
 					setupBoard.addGameObject(new Alive(),x, y + i);
 				}
@@ -289,7 +289,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 //			
 //		    startActivity(intent);
 //		    
-//		    //TODO: meegeven van bestaand GameBoard 'setupBoard' object is waarschijnlijk heel makkelijk en heel efficient!
+//		    //TODO: meegeven van bestaand GameBoard
 //			
 		}
 	}
@@ -305,18 +305,21 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	 * @param x
 	 * @return
 	 */
-	public boolean isValidX(int x){
-		if(x + length <= 10){
-			return true;
+	public boolean isShipValidXY(SeashoqueBoard board, int x, int y){
+		boolean invalid = false;
+
+		if (horizontal){
+			for (int i = 0; i<length; i++){
+				invalid = invalid || !(board.isEmpty(x+i, y));
+			}
 		}
-		return false;
-	}
-	
-	public boolean isValidY(int y){
-		if(y + length <= 10){
-			return true;
+		else {
+			for (int i = 0; i<length; i++){
+				invalid = invalid || !(board.isEmpty(x, y+i));
+			}
 		}
-		return false;
+		
+		return !invalid;
 	}
 	
 	

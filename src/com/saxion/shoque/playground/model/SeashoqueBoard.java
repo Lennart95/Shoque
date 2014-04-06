@@ -62,9 +62,8 @@ public class SeashoqueBoard extends GameBoard {
 	}
 
 	@Override
-	public void writeToParcel(Parcel dest, int flags) {
+	public void writeToParcel(Parcel arg0, int arg1) {
 		// TODO Auto-generated method stub
 		
-	}
-	
+	}	
 }
