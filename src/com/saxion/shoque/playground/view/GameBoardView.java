@@ -9,7 +9,7 @@ import com.saxion.shoque.playground.model.GameObject;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Canvas; 
+import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -18,13 +18,11 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * View that draws a grid of images, representing the game board.
- * This class handles the resizing of the grid.
- * Two possible options exist:
- *  a) a fixed grid, where the number of tiles remains the same, but tiles
- *     may become smaller or larger.
- *  b) a relative grid, where the tile size remains the same, but the number
- *     of tiles drawn may change.
+ * View that draws a grid of images, representing the game board. This class
+ * handles the resizing of the grid. Two possible options exist: a) a fixed
+ * grid, where the number of tiles remains the same, but tiles may become
+ * smaller or larger. b) a relative grid, where the tile size remains the same,
+ * but the number of tiles drawn may change.
  * 
  * This class also handles the resizing of the bitmaps, so the image quality
  * remains good.
@@ -38,21 +36,25 @@ public abstract class GameBoardView extends View implements Observer {
 	/** When true, the number of tiles in the view remains the same. */
 	private boolean fixedGrid = true;
 
-	/** Number of tiles in X-direction. */ 
+	/** Number of tiles in X-direction. */
 	private int tileCountX = 10;
 
-	/** Number of tiles in Y-direction. */ 
+	/** Number of tiles in Y-direction. */
 	private int tileCountY = 10;
 
 	/** Size (in pixels) of the tiles. */
 	private int mTileSize = 20;
 
-	/** There is a border around the tile grid. This is the border size in pixels in 
-	 * the X-direction. */
+	/**
+	 * There is a border around the tile grid. This is the border size in pixels
+	 * in the X-direction.
+	 */
 	protected int borderSizeX;
 
-	/** There is a border around the tile grid. This is the border size in pixels in
-	 *  the Y-direction. */
+	/**
+	 * There is a border around the tile grid. This is the border size in pixels
+	 * in the Y-direction.
+	 */
 	protected int borderSizeY;
 
 	/** The image ID to use for empty tiles (no game object on them). */
@@ -71,10 +73,9 @@ public abstract class GameBoardView extends View implements Observer {
 	private final Paint mPaint = new Paint();
 
 	/**
-	 * A single image that can be used in the representation of a game
-	 * object.
-	 * This is not the actual image per se: a bitmap of the exact size of
-	 * the tiles is created.
+	 * A single image that can be used in the representation of a game object.
+	 * This is not the actual image per se: a bitmap of the exact size of the
+	 * tiles is created.
 	 * 
 	 * @author Paul de Groot
 	 */
@@ -85,12 +86,16 @@ public abstract class GameBoardView extends View implements Observer {
 		Bitmap bitmap;
 
 		/**
-		 * Creates a structure that store the resourceID and a bitmap of the size
-		 * of a tile in the view.
-		 * @param resourceID  The resource ID, e.g. R.drawable.wombat.
-		 * @param tileSize    The size of a tile in pixels.
-		 *     
-		 * @throws Resources.NotFoundException  when the resource was not found.
+		 * Creates a structure that store the resourceID and a bitmap of the
+		 * size of a tile in the view.
+		 * 
+		 * @param resourceID
+		 *            The resource ID, e.g. R.drawable.wombat.
+		 * @param tileSize
+		 *            The size of a tile in pixels.
+		 * 
+		 * @throws Resources.NotFoundException
+		 *             when the resource was not found.
 		 */
 		public TileImage(int resourceID, int tileSize) {
 			this.resourceID = resourceID;
@@ -98,13 +103,16 @@ public abstract class GameBoardView extends View implements Observer {
 		}
 
 		/**
-		 * Loads the image identified by the given resourceID and creates a bitmap
-		 * the size of a tile from that.
-		 * @param tileSize  The tile size.
+		 * Loads the image identified by the given resourceID and creates a
+		 * bitmap the size of a tile from that.
+		 * 
+		 * @param tileSize
+		 *            The tile size.
 		 */
 		public void createBitmap(int tileSize) {
 			// Find the resource specified
-			Resources resources = GameBoardView.this.getContext().getResources();
+			Resources resources = GameBoardView.this.getContext()
+					.getResources();
 			Drawable drawable = resources.getDrawable(resourceID);
 
 			// Create a bitmap of the exact tile size and draw the drawable on
@@ -135,11 +143,13 @@ public abstract class GameBoardView extends View implements Observer {
 
 	/**
 	 * Sets this view to 'fixed grid mode'. This means that the number of tiles
-	 * in the grid will always be the same, but the tile size is changed to match
-	 * the size of the view.
+	 * in the grid will always be the same, but the tile size is changed to
+	 * match the size of the view.
 	 * 
-	 * @param tilesX  The number of tiles in X-direction.
-	 * @param tilesY  The number of tiles in Y-direction.
+	 * @param tilesX
+	 *            The number of tiles in X-direction.
+	 * @param tilesY
+	 *            The number of tiles in Y-direction.
 	 */
 	public void setFixedGridSize(int tilesX, int tilesY) {
 		fixedGrid = true;
@@ -150,11 +160,12 @@ public abstract class GameBoardView extends View implements Observer {
 	}
 
 	/**
-	 * Sets this view to 'variable grid mode'. This means that the grid size will 
-	 * always be the same, and the number of tiles in view will be changed according
-	 * to the size of the view.
+	 * Sets this view to 'variable grid mode'. This means that the grid size
+	 * will always be the same, and the number of tiles in view will be changed
+	 * according to the size of the view.
 	 * 
-	 * @param tileSize  The size in pixels of a tile.
+	 * @param tileSize
+	 *            The size in pixels of a tile.
 	 */
 	public void setVariableGridSize(int tileSize) {
 		fixedGrid = false;
@@ -167,7 +178,8 @@ public abstract class GameBoardView extends View implements Observer {
 	 * Sets a reference to the game board that will be drawn by this view.
 	 * Changes to this board will be noticed by calls to notifyObserver.
 	 * 
-	 * @param board  The game board.
+	 * @param board
+	 *            The game board.
 	 */
 	public void setGameBoard(GameBoard board) {
 		this.board = board;
@@ -176,16 +188,20 @@ public abstract class GameBoardView extends View implements Observer {
 	}
 
 	/**
-	 * Use this method to 'load' the images in the application. Loading means that
-	 * a bitmap is created that contains the image scaled to the size of a tile. 
-	 * Also, the given 'key' is associated with that image. This means that if a
-	 * game object tells this view (by way of getImageId()) to use a certain image,
-	 * the correct bitmap can be found.
+	 * Use this method to 'load' the images in the application. Loading means
+	 * that a bitmap is created that contains the image scaled to the size of a
+	 * tile. Also, the given 'key' is associated with that image. This means
+	 * that if a game object tells this view (by way of getImageId()) to use a
+	 * certain image, the correct bitmap can be found.
 	 * 
-	 * @param key         The string that will be associated with this image 
-	 * @param resourceID  The resourceID of the drawable to load, e.g. R.drawable.wombat.
+	 * @param key
+	 *            The string that will be associated with this image
+	 * @param resourceID
+	 *            The resourceID of the drawable to load, e.g.
+	 *            R.drawable.wombat.
 	 * 
-	 * @throws Resources.NotFoundException  if the resource could not be found.
+	 * @throws Resources.NotFoundException
+	 *             if the resource could not be found.
 	 */
 	public void loadTile(String key, int resourceID) {
 		// Store this in our hash map
@@ -193,10 +209,11 @@ public abstract class GameBoardView extends View implements Observer {
 	}
 
 	/**
-	 * Set the image ID (as given to loadTile()) of the image that should be used to
-	 * draw tiles on which no GameObject is present.
+	 * Set the image ID (as given to loadTile()) of the image that should be
+	 * used to draw tiles on which no GameObject is present.
 	 * 
-	 * @param key  The image to use for empty tiles.
+	 * @param key
+	 *            The image to use for empty tiles.
 	 */
 	public void setEmptyTile(String key) {
 		emptyTile = key;
@@ -212,42 +229,48 @@ public abstract class GameBoardView extends View implements Observer {
 	}
 
 	/**
-	 * Called when the user touches the game board.
-	 * Determines which tile was clicked and which object was on that place of
-	 * the board.
-	 * If an object was present, GameObject.onTouched() will be called.
-	 * If no object was there, GameBoard.onEmptyTileClicked() will be called.
+	 * Called when the user touches the game board. Determines which tile was
+	 * clicked and which object was on that place of the board. If an object was
+	 * present, GameObject.onTouched() will be called. If no object was there,
+	 * GameBoard.onEmptyTileClicked() will be called.
 	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		int x = (int) ((event.getX() - borderSizeX) / mTileSize);
-		int y = (int) ((event.getY() - borderSizeY) / mTileSize);
-		if (x < tileCountX && y < tileCountY
-			
-				&& (event.getX() - borderSizeX) >= 0
-				&& (event.getY() - borderSizeY) >= 0) {
-			Log.d(TAG, "Touched (" + x + ", " + y + ")\n");
+		final int action = event.getAction();
+		
+		switch (action & MotionEvent.ACTION_MASK) {
+		case MotionEvent.ACTION_DOWN: {
+			int x = (int) ((event.getX() - borderSizeX) / mTileSize);
+			int y = (int) ((event.getY() - borderSizeY) / mTileSize);
+			if (x < tileCountX && y < tileCountY
 
-			// Who you gonna call?
-			if (board != null) {
-				if( (x < board.getWidth()) && (y < board.getHeight())) {
-			
-					// Determine the object clicked
-					GameObject object = board.getObject(x, y);
+			&& (event.getX() - borderSizeX) >= 0
+					&& (event.getY() - borderSizeY) >= 0) {
+				Log.d(TAG, "Touched (" + x + ", " + y + ")\n");
 
-					// Call the listener
-					if (object != null) {
-						object.onTouched(board);
-					} else {
-						board.onEmptyTileClicked(x, y);
-	  				}
+				// Who you gonna call?
+				if (board != null) {
+					if ((x < board.getWidth()) && (y < board.getHeight())) {
+
+						// Determine the object clicked
+						GameObject object = board.getObject(x, y);
+
+						// Call the listener
+						if (object != null) {
+							object.onTouched(board);
+						} else {
+							board.onEmptyTileClicked(x, y);
+						}
+					}
 				}
 			}
+			break;
+		}
 		}
 
 		return super.onTouchEvent(event);
 	}
-	
+
 	/** Called when the view size changed. */
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -280,11 +303,13 @@ public abstract class GameBoardView extends View implements Observer {
 					+ tileCountY);
 		}
 
-		// Tiles may not use the whole view, leaving a border. Calculate the size
+		// Tiles may not use the whole view, leaving a border. Calculate the
+		// size
 		// of it. (The game board is centered within the view).
 		borderSizeX = ((w - (mTileSize * tileCountX)) / 2);
 		borderSizeY = ((h - (mTileSize * tileCountY)) / 2);
-		Log.d(TAG, "onSizeChanged: border is now " + borderSizeX + ", " + borderSizeY);
+		Log.d(TAG, "onSizeChanged: border is now " + borderSizeX + ", "
+				+ borderSizeY);
 
 		// If the number of cells in the grid is fixed, cell size may have
 		// changed.
@@ -299,18 +324,18 @@ public abstract class GameBoardView extends View implements Observer {
 			}
 			invalidate();
 		}
-		
+
 		// Update the array of the bitmaps, since that may have now changed
 		determineGridBitmaps();
 	}
 
 	/**
-	 * Update the array that contains which bitmap should be drawn where.
-	 * This is done every time the game board changed.
+	 * Update the array that contains which bitmap should be drawn where. This
+	 * is done every time the game board changed.
 	 */
 	private void determineGridBitmaps() {
 		mTileGrid = new TileImage[tileCountX][tileCountY];
-		if( board == null )
+		if (board == null)
 			return;
 
 		// For each tile...
@@ -318,13 +343,13 @@ public abstract class GameBoardView extends View implements Observer {
 			for (int y = 0; y < tileCountY; y++) {
 				// ... get the game object
 				GameObject object = null;
-				if( (x < board.getWidth()) && (y < board.getHeight())) {
+				if ((x < board.getWidth()) && (y < board.getHeight())) {
 					object = board.getObject(x, y);
 				}
 
 				// Get the imageID
-				//   if no object present, use the emptyTile ID
-				//   otherwise, ask object for the imageID to use
+				// if no object present, use the emptyTile ID
+				// otherwise, ask object for the imageID to use
 				String imageID;
 				if (object == null) {
 					imageID = emptyTile;
@@ -334,7 +359,7 @@ public abstract class GameBoardView extends View implements Observer {
 
 				// Find the associated bitmap
 				TileImage img = null;
-				if( imageID != null ) {
+				if (imageID != null) {
 					img = images.get(imageID);
 				}
 				mTileGrid[x][y] = img;
@@ -359,5 +384,3 @@ public abstract class GameBoardView extends View implements Observer {
 		}
 	}
 }
-
-	
