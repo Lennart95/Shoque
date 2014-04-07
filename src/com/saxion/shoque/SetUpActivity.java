@@ -136,8 +136,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	 */
 	public void saveBoatLocation(int x, int y) {
 		Log.d(TAG, "savedBoatLocation() is being executed: " + x + ", " + y );
-		if(horizontal){
-			if(isShipValidXY(setupBoard, x, y) && !isBoatAlreadySet(selectedBoat)){
+		if(horizontal && isShipValidXY(setupBoard, x, y) && !isBoatAlreadySet(selectedBoat)){
 				for(int i = 0; i < length; i++){
 					setupBoard.addGameObject(new Alive(),x + i, y);
 				}
@@ -146,19 +145,17 @@ public class SetUpActivity extends Activity implements OnClickListener {
 				setTextViewsInit();
 				selectedBoat = -1;
 				length = 0;
-			}
 		}
-		else{
-			if(isShipValidXY(setupBoard, x, y) && !isBoatAlreadySet(selectedBoat)){
+		else if(isShipValidXY(setupBoard, x, y) && !isBoatAlreadySet(selectedBoat)){
 				for(int i = 0; i < length; i++){
 					setupBoard.addGameObject(new Alive(),x, y + i);
 				}
+				
 				setBoat(selectedBoat);
 				setupBoard.updateView();
 				setTextViewsInit();
 				selectedBoat = -1;
 				length = 0;
-			}
 		}
 		
 	}
@@ -308,17 +305,21 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	public boolean isShipValidXY(SeashoqueBoard board, int x, int y){
 		boolean invalid = false;
 
-		if (horizontal){
-			for (int i = 0; i<length; i++){
-				invalid = invalid || !(board.isEmpty(x+i, y));
-			}
-		}
-		else {
-			for (int i = 0; i<length; i++){
-				invalid = invalid || !(board.isEmpty(x, y+i));
-			}
-		}
+		invalid = (horizontal && (x + length > SeashoqueBoard.DIM));
+		invalid = invalid || (y + length > SeashoqueBoard.DIM);
 		
+		if (horizontal && !invalid){
+			for (int i = 0; i<length; i++){
+				invalid = invalid || !setupBoard.isEmpty(x+i, y);
+				Log.d(TAG, "Check isEmpty on coord: " + (x+i) + ", " + y + ". Result is " + invalid);
+			}
+		}
+		else if (!invalid){
+			for (int i = 0; i<length; i++){
+				invalid = invalid || !setupBoard.isEmpty(x, y+i);
+				Log.d(TAG, "Check isEmpty on coord: " + x  + ", " + (y+i) + ". Result is " + invalid);
+			}
+		}
 		return !invalid;
 	}
 	

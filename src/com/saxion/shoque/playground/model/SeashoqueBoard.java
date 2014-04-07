@@ -7,7 +7,7 @@ import com.saxion.shoque.SetUpActivity;
 import com.saxion.shoque.util.Hit;
 
 public class SeashoqueBoard extends GameBoard {
-	private static final int DIM = 10;
+	public static final int DIM = 10;
 	private boolean setupState = false;
 	private SetUpActivity parent;
 	
