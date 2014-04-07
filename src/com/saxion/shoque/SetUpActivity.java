@@ -221,11 +221,11 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		public void onClick(View arg0) {
 			if (horizontal) {
 				horizontal = false;
-				buttonOrientation.setText("Horizontal");
+				buttonOrientation.setText("Placing horizontal, press for vertical");
 
 			} else if (horizontal == false) {
 				horizontal = true;
-				buttonOrientation.setText("Vertical");
+				buttonOrientation.setText("Placing vertical, press for horizontal");
 			}
 
 		}
