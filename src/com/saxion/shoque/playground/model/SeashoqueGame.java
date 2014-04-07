@@ -197,8 +197,9 @@ public class SeashoqueGame extends Game {
 				else if (currentplayer == 0 && score > 1)
 				{
 					score-= 2;
-				}else if (currentplayer == 0 && score == 1){
-					score = 0 ;
+				}else 
+				{
+					score = 0;
 				}
 				
 				
@@ -220,7 +221,7 @@ public class SeashoqueGame extends Game {
 				newGame();
 				if(winner.equals("CPU"))
 				{
-					gameactivity.toast("Game over! " + winner + " has won! Press anywhere to start new game.");
+					gameactivity.toast("Game over! " + winner + " has won with score:" + score + "\n" + "sPress anywhere to start new game.");
 					score = 0;
 				}
 				else
