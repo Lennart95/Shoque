@@ -189,6 +189,19 @@ public class SeashoqueGame extends Game {
 			//HIT!
 			else if (target.getObject(x, y) instanceof Alive){
 				Log.d(TAG, "Hit!");
+				//10 points for hit!
+				if (currentplayer == 1)
+				{
+					score+= 10;
+				}
+				else if (currentplayer == 0 && score > 1)
+				{
+					score-= 2;
+				}else if (currentplayer == 0 && score == 1){
+					score = 0 ;
+				}
+				
+				
 				
 				target.removeObject(target.getObject(x, y));
 				Log.d(TAG, "Removed Object");
@@ -208,11 +221,13 @@ public class SeashoqueGame extends Game {
 				if(winner.equals("CPU"))
 				{
 					gameactivity.toast("Game over! " + winner + " has won! Press anywhere to start new game.");
+					score = 0;
 				}
 				else
 				{
 					gameactivity.toast(winner + " has won with score: " + score + "\n" +  
 									   "Press anywhere to start a new game.");
+					score = 0;	
 				}
 			}
 		}
