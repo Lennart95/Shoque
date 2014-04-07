@@ -279,8 +279,8 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		public void onClick(View v) {
 			Log.d(TAG, "StartGameClicked");
 			if (carrierSet && battleshipSet && cruiserSet && submarineSet && destroyerSet){
-//			    Intent intent = new Intent(SetUpActivity.this, GameActivity.class);
-//			    startActivity(intent);
+			    Intent intent = new Intent(SetUpActivity.this, GameActivity.class);
+			    startActivity(intent);
 			}
 			
 //		

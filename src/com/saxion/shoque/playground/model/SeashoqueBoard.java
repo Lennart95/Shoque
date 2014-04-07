@@ -37,7 +37,7 @@ public class SeashoqueBoard extends GameBoard {
 
 	public boolean isEmpty(int x, int y) {
 		boolean result = true;
-		if (getObject(x, y)!=null){
+		if (getObject(x, y)!=null || x > DIM || y > DIM){
 			result = false;
 		}
 		return result;
