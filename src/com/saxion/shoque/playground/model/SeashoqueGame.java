@@ -1,6 +1,8 @@
 package com.saxion.shoque.playground.model;
 
 import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.shoque.R;
 import com.saxion.shoque.GameActivity;
@@ -44,6 +46,9 @@ public class SeashoqueGame extends Game {
 	
 	private int score;
 
+//	private TextView scoreTextView = (TextView)findViewById(R.id.textViewScoreCijfer);
+	
+	
 	/**
 	 * Constructor
 	 * Called when you create a new game.
@@ -60,6 +65,7 @@ public class SeashoqueGame extends Game {
 		gameBoard = (SeashoqueBoard) super.getGameBoard();
 		gameBoard.setGame(this);
 		gameViewPlayer.setGameBoard(gameBoard);
+		
 		
 		gameViewCPU = activity.getEnemyGameBoardView();
 		enemyBoard = (SeashoqueBoard) super.getEnemyBoard();
@@ -193,13 +199,18 @@ public class SeashoqueGame extends Game {
 				if (currentplayer == 1)
 				{
 					score+= 10;
+					setScoreLabel();
+					
 				}
 				else if (currentplayer == 0 && score > 1)
 				{
 					score-= 2;
+					setScoreLabel();
 				}else 
 				{
 					score = 0;
+					setScoreLabel();
+					
 				}
 				
 				
@@ -283,6 +294,13 @@ public class SeashoqueGame extends Game {
 		return ((y*((SeashoqueBoard) getGameBoard()).getDim())+x);
 	}
 
+	/**
+	 * Method to set the scoreTextView
+	 */
+	public void setScoreLabel(){
+//		scoreTextView.setText(score);
+	}
+	
 	@Override
 	public SeashoqueBoard getGameBoard(){
 		return gameBoard;

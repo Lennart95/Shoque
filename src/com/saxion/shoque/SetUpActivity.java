@@ -125,6 +125,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		buttonDestroyer.setOnClickListener(new buttonDestroyerListener());
 		buttonOrientation.setOnClickListener(new buttonOrientationListener());
 		startButton.setOnClickListener(new buttonStartListener());
+		
 
 	}
 	
@@ -218,11 +219,12 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		public void onClick(View arg0) {
 			if (horizontal) {
 				horizontal = false;
-				buttonOrientation.setText("Placing horizontal, press for vertical");
+				buttonOrientation.setText("Placing vertical, press for horizontal");
 
 			} else if (horizontal == false) {
 				horizontal = true;
-				buttonOrientation.setText("Placing vertical, press for horizontal");
+				buttonOrientation.setText("Placing horizontal, press for vertical");
+				
 			}
 
 		}
