@@ -82,39 +82,58 @@ public class SeashoqueGame extends Game {
 		getGameBoard().removeAllObjects();
 		getEnemyBoard().removeAllObjects();
 		
+		retrieveAIShips(cpu);
 		// Hard code setup ships -------------------------------//
-		// Player board
-		getGameBoard().addGameObject(new Alive(this), 3, 3);
-		getGameBoard().addGameObject(new Alive(this), 3, 4);
-		getGameBoard().addGameObject(new Alive(this), 3, 5);
-		getGameBoard().addGameObject(new Alive(this), 3, 6);
-		getGameBoard().addGameObject(new Alive(this), 3, 7);
-
-		getGameBoard().addGameObject(new Hit(), 5, 5);
-		getGameBoard().addGameObject(new Hit(), 5, 6);
-
-		getGameBoard().addGameObject(new Missed(), 8, 6);
-		getGameBoard().addGameObject(new Missed(), 8, 7);
-
-		// CPU board
-
-		getEnemyBoard().addGameObject(new Alive(this), 0, 0);
-		getEnemyBoard().addGameObject(new Alive(this), 0, 1);
-		
-
-		getEnemyBoard().addGameObject(new Hit(), 5, 5);
-		getEnemyBoard().addGameObject(new Hit(), 5, 6);
-
-		getEnemyBoard().addGameObject(new Missed(), 8, 6);
-		getEnemyBoard().addGameObject(new Missed(), 8, 7);
+//		// Player board
+//		getGameBoard().addGameObject(new Alive(this), 3, 3);
+//		getGameBoard().addGameObject(new Alive(this), 3, 4);
+//		getGameBoard().addGameObject(new Alive(this), 3, 5);
+//		getGameBoard().addGameObject(new Alive(this), 3, 6);
+//		getGameBoard().addGameObject(new Alive(this), 3, 7);
+//
+//		getGameBoard().addGameObject(new Hit(), 5, 5);
+//		getGameBoard().addGameObject(new Hit(), 5, 6);
+//
+//		getGameBoard().addGameObject(new Missed(), 8, 6);
+//		getGameBoard().addGameObject(new Missed(), 8, 7);
+//
+//		// CPU board
+//
+//		getEnemyBoard().addGameObject(new Alive(this), 0, 0);
+//		getEnemyBoard().addGameObject(new Alive(this), 0, 1);
+//		
+//
+//		getEnemyBoard().addGameObject(new Hit(), 5, 5);
+//		getEnemyBoard().addGameObject(new Hit(), 5, 6);
+//
+//		getEnemyBoard().addGameObject(new Missed(), 8, 6);
+//		getEnemyBoard().addGameObject(new Missed(), 8, 7);
 
 		///Hard code setup ships -------------------------------//
 		
 	}
 	
 	/** Register ships*/
-	public void registerShip(SeashoqueBoard board, int shipID, int x, int y){
-		//TODO: Go and register ships, m8
+	public void registerShip(SeashoqueBoard board, int shipID, int x, int y, int orientation){
+		switch (shipID){
+		case 0: 
+			break;
+		case 1: 
+			break;
+		case 2: 
+			break;
+		case 3: 
+			break;
+		case 4: 
+			break;
+		}
+	}
+	
+	public void retrieveAIShips(AI cpu){
+		int[][] shiplist = cpu.getShips();
+		for (int i = 0; i < 5; i++){
+			registerShip(enemyBoard, shiplist[i][0], shiplist[i][1], shiplist[i][2], shiplist[i][3]);
+		}
 	}
 	
 	
