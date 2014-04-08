@@ -20,5 +20,5 @@ public interface AI {
 	 * 
 	 * @return int[][]: int[i][position (index), ship, orientation]
 	 */
-	public int[][] setShips();
+	public int[][] getShips();
 }

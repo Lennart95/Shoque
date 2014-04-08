@@ -28,7 +28,7 @@ public class SimpleAI implements AI{
 	 * Torpedohunter = 3
 	 * Minesweeper = 4
 	 */
-	public int[][] setShips(){
+	public int[][] getShips(){
 		int[][] result = {{0,0,1},{1,1,1},{2,2,1},{3,3,1},{4,4,1}};
 		
 		
