@@ -1,11 +1,14 @@
 package com.saxion.shoque.playground.model;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.shoque.R;
 import com.saxion.shoque.GameActivity;
+import com.saxion.shoque.SeaShoque;
+import com.saxion.shoque.SetUpActivity;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
 import com.saxion.shoque.util.AI;
 import com.saxion.shoque.util.Alive;
@@ -315,14 +318,50 @@ public class SeashoqueGame extends Game {
 		if (gameover){
 			if (!isPlayerAlive){
 				winner = "CPU";
+				playAgainDialog();
 			}
 			else {
 				winner = "Player";
+				playAgainDialog();
 			}
 		}
 		return !isPlayerAlive || !isCPUAlive;
 	}
 
+	public void playAgainDialog() {
+	AlertDialog.Builder builder = new AlertDialog.Builder(gameactivity);
+
+	builder.setTitle("Game over!");
+	builder.setMessage("Do you want to play again?");
+
+	builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			Intent intent = new Intent(gameactivity, SetUpActivity.class);
+			gameactivity.startActivity(intent);
+
+			dialog.dismiss();
+		}
+
+	});
+
+	builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+	
+			Intent intent = new Intent(gameactivity, SeaShoque.class);
+			gameactivity.startActivity(intent);
+			
+			dialog.dismiss();
+		}
+
+	});
+
+	AlertDialog alert = builder.create();
+	alert.show();
+}
 	/**
 	 * Convert indices and coordinates 
 	 * @param i
