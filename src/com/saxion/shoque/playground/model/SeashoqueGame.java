@@ -9,6 +9,7 @@ import com.saxion.shoque.GameActivity;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
 import com.saxion.shoque.util.AI;
 import com.saxion.shoque.util.Alive;
+import com.saxion.shoque.util.AppState;
 import com.saxion.shoque.util.Hit;
 import com.saxion.shoque.util.Missed;
 import com.saxion.shoque.util.SimpleAI;
@@ -62,7 +63,10 @@ public class SeashoqueGame extends Game {
 		this.gameactivity = activity;
 
 		gameViewPlayer = activity.getGameBoardView();
-		gameBoard = (SeashoqueBoard) super.getGameBoard();
+		if (AppState.getInstance().getPlayerBoard() != null){
+			gameBoard = AppState.getInstance().getPlayerBoard();}
+		else {
+			gameBoard = (SeashoqueBoard) super.getGameBoard();}
 		gameBoard.setGame(this);
 		gameViewPlayer.setGameBoard(gameBoard);
 		
@@ -88,50 +92,45 @@ public class SeashoqueGame extends Game {
 		getGameBoard().removeAllObjects();
 		getEnemyBoard().removeAllObjects();
 		
-		retrieveAIShips(cpu);
-		// Hard code setup ships -------------------------------//
-//		// Player board
-//		getGameBoard().addGameObject(new Alive(this), 3, 3);
-//		getGameBoard().addGameObject(new Alive(this), 3, 4);
-//		getGameBoard().addGameObject(new Alive(this), 3, 5);
-//		getGameBoard().addGameObject(new Alive(this), 3, 6);
-//		getGameBoard().addGameObject(new Alive(this), 3, 7);
-//
-//		getGameBoard().addGameObject(new Hit(), 5, 5);
-//		getGameBoard().addGameObject(new Hit(), 5, 6);
-//
-//		getGameBoard().addGameObject(new Missed(), 8, 6);
-//		getGameBoard().addGameObject(new Missed(), 8, 7);
-//
-//		// CPU board
-//
-//		getEnemyBoard().addGameObject(new Alive(this), 0, 0);
-//		getEnemyBoard().addGameObject(new Alive(this), 0, 1);
-//		
-//
-//		getEnemyBoard().addGameObject(new Hit(), 5, 5);
-//		getEnemyBoard().addGameObject(new Hit(), 5, 6);
-//
-//		getEnemyBoard().addGameObject(new Missed(), 8, 6);
-//		getEnemyBoard().addGameObject(new Missed(), 8, 7);
-
-		///Hard code setup ships -------------------------------//
-		
+		retrieveAIShips(cpu);		
 	}
 	
-	/** Register ships*/
-	public void registerShip(SeashoqueBoard board, int shipID, int x, int y, int orientation){
-		switch (shipID){
-		case 0: 
-			break;
-		case 1: 
-			break;
-		case 2: 
-			break;
-		case 3: 
-			break;
-		case 4: 
-			break;
+	/**
+	 * 
+	 * @param board		 The board where the ships should be placed.
+	 * @param shipID	 ShipID, number of the ship: 0 carrier, 1 battleship, 2 cruiser, 3 submarine, 4 destroyer. 
+	 * @param x			 X coordinate for the ships 'origin'
+	 * @param y			 Y coordinate for the ships 'origin'
+	 * @param horizontal Boolean Integer: if 1 then horizontal = true
+	 */
+	public void registerShip(SeashoqueBoard board, int shipID, int x, int y, int horizontal){
+		if (horizontal == 1){
+			switch (shipID){
+			case 0: for (int i = 0; i < 5; i++){board.addGameObject(new Alive(), x+i, y);}
+				break;
+			case 1: for (int i = 0; i < 4; i++){board.addGameObject(new Alive(), x+i, y);} 
+				break;
+			case 2: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(), x+i, y);}
+				break;
+			case 3: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(), x+i, y);}
+				break;
+			case 4: for (int i = 0; i < 2; i++){board.addGameObject(new Alive(), x+i, y);}
+				break;
+			}
+		}
+		if (horizontal != 1){
+			switch (shipID){
+			case 0: for (int i = 0; i < 5; i++){board.addGameObject(new Alive(), x, y+i);}
+				break;
+			case 1: for (int i = 0; i < 4; i++){board.addGameObject(new Alive(), x, y+i);} 
+				break;
+			case 2: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(), x, y+i);}
+				break;
+			case 3: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(), x, y+i);}
+				break;
+			case 4: for (int i = 0; i < 2; i++){board.addGameObject(new Alive(), x, y+i);}
+				break;
+			}
 		}
 	}
 	

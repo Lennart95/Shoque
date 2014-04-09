@@ -13,6 +13,7 @@ import com.example.shoque.R;
 import com.saxion.shoque.playground.model.SeashoqueBoard;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
 import com.saxion.shoque.util.Alive;
+import com.saxion.shoque.util.AppState;
 
 /**
  * SetUpActivity functions as model and controller for the game feature: setting up ships.
@@ -279,18 +280,14 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		public void onClick(View v) {
 			Log.d(TAG, "StartGameClicked");
 			if (carrierSet && battleshipSet && cruiserSet && submarineSet && destroyerSet){
+				
+				AppState holder = AppState.getInstance();
+				holder.setPlayerBoard(setupBoard);
+				
+				//Start the new activity
 			    Intent intent = new Intent(SetUpActivity.this, GameActivity.class);
 			    startActivity(intent);
 			}
-			
-//		
-//			//Pass through existing playerBoard (known as setupBoard)
-//			intent.putExtra("setupBoard", setupBoard);
-//			
-//		    startActivity(intent);
-//		    
-//		    //TODO: meegeven van bestaand GameBoard
-//			
 		}
 	}
 
