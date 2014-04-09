@@ -271,13 +271,6 @@ public class SeashoqueGame extends Game {
 					cpu.doMove();
 				}
 			}
-			if (isGameOver()){
-				Log.d(TAG, "GameOver!");
-				if(winner.equals("CPU")){
-					gameactivity.toast("Game over! " + winner + " has won with score:" + score + ".");}
-				else{
-					gameactivity.toast(winner + " has won with score: " + score + ".");}
-			}
 		}
 	}
 	
