@@ -115,6 +115,7 @@ public class SeashoqueGame extends Game {
 		gameBoard.updateView();
 		enemyBoard.updateView();
 		
+		score = 0;
 	}
 	
 	/**
@@ -240,7 +241,11 @@ public class SeashoqueGame extends Game {
 			if (target.isEmpty(x, y)){
 				Log.d(TAG, "Missed!");
 				target.addGameObject(new Missed(), x, y);
-				
+				//-4 points for missing
+				if (currentplayer == 1){
+					setScore(getScore()-4);
+					gameactivity.setScoreLabel();}
+					
 				target.updateView();
 				nextPlayer();
 			}
@@ -248,20 +253,12 @@ public class SeashoqueGame extends Game {
 			else if (target.getObject(x, y) instanceof Alive){
 				Log.d(TAG, "Hit!");
 				//10 points for hit!
-				if (currentplayer == 1)
-				{
+				if (currentplayer == 1){
 					setScore(getScore()+10);
-					gameactivity.setScoreLabel();
-					
-				}
-				else
-				{
+					gameactivity.setScoreLabel();}
+				else{
 					setScore(getScore()-2);
-					gameactivity.setScoreLabel();
-				}
-			
-				
-				
+					gameactivity.setScoreLabel();}
 				
 				target.removeObject(target.getObject(x, y));
 				Log.d(TAG, "Removed Object");
@@ -277,16 +274,10 @@ public class SeashoqueGame extends Game {
 		
 			if (isGameOver()){
 				Log.d(TAG, "GameOver!");
-				if(winner.equals("CPU"))
-				{
-					gameactivity.toast("Game over! " + winner + " has won with score:" + score + ".");
-					score = 0;
-				}
-				else
-				{
-					gameactivity.toast(winner + " has won with score: " + score + ".");
-					score = 0;	
-				}
+				if(winner.equals("CPU")){
+					gameactivity.toast("Game over! " + winner + " has won with score:" + score + ".");}
+				else{
+					gameactivity.toast(winner + " has won with score: " + score + ".");}
 			}
 		}
 	}
