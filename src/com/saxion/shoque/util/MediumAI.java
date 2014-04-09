@@ -13,7 +13,7 @@ public class MediumAI implements AI{
 	boolean isCruiserSunk;
 	boolean isDestroyerSunk;
 
-	private static final String TAG = "SIMPLEAI";
+	private static final String TAG = "MEDIUMAI";
 	private SeashoqueGame game;
 
 	/**
@@ -35,6 +35,7 @@ public class MediumAI implements AI{
 	 * Minesweeper = 4		2
 	 */
 	public int[][] getShips(){
+		//TODO: more intelligent placing of boats
 		int r = (int) (Math.random() * 6);
 		int[][] result = null;
 		switch (r){
@@ -82,22 +83,49 @@ public class MediumAI implements AI{
 					int y = -1;
 					boolean legal = false;
 
-					//Check if last move was a hit, if so, go shoot around it
+					//------- begin Smart AI: Check if last move was a hit, if so, go shoot around it ----------//
 					if (game.getGameBoard().getObject(lastMove[0],lastMove[1]) instanceof Hit){
-						//check for horizontal and vertical streak
-						if(((lastMove[0] + 1)<game.getGameBoard().DIM && game.getGameBoard().getObject(lastMove[0],lastMove[1]) instanceof Hit) ||((lastMove[0] - 1)>0 && game.getGameBoard().getObject(lastMove[0],lastMove[1]) instanceof Hit)){
-							horizontalHitStreak=true;
+						
+						int directionNextMove = calcDirNextMove();
+						switch (directionNextMove){
+							case 0:
+								break;
+							case 1:
+								break;
+							case 2:
+								break;
+							case 3:
+								break;
+						}
+						
+						
+						
+					//check for horizontal and vertical streak
+						//horizontal
+						if(((lastMove[0] + 1)<game.getGameBoard().DIM && game.getGameBoard().getObject(lastMove[0] +1,lastMove[1]) instanceof Hit)	//to the right
+						||((lastMove[0] - 1)>0 && game.getGameBoard().getObject(lastMove[0] - 1,lastMove[1]) instanceof Hit)){						//to the left
+						 horizontalHitStreak=true;}
+						//vertical
+					 	if(((lastMove[1] + 1)<game.getGameBoard().DIM && game.getGameBoard().getObject(lastMove[0],lastMove[1] + 1) instanceof Hit)
+						||((lastMove[1] - 1)>0 && game.getGameBoard().getObject(lastMove[0],lastMove[1] -1) instanceof Hit)){
+						 verticalHitStreak=true;}
+						 
+						int count = countAdjacent(x,y, 1);
+						if (horizontalHitStreak){
+							if ((x-1)>0 && game.getGameBoard().getObject(x-1,y) instanceof Hit && !(game.getGameBoard().getObject(x+1,y) instanceof Missed)){ //go right
+								x = x+1;
+								legal = true;
+							}
+							if ((x+1)>game.getGameBoard().DIM && game.getGameBoard().getObject(x+1,y) instanceof Hit && !(game.getGameBoard().getObject(x-1,y) instanceof Missed)){ //go left
+								x = x-1;
+								legal = true;
+							}
+						}
 							//TODO:figure out if streak ended (>5 or missed on both ends).
 							//     If not: figure out one end, yes, go the other way.  --> legal = true
 							//     if no ends: go x+1 --> legal = true
-
-						}
-
-
-
 					} 
-
-					// end of smart AI. If decent move can be made, legal will be true
+					//–---------------   end of smart AI. If decent move can be made, legal will be true --------//
 
 
 					// Board must not be full (so there are no empty spots) 
@@ -111,7 +139,7 @@ public class MediumAI implements AI{
 							legal = true;					//If so, break the loop and submit empty spot
 						}
 					}
-					Log.d(TAG, "Is that random actually empty? Or Alive?" + (game.getGameBoard().isEmpty(x, y) || game.getGameBoard().getObject(x,y) instanceof Alive));
+					Log.d(TAG, "Is that move actually empty or Alive?" + (game.getGameBoard().isEmpty(x, y) || game.getGameBoard().getObject(x,y) instanceof Alive));
 					lastMove[0] = x;
 					lastMove[1] = y;
 
@@ -121,5 +149,13 @@ public class MediumAI implements AI{
 				}
 				// Built in delay so the AI seems to be 'thinking'
 			}, 700);
+	}
+	public int countAdjacent(int x, int y, int horizontal){
+		//TODO: count how many adjacent
+		return 0;
+	}
+	public int calcDirNextMove(){
+		//TODO: return int for directionnext adjacent move
+		return 0;
 	}
 }
