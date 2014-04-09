@@ -1,11 +1,14 @@
 package com.saxion.shoque.playground.model;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.shoque.R;
 import com.saxion.shoque.GameActivity;
+import com.saxion.shoque.SeaShoque;
+import com.saxion.shoque.SetUpActivity;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
 import com.saxion.shoque.util.AI;
 import com.saxion.shoque.util.Alive;
@@ -66,7 +69,10 @@ public class SeashoqueGame extends Game {
 		gameViewPlayer = activity.getGameBoardView();
 		if (AppState.getInstance().getPlayerBoard() != null){
 			Log.d(TAG, "PlayerBoard from AppState recieved");
-			gameBoard = AppState.getInstance().getPlayerBoard();}
+			gameBoard = AppState.getInstance().getPlayerBoard();
+			//Delete the PlayerBoard right after
+			AppState.getInstance().setPlayerBoard(null);
+			}
 		else {
 			Log.d(TAG, "PlayerBoard in AppState was null, new board created");
 			gameBoard = (SeashoqueBoard) super.getGameBoard();
@@ -96,6 +102,7 @@ public class SeashoqueGame extends Game {
 	 * Create a new game: delete all existing objects and put in some new ones.
 	 */
 	public void newGame(){
+		Log.d(TAG, "Start new GAME :D");
 		if (gameover){
 			removeShips();
 		}
@@ -114,6 +121,7 @@ public class SeashoqueGame extends Game {
 	 * Remove all ships.
 	 */
 	public void removeShips(){
+		Log.d(TAG, "Remove ALL OBJECTS :D");
 		getGameBoard().removeAllObjects();
 		getEnemyBoard().removeAllObjects();
 		gameBoard.updateView();
@@ -226,7 +234,7 @@ public class SeashoqueGame extends Game {
 	 */
 	public void shoot(SeashoqueBoard target, int x, int y){
 		
-		if ((target == getEnemyBoard() && currentplayer == 1)||(target == getGameBoard() && currentplayer == 0)){
+		if ((target == getEnemyBoard() && currentplayer == 1)||(target == getGameBoard() && currentplayer == 0) && !gameover ){
 		Log.d(TAG, "Shots fired at (" + target + ", " + x + ", " + y + ")");
 			//Missed!
 			if (target.isEmpty(x, y)){
@@ -269,7 +277,6 @@ public class SeashoqueGame extends Game {
 		
 			if (isGameOver()){
 				Log.d(TAG, "GameOver!");
-				newGame();
 				if(winner.equals("CPU"))
 				{
 					gameactivity.toast("Game over! " + winner + " has won with score:" + score + "\n" + "sPress anywhere to start new game.");
@@ -311,14 +318,50 @@ public class SeashoqueGame extends Game {
 		if (gameover){
 			if (!isPlayerAlive){
 				winner = "CPU";
+				playAgainDialog();
 			}
 			else {
 				winner = "Player";
+				playAgainDialog();
 			}
 		}
 		return !isPlayerAlive || !isCPUAlive;
 	}
 
+	public void playAgainDialog() {
+	AlertDialog.Builder builder = new AlertDialog.Builder(gameactivity);
+
+	builder.setTitle("Game over!");
+	builder.setMessage("Do you want to play again?");
+
+	builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			Intent intent = new Intent(gameactivity, SetUpActivity.class);
+			gameactivity.startActivity(intent);
+
+			dialog.dismiss();
+		}
+
+	});
+
+	builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+	
+			Intent intent = new Intent(gameactivity, SeaShoque.class);
+			gameactivity.startActivity(intent);
+			
+			dialog.dismiss();
+		}
+
+	});
+
+	AlertDialog alert = builder.create();
+	alert.show();
+}
 	/**
 	 * Convert indices and coordinates 
 	 * @param i

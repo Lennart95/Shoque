@@ -34,23 +34,6 @@ public class GameActivity extends Activity {
 		gameViewCPU.hideBoats();
 		
 		game = new SeashoqueGame(this);
-		
-		gameViewPlayer.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View arg0) {
-				if (game.isGameOver()){
-					game.newGame();
-				}
-			}
-		});
-		gameViewCPU.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View arg0) {
-				if (game.isGameOver()){
-					game.newGame();
-				}
-			}
-		});
 	}
 	
 	/**
