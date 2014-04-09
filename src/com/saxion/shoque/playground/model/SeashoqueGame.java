@@ -231,7 +231,7 @@ public class SeashoqueGame extends Game {
 	 */
 	public void shoot(SeashoqueBoard target, int x, int y){
 		
-		if ((target == getEnemyBoard() && currentplayer == 1)||(target == getGameBoard() && currentplayer == 0)){
+		if ((target == getEnemyBoard() && currentplayer == 1)||(target == getGameBoard() && currentplayer == 0) && !gameover ){
 		Log.d(TAG, "Shots fired at (" + target + ", " + x + ", " + y + ")");
 			//Missed!
 			if (target.isEmpty(x, y)){
