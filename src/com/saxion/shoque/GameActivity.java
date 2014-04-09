@@ -81,7 +81,7 @@ public class GameActivity extends Activity {
 				Toast.LENGTH_LONG).show();
 	}
 
-	private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+	private static final int TIME_INTERVAL = 2000;
 	private long BackPressed;
 
 	@Override

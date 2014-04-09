@@ -242,20 +242,16 @@ public class SeashoqueGame extends Game {
 				//10 points for hit!
 				if (currentplayer == 1)
 				{
-					score+= 10;
+					setScore(getScore()+10);
 					gameactivity.setScoreLabel();
 					
 				}
-				else if (currentplayer == 0 && score > 1)
+				else
 				{
-					score-= 2;
+					setScore(getScore()-2);
 					gameactivity.setScoreLabel();
-				}else 
-				{
-					score = 0;
-					gameactivity.setScoreLabel();
-					
 				}
+			
 				
 				
 				
@@ -347,6 +343,16 @@ public class SeashoqueGame extends Game {
 	
 	public int getScore() {
 		return score;
+	}
+	public void setScore(int point){
+		if (point < 0){
+			score = 0;
+		}else {
+			score = point;
+		}
+		
+		
+		
 	}
 	
 	@Override
