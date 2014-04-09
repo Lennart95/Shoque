@@ -29,7 +29,7 @@ public class SimpleAI implements AI{
 	 * Minesweeper = 4
 	 */
 	public int[][] getShips(){
-		int[][] result = {{0,5,2,0},{1,4,3,1},{2,1,6,0},{3,5,0,1},{4,4,1,0}};
+		int[][] result = {{0,1,0,1},{1,8,1,1},{2,3,3,1},{3,4,9,1},{4,2,5,0}};
 		
 		
 		return result;
