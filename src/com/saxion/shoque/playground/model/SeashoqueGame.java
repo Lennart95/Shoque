@@ -272,7 +272,6 @@ public class SeashoqueGame extends Game {
 		
 			if (isGameOver()){
 				Log.d(TAG, "GameOver!");
-				newGame();
 				if(winner.equals("CPU"))
 				{
 					gameactivity.toast("Game over! " + winner + " has won with score:" + score + "\n" + "sPress anywhere to start new game.");
