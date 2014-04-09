@@ -20,34 +20,44 @@ public class SimpleAI implements AI{
 	}
 	
 	/**
-	 * Set the ships: result [[i],[position (index), ship,direction]]
+	 * Set the ships: result [[ship],[ship id , position (x),position (y), ship direction]]
 	 * Ship:					Direction:
-	 * Flightdeckship = 0		From origin west = 0
-	 * Battleship = 1			From origin south = 1
-	 * Submarine = 2
-	 * Torpedohunter = 3
-	 * Minesweeper = 4
+	 * Flightdeckship = 0	5	From origin west = 1 (horizontal)
+	 * Battleship = 1		4	
+	 * Submarine = 2		3
+	 * Torpedohunter = 3	3
+	 * Minesweeper = 4		2
 	 */
 	public int[][] getShips(){
-		int r = (int) Math.random() * 5; 	
+		int r = (int) Math.random() * 6;
+		int[][] result = null;
 		switch (r){
-		case 0: int[][] result = {{0,1,0,1},{1,8,1,0},{2,3,3,1},{3,4,9,1},{4,2,5,0}}; 
-		break;
-		case 1: int[][] result = {{0,1,0,1},{1,8,1,0},{2,3,3,1},{3,4,9,1},{4,2,5,0}}; 
-		break;
-		case 2: int[][] result = {{0,1,0,1},{1,8,1,0},{2,3,3,1},{3,4,9,1},{4,2,5,0}}; 
-		break;
-		case 3: int[][] result = {{0,1,0,1},{1,8,1,0},{2,3,3,1},{3,4,9,1},{4,2,5,0}}; 
-		break;
-		case 4: int[][] result = {{0,1,0,1},{1,8,1,0},{2,3,3,1},{3,4,9,1},{4,2,5,0}}; 
-		break;
+		case 0:  int[][] result1 = {{0,1,0,1},{1,8,1,0},{2,3,3,1},{3,4,9,1},{4,2,5,0}}; 
+			result = result1;
+			break;
+		case 1: int[][] result2 = {{0,1,1,0},{1,8,3,0},{2,3,1,1},{3,1,8,1},{4,3,5,0}}; 
+			result = result2;
+			break;
+		case 2: int[][] result3 = {{0,4,1,0},{1,5,0,1},{2,1,0,1},{3,4,7,1},{4,9,8,0}}; 
+			result = result3;
+			break;
+		case 3: int[][] result4 = {{0,0,0,0},{1,0,6,0},{2,2,9,1},{3,6,9,1},{4,8,0,1}}; 
+			result = result4;
+			break;
+		case 4: int[][] result5 = {{0,0,2,0},{1,7,1,0},{2,1,1,1},{3,1,7,1},{4,7,6,0}}; 
+			result = result5;
+			break;
+		case 5: int[][] result6 = {{0,8,2,0},{1,1,3,0},{2,4,4,0},{3,5,7,1},{4,2,7,1}}; 
+			result = result6;
+			break;
 		}
-		
 		return result;
 	}
-
 		
-	}
+		
+	
+		
+
 	
 	/**
 	 * When doMove() is called, return an random field that has not yet been hit.
