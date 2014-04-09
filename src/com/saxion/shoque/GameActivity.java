@@ -1,6 +1,7 @@
 package com.saxion.shoque;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -79,5 +80,22 @@ public class GameActivity extends Activity {
 				Toast.LENGTH_LONG).show();
 	}
 
-	
+	private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+	private long BackPressed;
+
+	@Override
+	public void onBackPressed()
+	{
+	    if (BackPressed + TIME_INTERVAL > System.currentTimeMillis()) 
+	    { 
+	      Intent intent = new Intent(this, SeaShoque.class);
+	      startActivity(intent);
+	      
+	    	
+	    	
+	    }
+	    else { Toast.makeText(getBaseContext(), "Tap back button again to go to home screen", Toast.LENGTH_SHORT).show(); }
+
+	    BackPressed = System.currentTimeMillis();
+	}
 }
