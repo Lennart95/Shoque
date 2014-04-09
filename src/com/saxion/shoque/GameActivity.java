@@ -65,21 +65,21 @@ public class GameActivity extends Activity {
 	}
 
 	private static final int TIME_INTERVAL = 2000;
-	private long BackPressed;
+	private long backPressed;
 
 	@Override
 	public void onBackPressed()
 	{
-	    if (BackPressed + TIME_INTERVAL > System.currentTimeMillis()) 
+	    if (backPressed + TIME_INTERVAL > System.currentTimeMillis()) 
 	    { 
 	      Intent intent = new Intent(this, SeaShoque.class);
 	      startActivity(intent);
-	      
+	      finish();
 	    	
 	    	
 	    }
 	    else { Toast.makeText(getBaseContext(), "Tap back button again to go to home screen", Toast.LENGTH_SHORT).show(); }
 
-	    BackPressed = System.currentTimeMillis();
+	    backPressed = System.currentTimeMillis();
 	}
 }

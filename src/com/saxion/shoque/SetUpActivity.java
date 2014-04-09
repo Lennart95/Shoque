@@ -288,6 +288,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 				//Start the new activity
 			    Intent intent = new Intent(SetUpActivity.this, GameActivity.class);
 			    startActivity(intent);
+			    finish();
 			}
 		}
 	}

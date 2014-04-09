@@ -279,13 +279,12 @@ public class SeashoqueGame extends Game {
 				Log.d(TAG, "GameOver!");
 				if(winner.equals("CPU"))
 				{
-					gameactivity.toast("Game over! " + winner + " has won with score:" + score + "\n" + "sPress anywhere to start new game.");
+					gameactivity.toast("Game over! " + winner + " has won with score:" + score + ".");
 					score = 0;
 				}
 				else
 				{
-					gameactivity.toast(winner + " has won with score: " + score + "\n" +  
-									   "Press anywhere to start a new game.");
+					gameactivity.toast(winner + " has won with score: " + score + ".");
 					score = 0;	
 				}
 			}
@@ -342,6 +341,7 @@ public class SeashoqueGame extends Game {
 			gameactivity.startActivity(intent);
 
 			dialog.dismiss();
+			gameactivity.finish();
 		}
 
 	});
@@ -355,6 +355,7 @@ public class SeashoqueGame extends Game {
 			gameactivity.startActivity(intent);
 			
 			dialog.dismiss();
+			gameactivity.finish();
 		}
 
 	});

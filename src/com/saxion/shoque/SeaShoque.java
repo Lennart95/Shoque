@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.shoque.R;
 
@@ -95,6 +96,7 @@ public class SeaShoque extends Activity implements OnClickListener {
 	private void startGame(){
 	    Intent intent = new Intent(this, GameActivity.class);
 	    startActivity(intent);
+	    finish();
 	}
 	/**
 	 * Start the Setup Activity
@@ -102,6 +104,7 @@ public class SeaShoque extends Activity implements OnClickListener {
 	private void startSetUp(){
 		Intent intent = new Intent(this, SetUpActivity.class);
 		startActivity(intent);
+		finish();
 	}
 
 	
@@ -119,4 +122,6 @@ public class SeaShoque extends Activity implements OnClickListener {
 		}
 		
 	}
+	
+
 }

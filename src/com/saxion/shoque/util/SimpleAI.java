@@ -29,7 +29,7 @@ public class SimpleAI implements AI{
 	 * Minesweeper = 4		2
 	 */
 	public int[][] getShips(){
-		int r = (int) Math.random() * 6;
+		int r = (int) (Math.random() * 6);
 		int[][] result = null;
 		switch (r){
 		case 0:  int[][] result1 = {{0,1,0,1},{1,8,1,0},{2,3,3,1},{3,4,9,1},{4,2,5,0}}; 
