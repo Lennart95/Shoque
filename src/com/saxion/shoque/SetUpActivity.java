@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.shoque.R;
 import com.saxion.shoque.playground.model.SeashoqueBoard;
@@ -397,5 +398,12 @@ public class SetUpActivity extends Activity implements OnClickListener {
 
 		}
 		Log.d(TAG, "setSelectedBoat is called " + s);
+	}
+	
+	public void onBackPressed()
+	{
+		 Intent intent = new Intent(this, SeaShoque.class);
+		    startActivity(intent);
+		    finish();
 	}
 }
