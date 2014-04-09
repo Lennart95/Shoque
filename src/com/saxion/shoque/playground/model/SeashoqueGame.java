@@ -99,6 +99,7 @@ public class SeashoqueGame extends Game {
 	 * Create a new game: delete all existing objects and put in some new ones.
 	 */
 	public void newGame(){
+		Log.d(TAG, "Start new GAME :D");
 		if (gameover){
 			removeShips();
 		}
@@ -117,6 +118,7 @@ public class SeashoqueGame extends Game {
 	 * Remove all ships.
 	 */
 	public void removeShips(){
+		Log.d(TAG, "Remove ALL OBJECTS :D");
 		getGameBoard().removeAllObjects();
 		getEnemyBoard().removeAllObjects();
 		gameBoard.updateView();
