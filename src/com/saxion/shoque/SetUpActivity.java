@@ -26,6 +26,9 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	private SeashoqueBoard setupBoard;
 	private ShoqueGameBoardView setupBoardView;
 	
+	private String SetHorizontal = "Placing horizontal, press for vertical";
+	private String SetVertical = "Placing vertical, press for horizontal";
+	
 //	Context context = getApplicationContext();
 
 //	private int[][] boats;
@@ -125,7 +128,6 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		buttonDestroyer.setOnClickListener(new buttonDestroyerListener());
 		buttonOrientation.setOnClickListener(new buttonOrientationListener());
 		startButton.setOnClickListener(new buttonStartListener());
-		
 
 	}
 	
@@ -219,12 +221,11 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		public void onClick(View arg0) {
 			if (horizontal) {
 				horizontal = false;
-				buttonOrientation.setText("Placing vertical, press for horizontal");
+				buttonOrientation.setText(SetHorizontal);
 
 			} else if (horizontal == false) {
 				horizontal = true;
-				buttonOrientation.setText("Placing horizontal, press for vertical");
-				
+				buttonOrientation.setText(SetVertical);
 			}
 
 		}
