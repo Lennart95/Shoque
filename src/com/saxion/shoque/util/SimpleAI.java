@@ -72,6 +72,6 @@ public class SimpleAI implements AI{
 				Log.d(TAG, "I just shot all over the place at (" + x + ", " + y + ")");
 				
 			}
-		}, 1500);
+		}, 700);
 	}
 }
