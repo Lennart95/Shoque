@@ -19,6 +19,6 @@
     <string name="ship_destroyer">Destroyer</string>
     <string name="menu_settings">menu</string>
     <string name="button_Startgame">Start Game!</string>
-    <string name="button_Orientation">Placing horizontal, press for vertical</string>
+    <string name="button_Orientation">Placing vertical, press for horizontal</string>
 
 </resources>
