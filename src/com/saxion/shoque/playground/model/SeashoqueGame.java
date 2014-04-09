@@ -45,9 +45,10 @@ public class SeashoqueGame extends Game {
 
 	private String winner = "";
 	
+
 	private int score;
 
-//	private TextView scoreTextView = (TextView)findViewById(R.id.textViewScoreCijfer);
+
 	
 	
 	/**
@@ -336,6 +337,10 @@ public class SeashoqueGame extends Game {
 	 */
 	public void setScoreLabel(){
 //		scoreTextView.setText(score);
+	}
+	
+	public int getScore() {
+		return score;
 	}
 	
 	@Override
