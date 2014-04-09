@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shoque.R;
@@ -17,6 +18,7 @@ public class GameActivity extends Activity {
 	private SeashoqueGame game;
 	private ShoqueGameBoardView gameViewPlayer;
 	private ShoqueGameBoardView gameViewCPU;
+	private TextView scoreTextView; 
 	
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -25,6 +27,7 @@ public class GameActivity extends Activity {
 				
 		gameViewPlayer = (ShoqueGameBoardView) findViewById(R.id.shoqueGameBoardView1);
 		gameViewCPU = (ShoqueGameBoardView) findViewById(R.id.shoqueGameBoardView2);
+		scoreTextView = (TextView)findViewById(R.id.textViewScoreCijfer);
 		
 		//hide boats on enemy board.
 		gameViewCPU.hideBoats();
@@ -55,6 +58,15 @@ public class GameActivity extends Activity {
 	public ShoqueGameBoardView getGameBoardView() {
 		return gameViewPlayer;
 	}
+	
+	/**
+	 * Method to set the score textview
+	 */
+	
+	public void setScoreLabel(){
+		scoreTextView.setText(game.getScore());
+	}
+	
 	/**
 	 * Returns the view on the enemy game board view.
 	 */
