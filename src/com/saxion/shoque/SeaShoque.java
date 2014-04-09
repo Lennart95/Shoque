@@ -1,6 +1,7 @@
 package com.saxion.shoque;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ public class SeaShoque extends Activity implements OnClickListener {
 
 		playGame.setOnClickListener(this);
 		stats.setOnClickListener(this);
+		
 		
 		//--- Use Custom Font ---// 
 		//TODO:CRASHES ON SET FONT

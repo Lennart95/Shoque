@@ -13,6 +13,7 @@ import com.example.shoque.R;
 import com.saxion.shoque.playground.model.SeashoqueBoard;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
 import com.saxion.shoque.util.Alive;
+import com.saxion.shoque.util.AppState;
 
 /**
  * SetUpActivity functions as model and controller for the game feature: setting up ships.
@@ -25,6 +26,9 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	private ShoqueGameBoardView gameViewPlayer;
 	private SeashoqueBoard setupBoard;
 	private ShoqueGameBoardView setupBoardView;
+	
+	private String textHorizontal = "Placing horizontal, press for vertical";
+	private String textVertical = "Placing vertical, press for horizontal";
 	
 //	Context context = getApplicationContext();
 
@@ -125,7 +129,6 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		buttonDestroyer.setOnClickListener(new buttonDestroyerListener());
 		buttonOrientation.setOnClickListener(new buttonOrientationListener());
 		startButton.setOnClickListener(new buttonStartListener());
-		
 
 	}
 	
@@ -219,12 +222,11 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		public void onClick(View arg0) {
 			if (horizontal) {
 				horizontal = false;
-				buttonOrientation.setText("Placing vertical, press for horizontal");
+				buttonOrientation.setText(textHorizontal);
 
 			} else if (horizontal == false) {
 				horizontal = true;
-				buttonOrientation.setText("Placing horizontal, press for vertical");
-				
+				buttonOrientation.setText(textVertical);
 			}
 
 		}
@@ -278,18 +280,14 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		public void onClick(View v) {
 			Log.d(TAG, "StartGameClicked");
 			if (carrierSet && battleshipSet && cruiserSet && submarineSet && destroyerSet){
+				
+				AppState holder = AppState.getInstance();
+				holder.setPlayerBoard(setupBoard);
+				
+				//Start the new activity
 			    Intent intent = new Intent(SetUpActivity.this, GameActivity.class);
 			    startActivity(intent);
 			}
-			
-//		
-//			//Pass through existing playerBoard (known as setupBoard)
-//			intent.putExtra("setupBoard", setupBoard);
-//			
-//		    startActivity(intent);
-//		    
-//		    //TODO: meegeven van bestaand GameBoard
-//			
 		}
 	}
 
