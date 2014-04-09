@@ -30,7 +30,7 @@ public class GameActivity extends Activity {
 		scoreTextView = (TextView)findViewById(R.id.textViewScoreCijfer);
 		
 		//hide boats on enemy board.
-		gameViewCPU.hideBoats();
+		//gameViewCPU.hideBoats();
 		
 		game = new SeashoqueGame(this);
 		
