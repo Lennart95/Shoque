@@ -1,11 +1,14 @@
 package com.saxion.shoque.playground.model;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.shoque.R;
 import com.saxion.shoque.GameActivity;
+import com.saxion.shoque.SeaShoque;
+import com.saxion.shoque.SetUpActivity;
 import com.saxion.shoque.playground.view.ShoqueGameBoardView;
 import com.saxion.shoque.util.AI;
 import com.saxion.shoque.util.Alive;
@@ -276,13 +279,12 @@ public class SeashoqueGame extends Game {
 				Log.d(TAG, "GameOver!");
 				if(winner.equals("CPU"))
 				{
-					gameactivity.toast("Game over! " + winner + " has won with score:" + score + "\n" + "sPress anywhere to start new game.");
+					gameactivity.toast("Game over! " + winner + " has won with score:" + score + ".");
 					score = 0;
 				}
 				else
 				{
-					gameactivity.toast(winner + " has won with score: " + score + "\n" +  
-									   "Press anywhere to start a new game.");
+					gameactivity.toast(winner + " has won with score: " + score + ".");
 					score = 0;	
 				}
 			}
@@ -315,14 +317,52 @@ public class SeashoqueGame extends Game {
 		if (gameover){
 			if (!isPlayerAlive){
 				winner = "CPU";
+				playAgainDialog();
 			}
 			else {
 				winner = "Player";
+				playAgainDialog();
 			}
 		}
 		return !isPlayerAlive || !isCPUAlive;
 	}
 
+	public void playAgainDialog() {
+	AlertDialog.Builder builder = new AlertDialog.Builder(gameactivity);
+
+	builder.setTitle("Game over!");
+	builder.setMessage("Do you want to play again?");
+
+	builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			Intent intent = new Intent(gameactivity, SetUpActivity.class);
+			gameactivity.startActivity(intent);
+
+			dialog.dismiss();
+			gameactivity.finish();
+		}
+
+	});
+
+	builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+	
+			Intent intent = new Intent(gameactivity, SeaShoque.class);
+			gameactivity.startActivity(intent);
+			
+			dialog.dismiss();
+			gameactivity.finish();
+		}
+
+	});
+
+	AlertDialog alert = builder.create();
+	alert.show();
+}
 	/**
 	 * Convert indices and coordinates 
 	 * @param i

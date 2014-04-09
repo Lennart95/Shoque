@@ -222,11 +222,11 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		public void onClick(View arg0) {
 			if (horizontal) {
 				horizontal = false;
-				buttonOrientation.setText(textHorizontal);
+				buttonOrientation.setText(textVertical);
 
 			} else if (horizontal == false) {
 				horizontal = true;
-				buttonOrientation.setText(textVertical);
+				buttonOrientation.setText(textHorizontal);
 			}
 
 		}
@@ -288,6 +288,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 				//Start the new activity
 			    Intent intent = new Intent(SetUpActivity.this, GameActivity.class);
 			    startActivity(intent);
+			    finish();
 			}
 		}
 	}
