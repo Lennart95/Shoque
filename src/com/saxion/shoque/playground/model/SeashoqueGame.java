@@ -66,7 +66,10 @@ public class SeashoqueGame extends Game {
 		gameViewPlayer = activity.getGameBoardView();
 		if (AppState.getInstance().getPlayerBoard() != null){
 			Log.d(TAG, "PlayerBoard from AppState recieved");
-			gameBoard = AppState.getInstance().getPlayerBoard();}
+			gameBoard = AppState.getInstance().getPlayerBoard();
+			//Delete the PlayerBoard right after
+			AppState.getInstance().setPlayerBoard(null);
+			}
 		else {
 			Log.d(TAG, "PlayerBoard in AppState was null, new board created");
 			gameBoard = (SeashoqueBoard) super.getGameBoard();
