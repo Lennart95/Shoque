@@ -33,6 +33,8 @@ public class Alive extends GameObject {
 			game.shoot( (SeashoqueBoard) gameBoard, getPositionX(), getPositionY());
 			Log.d(GameBoard.TAG, "Touched alive");
 		}
+		else {
+			Log.d(GameBoard.TAG, "Touched alive but GAME IS NULL");}
 	}
 
 }

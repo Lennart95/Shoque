@@ -103,7 +103,11 @@ public class SeashoqueGame extends Game {
 		gameover = false;
 		currentplayer = 1;
 		
-		retrieveAIShips(cpu);		
+		retrieveAIShips(cpu);
+		
+		gameBoard.updateView();
+		enemyBoard.updateView();
+		
 	}
 	
 	/**
@@ -112,6 +116,8 @@ public class SeashoqueGame extends Game {
 	public void removeShips(){
 		getGameBoard().removeAllObjects();
 		getEnemyBoard().removeAllObjects();
+		gameBoard.updateView();
+		enemyBoard.updateView();
 	}
 	
 	/**
@@ -126,29 +132,29 @@ public class SeashoqueGame extends Game {
 		Log.d(TAG,"Registers Ship in registerShip(): " + shipID + ", " + x + ", " + y + ", " + horizontal);
 		if (horizontal == 1){
 			switch (shipID){
-			case 0: for (int i = 0; i < 5; i++){board.addGameObject(new Alive(), x+i, y);}
+			case 0: for (int i = 0; i < 5; i++){board.addGameObject(new Alive(this), x+i, y);}
 				break;
-			case 1: for (int i = 0; i < 4; i++){board.addGameObject(new Alive(), x+i, y);} 
+			case 1: for (int i = 0; i < 4; i++){board.addGameObject(new Alive(this), x+i, y);} 
 				break;
-			case 2: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(), x+i, y);}
+			case 2: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(this), x+i, y);}
 				break;
-			case 3: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(), x+i, y);}
+			case 3: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(this), x+i, y);}
 				break;
-			case 4: for (int i = 0; i < 2; i++){board.addGameObject(new Alive(), x+i, y);}
+			case 4: for (int i = 0; i < 2; i++){board.addGameObject(new Alive(this), x+i, y);}
 				break;
 			}
 		}
 		if (horizontal != 1){
 			switch (shipID){
-			case 0: for (int i = 0; i < 5; i++){board.addGameObject(new Alive(), x, y+i);}
+			case 0: for (int i = 0; i < 5; i++){board.addGameObject(new Alive(this), x, y+i);}
 				break;
-			case 1: for (int i = 0; i < 4; i++){board.addGameObject(new Alive(), x, y+i);} 
+			case 1: for (int i = 0; i < 4; i++){board.addGameObject(new Alive(this), x, y+i);} 
 				break;
-			case 2: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(), x, y+i);}
+			case 2: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(this), x, y+i);}
 				break;
-			case 3: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(), x, y+i);}
+			case 3: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(this), x, y+i);}
 				break;
-			case 4: for (int i = 0; i < 2; i++){board.addGameObject(new Alive(), x, y+i);}
+			case 4: for (int i = 0; i < 2; i++){board.addGameObject(new Alive(this), x, y+i);}
 				break;
 			}
 		}
