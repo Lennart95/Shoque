@@ -280,9 +280,10 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		public void onClick(View v) {
 			Log.d(TAG, "StartGameClicked");
 			if (carrierSet && battleshipSet && cruiserSet && submarineSet && destroyerSet){
-				
+				Log.d(TAG,"All ships are set. Get ready to sail!");
 				AppState holder = AppState.getInstance();
 				holder.setPlayerBoard(setupBoard);
+				Log.d(TAG,"PlayerBoard in AppState set from SetUpActivity");
 				
 				//Start the new activity
 			    Intent intent = new Intent(SetUpActivity.this, GameActivity.class);

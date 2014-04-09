@@ -64,9 +64,17 @@ public class SeashoqueGame extends Game {
 
 		gameViewPlayer = activity.getGameBoardView();
 		if (AppState.getInstance().getPlayerBoard() != null){
+			Log.d(TAG, "PlayerBoard from AppState recieved");
 			gameBoard = AppState.getInstance().getPlayerBoard();}
 		else {
-			gameBoard = (SeashoqueBoard) super.getGameBoard();}
+			Log.d(TAG, "PlayerBoard in AppState was null, new board created");
+			gameBoard = (SeashoqueBoard) super.getGameBoard();
+			registerShip(gameBoard, 0, 0, 0, 1);
+			registerShip(gameBoard, 1, 2, 1, 1);
+			registerShip(gameBoard, 2, 2, 7, 1);
+			registerShip(gameBoard, 3, 7, 3, 0);
+			registerShip(gameBoard, 4, 0, 4, 0);
+		}
 		gameBoard.setGame(this);
 		gameViewPlayer.setGameBoard(gameBoard);
 		
@@ -87,12 +95,22 @@ public class SeashoqueGame extends Game {
 	 * Create a new game: delete all existing objects and put in some new ones.
 	 */
 	public void newGame(){
+		if (gameover){
+			removeShips();
+		}
+		
 		gameover = false;
 		currentplayer = 1;
-		getGameBoard().removeAllObjects();
-		getEnemyBoard().removeAllObjects();
 		
 		retrieveAIShips(cpu);		
+	}
+	
+	/**
+	 * Remove all ships.
+	 */
+	public void removeShips(){
+		getGameBoard().removeAllObjects();
+		getEnemyBoard().removeAllObjects();
 	}
 	
 	/**
@@ -104,6 +122,7 @@ public class SeashoqueGame extends Game {
 	 * @param horizontal Boolean Integer: if 1 then horizontal = true
 	 */
 	public void registerShip(SeashoqueBoard board, int shipID, int x, int y, int horizontal){
+		Log.d(TAG,"Registers Ship in registerShip(): " + shipID + ", " + x + ", " + y + ", " + horizontal);
 		if (horizontal == 1){
 			switch (shipID){
 			case 0: for (int i = 0; i < 5; i++){board.addGameObject(new Alive(), x+i, y);}
