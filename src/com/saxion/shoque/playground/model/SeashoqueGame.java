@@ -274,20 +274,6 @@ public class SeashoqueGame extends Game {
 					cpu.doMove();
 				}
 			}
-		
-			if (isGameOver()){
-				Log.d(TAG, "GameOver!");
-				if(winner.equals("CPU"))
-				{
-					gameactivity.toast("Game over! " + winner + " has won with score:" + score + ".");
-					score = 0;
-				}
-				else
-				{
-					gameactivity.toast(winner + " has won with score: " + score + ".");
-					score = 0;	
-				}
-			}
 		}
 	}
 	
@@ -330,8 +316,18 @@ public class SeashoqueGame extends Game {
 	public void playAgainDialog() {
 	AlertDialog.Builder builder = new AlertDialog.Builder(gameactivity);
 
+	if(winner.equals("CPU"))
+	{
+		builder.setMessage("Game over! " + winner + " has won with score:" + score + "." + "\n" + "Do you want to play again?");
+		score = 0;
+	}
+	else
+	{
+		builder.setMessage(winner + " has won with score: " + score + "." + "\n" + "Do you want to play again?");
+		score = 0;	
+	}
 	builder.setTitle("Game over!");
-	builder.setMessage("Do you want to play again?");
+//	builder.setMessage("Do you want to play again?");
 
 	builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
