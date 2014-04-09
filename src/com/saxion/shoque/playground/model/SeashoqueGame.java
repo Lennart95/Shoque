@@ -218,17 +218,17 @@ public class SeashoqueGame extends Game {
 				if (currentplayer == 1)
 				{
 					score+= 10;
-					setScoreLabel();
+					gameactivity.setScoreLabel();
 					
 				}
 				else if (currentplayer == 0 && score > 1)
 				{
 					score-= 2;
-					setScoreLabel();
+					gameactivity.setScoreLabel();
 				}else 
 				{
 					score = 0;
-					setScoreLabel();
+					gameactivity.setScoreLabel();
 					
 				}
 				
