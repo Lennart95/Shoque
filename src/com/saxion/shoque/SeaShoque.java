@@ -46,12 +46,6 @@ public class SeaShoque extends Activity implements OnClickListener {
 		playGame.setOnClickListener(this);
 		stats.setOnClickListener(this);
 		
-		
-		//--- Use Custom Font ---// 
-		//TODO:CRASHES ON SET FONT
-		//setCustomFont("fonts/ChunkFive.ttf", R.id.button_playgame);
-		//setCustomFont("fonts/ChunkFive.ttf", R.id.button_stats);
-		
 	}
 
 	@Override
@@ -95,22 +89,17 @@ public class SeaShoque extends Activity implements OnClickListener {
 		mHideHandler.postDelayed(mHideRunnable, delayMillis);
 	}
 	
-	public void setCustomFont(String fontPath, int id){
-        Button txt = (Button) findViewById(id);
-		// Loading Font Face          
-        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);  
-        // Applying font
-        txt.setTypeface(tf);
-	}
-	
+	/**
+	 * Start the quick game
+	 */
 	private void startGame(){
 	    Intent intent = new Intent(this, GameActivity.class);
 	    startActivity(intent);
 	}
 	/**
-	 * TIJDELIJK!!!!!!!!
+	 * Start the Setup Activity
 	 */
-	private void stats(){
+	private void startSetUp(){
 		Intent intent = new Intent(this, SetUpActivity.class);
 		startActivity(intent);
 	}
@@ -125,8 +114,7 @@ public class SeaShoque extends Activity implements OnClickListener {
 //			settings();
 //			break;
 		case R.id.button_stats:
-			Log.d("Clicked", "Gelukt");
-			stats();
+			startSetUp();
 			break;
 		}
 		

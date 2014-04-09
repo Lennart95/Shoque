@@ -65,7 +65,8 @@ public class GameActivity extends Activity {
 	 */
 	
 	public void setScoreLabel(){
-		scoreTextView.setText(game.getScore());
+		scoreTextView.
+		setText(Integer.toString(game.getScore()));
 	}
 	
 	/**

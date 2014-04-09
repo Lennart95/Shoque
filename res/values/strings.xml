@@ -10,8 +10,8 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="desc_bckgimg">Background Image</string>
     <string name="descimg">Image</string>
-    <string name="menu_playvscpu">PLAY VS CPU</string>
-    <string name="menu_stats">SETUP</string>
+    <string name="menu_quickgame">Quick Game</string>
+    <string name="menu_setupgame">Full Game</string>
     <string name="ship_carrier">Carrier</string>
     <string name="ship_battleship">Battleship</string>
     <string name="ship_cruiser">Cruiser</string>

@@ -46,7 +46,7 @@ public class SeashoqueGame extends Game {
 	private String winner = "";
 	
 
-	private int score;
+	private int score = 0;
 
 
 	
