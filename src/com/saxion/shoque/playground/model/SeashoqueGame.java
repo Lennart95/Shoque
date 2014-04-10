@@ -235,9 +235,11 @@ public class SeashoqueGame extends Game {
 	 */
 	public void shoot(SeashoqueBoard target, int x, int y){
 		
+		
 		if ((target == getEnemyBoard() && currentplayer == 1)||(target == getGameBoard() && currentplayer == 0) && !gameover ){
 		Log.d(TAG, "Shots fired at (" + target + ", " + x + ", " + y + ")");
-			//Missed!
+			
+		//Missed!
 			if (target.isEmpty(x, y)){
 				Log.d(TAG, "Missed!");
 				target.addGameObject(new Missed(), x, y);
@@ -255,7 +257,8 @@ public class SeashoqueGame extends Game {
 				//10 points for hit!
 				if (currentplayer == 1){
 					setScore(getScore()+10);
-					gameactivity.setScoreLabel();}
+					gameactivity.setScoreLabel();
+					}
 				else{
 					setScore(getScore()-2);
 					gameactivity.setScoreLabel();}
@@ -271,7 +274,7 @@ public class SeashoqueGame extends Game {
 					cpu.doMove();
 				}
 			}
-		}
+			isGameOver();}
 	}
 	
 	/**
