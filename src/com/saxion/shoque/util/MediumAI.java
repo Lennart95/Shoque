@@ -15,6 +15,8 @@ public class MediumAI implements AI{
 
 	private static final String TAG = "MEDIUMAI";
 	private SeashoqueGame game;
+	
+	private int[] lastMove = {-1, -1};
 
 	/**
 	 * Instantieert MediumAI zodat deze aangesproken kan worden. 
@@ -73,7 +75,6 @@ public class MediumAI implements AI{
 		handler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					int[] lastMove = {-1, -1};
 					boolean horizontalHitStreak = false;
 					boolean verticalHitStreak = false;
 
@@ -88,13 +89,13 @@ public class MediumAI implements AI{
 						
 						int directionNextMove = calcDirNextMove();
 						switch (directionNextMove){
-							case 0:
+							case 0: game.shoot(game.getGameBoard(), lastMove[0], lastMove[1] -1);
 								break;
-							case 1:
+							case 1: game.shoot(game.getGameBoard(), lastMove[0] +1, lastMove[1]);
 								break;
-							case 2:
+							case 2: game.shoot(game.getGameBoard(), lastMove[0], lastMove[1] +1);
 								break;
-							case 3:
+							case 3: game.shoot(game.getGameBoard(), lastMove[0] -1, lastMove[1]);
 								break;
 						}
 						
