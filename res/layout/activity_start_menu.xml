@@ -44,6 +44,19 @@
             android:orientation="vertical" >
 
             <Button
+                android:id="@+id/button_stats"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dip"
+                android:layout_marginRight="30dip"
+                android:layout_weight="1"
+                android:background="@drawable/buttonselector"
+                android:text="@string/menu_setupgame"
+                android:textSize="40sp"
+                android:textColor="#FFFFFF" />
+			
+			<Button
                 android:id="@+id/button_playgame"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -57,18 +70,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="40sp" />
 
-            <Button
-                android:id="@+id/button_stats"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="30dip"
-                android:layout_marginRight="30dip"
-                android:layout_weight="1"
-                android:background="@drawable/buttonselector"
-                android:text="@string/menu_setupgame"
-                android:textSize="40sp"
-                android:textColor="#FFFFFF" />
+            
         </LinearLayout>
 
     </RelativeLayout>

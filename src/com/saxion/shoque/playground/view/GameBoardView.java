@@ -61,7 +61,7 @@ public abstract class GameBoardView extends View implements Observer {
 	private String emptyTile;
 
 	/** A cache of all images that can be used. */
-	private HashMap<String, TileImage> images = new HashMap<String, TileImage>();
+	private static HashMap<String, TileImage> images = new HashMap<String, TileImage>();
 
 	/** The game board to draw. */
 	private GameBoard board;
