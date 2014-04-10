@@ -100,7 +100,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	private int length;
 
 	/**
-	 * setup for the buttons and assigns a OnClickListener for each
+	 * Setup for the buttons and assigns a OnClickListener for each
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -275,6 +275,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		}
 	}
 	
+	//STARTS INDENT ONLY IF SHIPS ARE ALL SET
 	private class buttonStartListener implements View.OnClickListener {
 
 		@Override
