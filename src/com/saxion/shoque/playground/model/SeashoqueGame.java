@@ -278,6 +278,30 @@ public class SeashoqueGame extends Game {
 					}
 				}
 
+=======
+				if (currentplayer == 1){
+					setScore(getScore()+10);
+					gameactivity.setScoreLabel();
+					}
+				else{
+					setScore(getScore()-2);
+					gameactivity.setScoreLabel();}
+				
+				target.removeObject(target.getObject(x, y));
+				Log.d(TAG, "Removed Object");
+				
+				target.addGameObject(new Hit(), x, y);
+				Log.d(TAG, "Added Hit object");
+
+				target.updateView();
+				if (currentplayer == 0){
+					cpu.doMove();
+				}
+			}
+			isGameOver();}
+	}
+	
+>>>>>>> 2f7780c10549e0aac84501ecaacec1dcedda4102
 	/**
 	 * isGameOver is called to check whether all ships of one board are dead.
 	 * Should be called after every shot.
