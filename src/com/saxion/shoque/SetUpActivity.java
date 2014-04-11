@@ -323,7 +323,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	public boolean isShipValidY(SeashoqueBoard board, int x, int y){
 		boolean invalid = false;
 
-		invalid = (!horizontal && (x + length > SeashoqueBoard.DIM));
+		invalid = (y + length > SeashoqueBoard.DIM);
 		//Check for Vertical
 		if (!horizontal && !invalid){
 			for (int i = 0; i<length; i++){

@@ -4,34 +4,39 @@
     android:layout_height="match_parent"
     tools:context=".SeaShoque" >
 
-    <!--
-         The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc.
-    -->
+    <!-- LANDSCAPE XML -->
+
     <ImageView
-         android:id="@+id/img_background"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:scaleType="centerCrop"
-         android:contentDescription="@string/desc_bckgimg"
-         android:src="@drawable/background_image" />
-	        
-    <!--
-         This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows.
-    -->
+        android:id="@+id/img_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/desc_bckgimg"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_image_landscape" />
+	<!-- End background Image -->
+	<!-- Begin Landscape layout -->
 
     <RelativeLayout
         android:id="@+id/RLcontent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" >
 
+        <!-- Center point, helper layout for aligning -->
+
+        <LinearLayout
+            android:id="@+id/center_point"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal" />
+		<!-- End center point -->
+        
         <ImageView
             android:id="@+id/image_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/center_point"
             android:contentDescription="@string/descimg"
             android:scaleType="fitStart"
             android:src="@drawable/logo" />
@@ -39,8 +44,9 @@
         <LinearLayout
             android:id="@+id/LLbuttons"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@+id/center_point"
+            android:layout_alignParentRight="true"
             android:orientation="vertical" >
 
             <Button
@@ -53,10 +59,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/buttonselector"
                 android:text="@string/menu_setupgame"
-                android:textSize="30sp"
-                android:textColor="#FFFFFF" />
-			
-			<Button
+                android:textColor="#FFFFFF"
+                android:textSize="30sp" />
+
+            <Button
                 android:id="@+id/button_playgame"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -69,10 +75,7 @@
                 android:text="@string/menu_quickgame"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp" />
-
-            
         </LinearLayout>
-
     </RelativeLayout>
 
 </FrameLayout>
