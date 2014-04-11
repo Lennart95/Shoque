@@ -17,8 +17,7 @@
             android:name="com.saxion.shoque.SeaShoque"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_start_menu"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" >
+            android:theme="@android:style/Theme.NoTitleBar">
             	
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,7 +39,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_start_menu"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="sensorLandscape" >
             </activity>
     </application>
 
