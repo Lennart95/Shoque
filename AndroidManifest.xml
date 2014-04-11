@@ -19,7 +19,7 @@
             android:configChanges="orientation"
             android:label="@string/title_activity_start_menu"
             android:theme="@android:style/Theme.NoTitleBar" 
-            android:screenOrientation="sensorPortrait">
+            android:screenOrientation="sensor">
             	
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
