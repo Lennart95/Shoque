@@ -43,12 +43,13 @@ public class SeashoqueGame extends Game {
 	private SeashoqueBoard gameBoard;
 	private SeashoqueBoard enemyBoard;
 	
-	
+	// The AI
 	private AI cpu;
 
+	// Winner string
 	private String winner = "";
 	
-
+	// Score variable
 	private int score = 0;
 
 
@@ -72,7 +73,7 @@ public class SeashoqueGame extends Game {
 			gameBoard = AppState.getInstance().getPlayerBoard();
 			//Delete the PlayerBoard right after
 			AppState.getInstance().setPlayerBoard(null);
-			}
+		}
 		else {
 			Log.d(TAG, "PlayerBoard in AppState was null, new board created");
 			gameBoard = (SeashoqueBoard) super.getGameBoard();
@@ -99,7 +100,7 @@ public class SeashoqueGame extends Game {
 	}
 
 	/**
-	 * Create a new game: delete all existing objects and put in some new ones.
+	 * Create a new game: delete all existing objects, collect the AI boats.
 	 */
 	public void newGame(){
 		Log.d(TAG, "Start new GAME :D");
@@ -119,7 +120,7 @@ public class SeashoqueGame extends Game {
 	}
 	
 	/**
-	 * Remove all ships.
+	 * Remove all ships and update view.
 	 */
 	public void removeShips(){
 		Log.d(TAG, "Remove ALL OBJECTS :D");
@@ -141,34 +142,39 @@ public class SeashoqueGame extends Game {
 		Log.d(TAG,"Registers Ship in registerShip(): " + shipID + ", " + x + ", " + y + ", " + horizontal);
 		if (horizontal == 1){
 			switch (shipID){
-			case 0: for (int i = 0; i < 5; i++){board.addGameObject(new Alive(this), x+i, y);}
+				case 0: for (int i = 0; i < 5; i++){board.addGameObject(new Alive(this), x+i, y);}
 				break;
-			case 1: for (int i = 0; i < 4; i++){board.addGameObject(new Alive(this), x+i, y);} 
+				case 1: for (int i = 0; i < 4; i++){board.addGameObject(new Alive(this), x+i, y);} 
 				break;
-			case 2: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(this), x+i, y);}
+				case 2: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(this), x+i, y);}
 				break;
-			case 3: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(this), x+i, y);}
+				case 3: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(this), x+i, y);}
 				break;
-			case 4: for (int i = 0; i < 2; i++){board.addGameObject(new Alive(this), x+i, y);}
+				case 4: for (int i = 0; i < 2; i++){board.addGameObject(new Alive(this), x+i, y);}
 				break;
 			}
 		}
 		if (horizontal != 1){
 			switch (shipID){
-			case 0: for (int i = 0; i < 5; i++){board.addGameObject(new Alive(this), x, y+i);}
+				case 0: for (int i = 0; i < 5; i++){board.addGameObject(new Alive(this), x, y+i);}
 				break;
-			case 1: for (int i = 0; i < 4; i++){board.addGameObject(new Alive(this), x, y+i);} 
+				case 1: for (int i = 0; i < 4; i++){board.addGameObject(new Alive(this), x, y+i);} 
 				break;
-			case 2: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(this), x, y+i);}
+				case 2: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(this), x, y+i);}
 				break;
-			case 3: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(this), x, y+i);}
+				case 3: for (int i = 0; i < 3; i++){board.addGameObject(new Alive(this), x, y+i);}
 				break;
-			case 4: for (int i = 0; i < 2; i++){board.addGameObject(new Alive(this), x, y+i);}
+				case 4: for (int i = 0; i < 2; i++){board.addGameObject(new Alive(this), x, y+i);}
 				break;
 			}
 		}
 	}
 	
+
+	/**
+	 *	Collect ships
+	 *	@param cpu Collect from which AI?
+	 */
 	public void retrieveAIShips(AI cpu){
 		int[][] shiplist = cpu.getShips();
 		for (int i = 0; i < 5; i++){
@@ -181,7 +187,7 @@ public class SeashoqueGame extends Game {
 	 * Return true if the all the fields of the given board have a gameObject.
 	 * Return false if an empty field has been found.
 	 * 
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isFull(SeashoqueBoard board) {
 		boolean result = true;
@@ -196,9 +202,7 @@ public class SeashoqueGame extends Game {
 	}
 	
 	/**
-	 * Handles stuff when next player should do it's thingey.
-	 * 
-	 * @param t
+	 * Handles calls to recieve AI's shots and gives visual indication so the appropriate player will shoot.
 	 */
 	public void nextPlayer() {
 		Log.d(TAG, "Next player!");
@@ -219,7 +223,7 @@ public class SeashoqueGame extends Game {
 
 	/**
 	 * Get the dimensions of the board
-	 * @return
+	 * @return int DIM
 	 */
 	public int getDim() {
 		return (getGameBoard()).getDim();
@@ -227,7 +231,7 @@ public class SeashoqueGame extends Game {
 
 
 	/**
-	 * Most important function: this is what the game consists of.
+	 * Most important function: this is what the game consists of. Shoots, calls or doesn't call nextPlayer() etc.
 	 * 
 	 * @param target
 	 * @param x
@@ -236,7 +240,7 @@ public class SeashoqueGame extends Game {
 	public void shoot(SeashoqueBoard target, int x, int y){
 		
 		if ((target == getEnemyBoard() && currentplayer == 1)||(target == getGameBoard() && currentplayer == 0) && !gameover ){
-		Log.d(TAG, "Shots fired at (" + target + ", " + x + ", " + y + ")");
+			Log.d(TAG, "Shots fired at (" + target + ", " + x + ", " + y + ")");
 			//Missed!
 			if (target.isEmpty(x, y)){
 				Log.d(TAG, "Missed!");
@@ -246,37 +250,39 @@ public class SeashoqueGame extends Game {
 					setScore(getScore()-4);
 					gameactivity.setScoreLabel();}
 					
-				target.updateView();
-				nextPlayer();
-			}
-			//HIT!
-			else if (target.getObject(x, y) instanceof Alive){
-				Log.d(TAG, "Hit!");
-				//10 points for hit!
-				if (currentplayer == 1){
-					setScore(getScore()+10);
-					gameactivity.setScoreLabel();}
-				else{
-					setScore(getScore()-2);
-					gameactivity.setScoreLabel();}
-				
-				target.removeObject(target.getObject(x, y));
-				Log.d(TAG, "Removed Object");
-				
-				target.addGameObject(new Hit(), x, y);
-				Log.d(TAG, "Added Hit object");
-
-				target.updateView();
-				if (currentplayer == 0){
-					cpu.doMove();
+					target.updateView();
+					nextPlayer();
 				}
-			}
-		}
-	}
-	
+			//HIT!
+				else if (target.getObject(x, y) instanceof Alive){
+					Log.d(TAG, "Hit!");
+				//10 points for hit!
+					if (currentplayer == 1){
+						setScore(getScore()+10);
+						gameactivity.setScoreLabel();}
+						else{
+							setScore(getScore()-2);
+							gameactivity.setScoreLabel();}
+
+							target.removeObject(target.getObject(x, y));
+							Log.d(TAG, "Removed Object");
+
+							target.addGameObject(new Hit(), x, y);
+							Log.d(TAG, "Added Hit object");
+
+							target.updateView();
+							if (currentplayer == 0){
+								cpu.doMove();
+							}
+						}
+					}
+					isGameOver();
+				}
+
 	/**
 	 * isGameOver is called to check whether all ships of one board are dead.
 	 * Should be called after every shot.
+	 * @return boolean GameOver
 	 */
 	public boolean isGameOver() {
 		boolean isPlayerAlive = false;
@@ -310,52 +316,56 @@ public class SeashoqueGame extends Game {
 		return !isPlayerAlive || !isCPUAlive;
 	}
 
+
+	/**
+	 *	Ask the player if he wants to play again. 
+	 */
 	public void playAgainDialog() {
-	AlertDialog.Builder builder = new AlertDialog.Builder(gameactivity);
+		AlertDialog.Builder builder = new AlertDialog.Builder(gameactivity);
 
-	if(winner.equals("CPU"))
-	{
-		builder.setMessage("Game over! " + winner + " has won with score:" + score + "." + "\n" + "Do you want to play again?");
-		score = 0;
-	}
-	else
-	{
-		builder.setMessage(winner + " has won with score: " + score + "." + "\n" + "Do you want to play again?");
-		score = 0;	
-	}
-	builder.setTitle("Game over!");
-//	builder.setMessage("Do you want to play again?");
-
-	builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			Intent intent = new Intent(gameactivity, SetUpActivity.class);
-			gameactivity.startActivity(intent);
-
-			dialog.dismiss();
-			gameactivity.finish();
+		if(winner.equals("CPU"))
+		{
+			builder.setMessage("Game over! " + winner + " has won with score:" + score + "." + "\n" + "Do you want to play again?");
+			score = 0;
 		}
-
-	});
-
-	builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-	
-			Intent intent = new Intent(gameactivity, SeaShoque.class);
-			gameactivity.startActivity(intent);
-			
-			dialog.dismiss();
-			gameactivity.finish();
+		else
+		{
+			builder.setMessage(winner + " has won with score: " + score + "." + "\n" + "Do you want to play again?");
+			score = 0;	
 		}
+		builder.setTitle("Game over!");
+		//	builder.setMessage("Do you want to play again?");
 
-	});
+		builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
-	AlertDialog alert = builder.create();
-	alert.show();
-}
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Intent intent = new Intent(gameactivity, SetUpActivity.class);
+				gameactivity.startActivity(intent);
+
+				dialog.dismiss();
+				gameactivity.finish();
+			}
+
+		});
+
+		builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+
+				Intent intent = new Intent(gameactivity, SeaShoque.class);
+				gameactivity.startActivity(intent);
+
+				dialog.dismiss();
+				gameactivity.finish();
+			}
+
+		});
+
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
 	/**
 	 * Convert indices and coordinates 
 	 * @param i
@@ -371,11 +381,12 @@ public class SeashoqueGame extends Game {
 		return ((y*((SeashoqueBoard) getGameBoard()).getDim())+x);
 	}
 
+	
 	/**
-	 * Method to set the scoreTextView
+	 * REMOVED from SeaShoqueGame: setscorelabel. now in other class
 	 */
 	public void setScoreLabel(){
-//		scoreTextView.setText(score);
+	//		scoreTextView.setText(score);
 	}
 	
 	public int getScore() {

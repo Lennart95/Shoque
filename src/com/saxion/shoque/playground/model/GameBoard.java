@@ -17,7 +17,7 @@ import android.util.Log;
  * 
  * @author Paul de Groot
  */
-public abstract class GameBoard extends Observable implements Parcelable {
+public abstract class GameBoard extends Observable {
 	public static final String TAG = "GameBoard";
 
 	/** The game this game board is a part of. */

@@ -100,7 +100,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	private int length;
 
 	/**
-	 * setup for the buttons and assigns a OnClickListener for each
+	 * Setup for the buttons and assigns a OnClickListener for each
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -275,6 +275,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		}
 	}
 	
+	//STARTS INDENT ONLY IF SHIPS ARE ALL SET
 	private class buttonStartListener implements View.OnClickListener {
 
 		@Override
@@ -310,13 +311,14 @@ public class SetUpActivity extends Activity implements OnClickListener {
 
 		invalid = (horizontal && (x + length > SeashoqueBoard.DIM));
 		invalid = invalid || (y + length > SeashoqueBoard.DIM);
-		
+		//Check for horizontal
 		if (horizontal && !invalid){
 			for (int i = 0; i<length; i++){
 				invalid = invalid || !setupBoard.isEmpty(x+i, y);
 				Log.d(TAG, "Check isEmpty on coord: " + (x+i) + ", " + y + ". Result is " + invalid);
 			}
 		}
+		//Check vertical
 		else if (!invalid){
 			for (int i = 0; i<length; i++){
 				invalid = invalid || !setupBoard.isEmpty(x, y+i);
@@ -327,7 +329,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	}
 	
 	
-
+	//Set all text textviews black
 	public void setTextViewsInit() {
 		buttonCarrier.setTextColor(Color.BLACK);
 		buttonBattleship.setTextColor(Color.BLACK);
