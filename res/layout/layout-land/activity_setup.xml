@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal|clip_vertical"
+  	android:background="@drawable/background_image_landscape" 
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+        <com.saxion.shoque.playground.view.ShoqueGameBoardView
+            android:id="@+id/shoqueGameBoardView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_grid" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/buttonCarrier"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/ship_carrier"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/buttonBattleship"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/ship_battleship" 
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/buttonCruiser"
+            	android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/ship_cruiser" 
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/buttonSubmarine"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/ship_submarine" 
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/buttonDestroyer"
+               	android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/ship_destroyer" 
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/buttonStartGame"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/button_Startgame" 
+                android:textSize="26sp" />
+
+            <Button
+                android:id="@+id/buttonOrientation"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/button_Orientation" 
+                android:textSize="21sp" />
+
+        </LinearLayout>
+
+</LinearLayout>
