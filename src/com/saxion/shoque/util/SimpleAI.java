@@ -29,7 +29,7 @@ public class SimpleAI implements AI{
 	 * Minesweeper = 4		2
 	 */
 	public int[][] getShips(){
-		int r = (int) (Math.random() * 6);
+		int r = (int) (Math.random() * 9);
 		int[][] result = null;
 		switch (r){
 		case 0:  int[][] result1 = {{0,1,0,1},{1,8,1,0},{2,3,3,1},{3,4,9,1},{4,2,5,0}}; 
@@ -38,17 +38,26 @@ public class SimpleAI implements AI{
 		case 1: int[][] result2 = {{0,1,1,0},{1,8,3,0},{2,3,1,1},{3,1,8,1},{4,3,5,0}}; 
 			result = result2;
 			break;
-		case 2: int[][] result3 = {{0,4,1,0},{1,5,0,1},{2,1,0,1},{3,4,7,1},{4,9,8,0}}; 
+		case 2: int[][] result3 = {{0,7,3,0},{1,5,0,1},{2,1,0,1},{3,2,5,0},{4,4,9,1}}; 
 			result = result3;
 			break;
-		case 3: int[][] result4 = {{0,0,0,0},{1,0,6,0},{2,2,9,1},{3,6,9,1},{4,8,0,1}}; 
+		case 3: int[][] result4 = {{0,0,0,0},{1,4,3,0},{2,1,8,1},{3,6,9,1},{4,7,1,1}}; 
 			result = result4;
 			break;
-		case 4: int[][] result5 = {{0,0,2,0},{1,7,1,0},{2,1,1,1},{3,1,7,1},{4,7,6,0}}; 
+		case 4: int[][] result5 = {{0,0,2,0},{1,7,1,0},{2,2,0,1},{3,1,8,1},{4,3,4,0}}; 
 			result = result5;
 			break;
-		case 5: int[][] result6 = {{0,8,2,0},{1,1,3,0},{2,4,4,0},{3,5,7,1},{4,2,7,1}}; 
+		case 5: int[][] result6 = {{0,8,2,0},{1,1,2,0},{2,4,1,0},{3,5,9,1},{4,0,8,1}}; 
 			result = result6;
+			break;
+		case 6: int[][] result7 = {{0,7,1,0},{1,1,3,1},{2,1,5,0},{3,4,5,0},{4,1,1,1}}; 
+			result = result7;
+			break;
+		case 7: int[][] result8 = {{0,8,2,0},{1,1,1,1},{2,1,3,0},{3,3,6,1},{4,4,8,1}}; 
+			result = result8;
+			break;
+		case 8: int[][] result9 = {{0,4,3,0},{1,0,0,1},{2,9,0,0},{3,7,8,1},{4,0,6,0}}; 
+			result = result9;
 			break;
 		}
 		return result;
