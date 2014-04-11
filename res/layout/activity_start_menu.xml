@@ -53,7 +53,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/buttonselector"
                 android:text="@string/menu_setupgame"
-                android:textSize="40sp"
+                android:textSize="30sp"
                 android:textColor="#FFFFFF" />
 			
 			<Button
@@ -68,7 +68,7 @@
                 android:onClick="startGame"
                 android:text="@string/menu_quickgame"
                 android:textColor="#FFFFFF"
-                android:textSize="40sp" />
+                android:textSize="30sp" />
 
             
         </LinearLayout>
