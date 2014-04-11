@@ -141,7 +141,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	 */
 	public void saveBoatLocation(int x, int y) {
 		Log.d(TAG, "savedBoatLocation() is being executed: " + x + ", " + y );
-		if(horizontal && isShipValidXY(setupBoard, x, y) && !isBoatAlreadySet(selectedBoat)){
+		if(horizontal && isShipValidX(setupBoard, x, y) && !isBoatAlreadySet(selectedBoat)){
 				for(int i = 0; i < length; i++){
 					setupBoard.addGameObject(new Alive(),x + i, y);
 				}
@@ -151,7 +151,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 				selectedBoat = -1;
 				length = 0;
 		}
-		else if(isShipValidXY(setupBoard, x, y) && !isBoatAlreadySet(selectedBoat)){
+		else if(!horizontal && isShipValidY(setupBoard, x, y) && !isBoatAlreadySet(selectedBoat)){
 				for(int i = 0; i < length; i++){
 					setupBoard.addGameObject(new Alive(),x, y + i);
 				}
@@ -306,11 +306,10 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	 * @param x
 	 * @return
 	 */
-	public boolean isShipValidXY(SeashoqueBoard board, int x, int y){
+	public boolean isShipValidX(SeashoqueBoard board, int x, int y){
 		boolean invalid = false;
 
 		invalid = (horizontal && (x + length > SeashoqueBoard.DIM));
-		invalid = invalid || (y + length > SeashoqueBoard.DIM);
 		//Check for horizontal
 		if (horizontal && !invalid){
 			for (int i = 0; i<length; i++){
@@ -318,11 +317,18 @@ public class SetUpActivity extends Activity implements OnClickListener {
 				Log.d(TAG, "Check isEmpty on coord: " + (x+i) + ", " + y + ". Result is " + invalid);
 			}
 		}
-		//Check vertical
-		else if (!invalid){
+		return !invalid;
+	}
+	
+	public boolean isShipValidY(SeashoqueBoard board, int x, int y){
+		boolean invalid = false;
+
+		invalid = (!horizontal && (x + length > SeashoqueBoard.DIM));
+		//Check for Vertical
+		if (!horizontal && !invalid){
 			for (int i = 0; i<length; i++){
 				invalid = invalid || !setupBoard.isEmpty(x, y+i);
-				Log.d(TAG, "Check isEmpty on coord: " + x  + ", " + (y+i) + ". Result is " + invalid);
+				Log.d(TAG, "Check isEmpty on coord: " + (x) + ", " + y+i + ". Result is " + invalid);
 			}
 		}
 		return !invalid;
