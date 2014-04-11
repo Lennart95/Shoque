@@ -1,17 +1,14 @@
 package com.saxion.shoque;
 
 import android.app.Activity;
-import android.app.Application;
+
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.shoque.R;
 
@@ -21,7 +18,7 @@ import com.example.shoque.R;
  * 
  * @see SystemUiHider
  */
-public class SeaShoque extends Activity implements OnClickListener {
+public class SeaShoque extends Activity implements OnClickListener{
 	/**
 	 * Whether or not the system UI should be auto-hidden after
 	 * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -39,7 +36,7 @@ public class SeaShoque extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+        
 		setContentView(R.layout.activity_start_menu);
 		playGame = (Button) findViewById(R.id.button_playgame);
 		stats = (Button) findViewById(R.id.button_stats);
@@ -123,5 +120,9 @@ public class SeaShoque extends Activity implements OnClickListener {
 		
 	}
 	
+
+	  // The four methods below are called by the TaskFragment when new
+	  // progress updates or results are available. The MainActivity 
+	  // should respond by updating its UI to indicate the change.
 
 }
