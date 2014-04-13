@@ -50,34 +50,18 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	private int selectedBoat = -1;
 
 	/**
-	 * Button for selecting a Carrier with selectedBoat = 0
+	 * Button for selecting with selectedBoat
 	 */
 	private Button buttonCarrier;
-	private boolean carrierSet = false;
-
-	/**
-	 * Button for selecting a Battleship with selectedBoat = 1
-	 */
 	private Button buttonBattleship;
-	private boolean battleshipSet = false;
-
-	/**
-	 * Button for selecting a Cruiser with selectedBoat = 2
-	 */
 	private Button buttonCruiser;
-	private boolean cruiserSet = false;
-
-	/**
-	 * Button for selecting a Submarine with selectedBoat = 3
-	 */
 	private Button buttonSubmarine;
-	private boolean submarineSet = false;
-
-	/**
-	 * Button for selecting a Destroyer with selectedBoat = 4
-	 */
 	private Button buttonDestroyer;
-	private boolean destroyerSet = false;
+	private int carrierSet = 0;
+	private int battleshipSet = 0;
+	private int cruiserSet = 1;
+	private int submarineSet = 2;
+	private int destroyerSet = 0;
 
 	/**
 	 * Button for the orientation of the ships, horizontal or vertical
@@ -131,6 +115,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		buttonOrientation.setOnClickListener(new buttonOrientationListener());
 		startButton.setOnClickListener(new buttonStartListener());
 
+		setTextViewsInit();
 	}
 	
 	/**
@@ -148,19 +133,15 @@ public class SetUpActivity extends Activity implements OnClickListener {
 				setBoat(selectedBoat);
 				setupBoard.updateView();
 				setTextViewsInit();
-				selectedBoat = -1;
-				length = 0;
 		}
 		else if(!horizontal && isShipValidY(setupBoard, x, y) && !isBoatAlreadySet(selectedBoat)){
 				for(int i = 0; i < length; i++){
 					setupBoard.addGameObject(new Alive(),x, y + i);
 				}
-				
 				setBoat(selectedBoat);
 				setupBoard.updateView();
 				setTextViewsInit();
-				selectedBoat = -1;
-				length = 0;
+				setSelectedBoat(selectedBoat);
 		}
 		
 	}
@@ -171,26 +152,20 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	 * @return	boolean, whether the boat has been set or not.
 	 */
 	private boolean isBoatAlreadySet(int i){
-		Log.d(TAG, "Boats set: Carrier " + carrierSet + ", Battleship " + 
-				battleshipSet + ", Cruiser " + cruiserSet + ", Submarine " 
-				+ submarineSet + ", Destroyer " + destroyerSet);
-		boolean result = false;
+			boolean result = false;
 		switch (i){
-			case 0: result = carrierSet;
+			case 0: result = (carrierSet>=1);
 				break;
-			case 1: result = battleshipSet;
+			case 1: result = (battleshipSet>=2);
 				break;
-			case 2: result = cruiserSet;
+			case 2: result = (cruiserSet>=3);
 				break;
-			case 3: result = submarineSet;
+			case 3: result = (submarineSet>=3);
 				break;
-			case 4: result = destroyerSet;
+			case 4: result = (destroyerSet>=4);
 				break;
 		}
-		Log.d(TAG, "Boats set: Carrier " + carrierSet + ", Battleship " + 
-				battleshipSet + ", Cruiser " + cruiserSet + ", Submarine " 
-				+ submarineSet + ", Destroyer " + destroyerSet);
-		return result;
+			return result;
 	}
 	
 	/**
@@ -199,15 +174,15 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	 */
 	private void setBoat(int s) {
 		switch (s){
-		case 0: carrierSet = true;
+		case 0: carrierSet += 1;
 			break;
-		case 1: battleshipSet = true;
+		case 1: battleshipSet += 1;
 			break;
-		case 2: cruiserSet = true;
+		case 2: cruiserSet +=1;
 			break;
-		case 3: submarineSet = true;
+		case 3: submarineSet += 1;
 			break;
-		case 4: destroyerSet = true;
+		case 4: destroyerSet += 1;
 			break;
 		}
 		
@@ -281,7 +256,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			Log.d(TAG, "StartGameClicked");
-			if (carrierSet && battleshipSet && cruiserSet && submarineSet && destroyerSet){
+			if (isBoatAlreadySet(1) && isBoatAlreadySet(2) &&isBoatAlreadySet(3) && isBoatAlreadySet(4) &&isBoatAlreadySet(0)){
 				Log.d(TAG,"All ships are set. Get ready to sail!");
 				AppState holder = AppState.getInstance();
 				holder.setPlayerBoard(setupBoard);
@@ -314,6 +289,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		if (horizontal && !invalid){
 			for (int i = 0; i<length; i++){
 				invalid = invalid || !setupBoard.isEmpty(x+i, y);
+				//TODO: adjacent check!!!
 				Log.d(TAG, "Check isEmpty on coord: " + (x+i) + ", " + y + ". Result is " + invalid);
 			}
 		}
@@ -328,6 +304,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		if (!horizontal && !invalid){
 			for (int i = 0; i<length; i++){
 				invalid = invalid || !setupBoard.isEmpty(x, y+i);
+				//TODO: adjacent check!!!
 				Log.d(TAG, "Check isEmpty on coord: " + (x) + ", " + y+i + ". Result is " + invalid);
 			}
 		}
@@ -335,7 +312,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 	}
 	
 	
-	//Set all text textviews black
+	//Set all text textviews
 	public void setTextViewsInit() {
 		buttonCarrier.setTextColor(Color.BLACK);
 		buttonBattleship.setTextColor(Color.BLACK);
@@ -343,25 +320,27 @@ public class SetUpActivity extends Activity implements OnClickListener {
 		buttonSubmarine.setTextColor(Color.BLACK);
 		buttonDestroyer.setTextColor(Color.BLACK);
 		
-		//Set Red if already set
-		if (carrierSet) {
+		//Set Red if already set and set text accordingly
+		if (isBoatAlreadySet(0)) {
 			buttonCarrier.setTextColor(Color.RED);}
-		if (battleshipSet) {
+		if (isBoatAlreadySet(1)) {
 			buttonBattleship.setTextColor(Color.RED);}
-		if (cruiserSet) {
+		if (isBoatAlreadySet(2)) {
 			buttonCruiser.setTextColor(Color.RED);}
-		if (submarineSet) {
+		if (isBoatAlreadySet(3)) {
 			buttonSubmarine.setTextColor(Color.RED);}
-		if (destroyerSet) {
+		if (isBoatAlreadySet(4)) {
 			buttonDestroyer.setTextColor(Color.RED);}
-		
+		//set correct text amount 
+		for (int i = 0; i<5; i++){
+			setTexViewAmount(i);}
 	}
 
 	public void setSelectedBoat(int s) {
+		setTextViewsInit();
 		switch (s) {
 		case 0:
-			setTextViewsInit();
-			if (!carrierSet){
+			if (carrierSet<1){
 				buttonCarrier.setTextColor(Color.BLUE);
 				length = 5;
 				selectedBoat = 0;
@@ -369,8 +348,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 			break;
 
 		case 1:
-			setTextViewsInit();
-			if (!battleshipSet){
+			if (battleshipSet<2){
 			buttonBattleship.setTextColor(Color.BLUE);
 			length = 4;
 			selectedBoat = 1;
@@ -378,8 +356,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 			break;
 
 		case 2:
-			setTextViewsInit();
-			if (!cruiserSet){
+			if (cruiserSet<3){
 			buttonCruiser.setTextColor(Color.BLUE);
 			length = 3;
 			selectedBoat = 2;
@@ -387,8 +364,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 			break;
 
 		case 3:
-			setTextViewsInit();
-			if (!submarineSet){
+			if (submarineSet<3){
 			buttonSubmarine.setTextColor(Color.BLUE);
 			length = 3;
 			selectedBoat = 3;
@@ -396,8 +372,7 @@ public class SetUpActivity extends Activity implements OnClickListener {
 			break;
 
 		case 4:
-			setTextViewsInit();
-			if (!destroyerSet){
+			if (destroyerSet<4){
 			buttonDestroyer.setTextColor(Color.BLUE);
 			length = 2;
 			selectedBoat = 4;
@@ -406,6 +381,21 @@ public class SetUpActivity extends Activity implements OnClickListener {
 
 		}
 		Log.d(TAG, "setSelectedBoat is called " + s);
+	}
+	
+	public void setTexViewAmount(int boat){
+		switch (boat){
+			case 0: buttonCarrier.setText(getText(R.string.ship_carrier) + " (" + (1-carrierSet) + ")");
+				break;
+			case 1: buttonBattleship.setText(getText(R.string.ship_battleship) + " (" + (2-battleshipSet) + ")");
+				break;
+			case 2: buttonCruiser.setText(getText(R.string.ship_cruiser) + " (" + (3-cruiserSet) + ")");
+				break;
+			case 3: buttonSubmarine.setText(getText(R.string.ship_submarine) + " (" + (3-submarineSet) + ")");
+				break;
+			case 4: buttonDestroyer.setText(getText(R.string.ship_destroyer) + " (" + (4-destroyerSet) + ")");
+				break;
+		}
 	}
 	
 	public void onBackPressed()
