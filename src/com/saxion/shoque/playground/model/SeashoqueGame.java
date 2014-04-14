@@ -82,6 +82,7 @@ public class SeashoqueGame extends Game {
 			registerShip(gameBoard, 2, 2, 7, 1);
 			registerShip(gameBoard, 3, 7, 3, 0);
 			registerShip(gameBoard, 4, 0, 4, 0);
+			//TODO: more ships
 		}
 		gameBoard.setGame(this);
 		gameViewPlayer.setGameBoard(gameBoard);
@@ -133,15 +134,15 @@ public class SeashoqueGame extends Game {
 	/**
 	 * 
 	 * @param board		 The board where the ships should be placed.
-	 * @param shipID	 ShipID, number of the ship: 0 carrier, 1 battleship, 2 cruiser, 3 submarine, 4 destroyer. 
+	 * @param shipType	 ShipType, number of the ship: 0 carrier, 1 battleship, 2 cruiser, 3 submarine, 4 destroyer. 
 	 * @param x			 X coordinate for the ships 'origin'
 	 * @param y			 Y coordinate for the ships 'origin'
 	 * @param horizontal Boolean Integer: if 1 then horizontal = true
 	 */
-	public void registerShip(SeashoqueBoard board, int shipID, int x, int y, int horizontal){
-		Log.d(TAG,"Registers Ship in registerShip(): " + shipID + ", " + x + ", " + y + ", " + horizontal);
+	public void registerShip(SeashoqueBoard board, int shipType, int x, int y, int horizontal){
+		Log.d(TAG,"Registers Ship in registerShip(): " + shipType + ", " + x + ", " + y + ", " + horizontal);
 		if (horizontal == 1){
-			switch (shipID){
+			switch (shipType){
 				case 0: for (int i = 0; i < 5; i++){board.addGameObject(new Alive(this), x+i, y);}
 				break;
 				case 1: for (int i = 0; i < 4; i++){board.addGameObject(new Alive(this), x+i, y);} 
@@ -155,7 +156,7 @@ public class SeashoqueGame extends Game {
 			}
 		}
 		if (horizontal != 1){
-			switch (shipID){
+			switch (shipType){
 				case 0: for (int i = 0; i < 5; i++){board.addGameObject(new Alive(this), x, y+i);}
 				break;
 				case 1: for (int i = 0; i < 4; i++){board.addGameObject(new Alive(this), x, y+i);} 
@@ -173,11 +174,11 @@ public class SeashoqueGame extends Game {
 
 	/**
 	 *	Collect ships
-	 *	@param cpu Collect from which AI?
+	 *	@param cpu Collect from which AI
 	 */
 	public void retrieveAIShips(AI cpu){
 		int[][] shiplist = cpu.getShips();
-		for (int i = 0; i < 5; i++){
+		for (int i = 0; i < 10; i++){
 			registerShip(enemyBoard, shiplist[i][0], shiplist[i][1], shiplist[i][2], shiplist[i][3]);
 		}
 	}
@@ -245,9 +246,9 @@ public class SeashoqueGame extends Game {
 			if (target.isEmpty(x, y)){
 				Log.d(TAG, "Missed!");
 				target.addGameObject(new Missed(), x, y);
-				//-4 points for missing
+				//-2 points for missing
 				if (currentplayer == 1){
-					setScore(getScore()-4);
+					setScore(getScore()-2);
 					gameactivity.setScoreLabel();}
 					
 					target.updateView();
@@ -260,6 +261,7 @@ public class SeashoqueGame extends Game {
 					if (currentplayer == 1){
 						setScore(getScore()+10);
 						gameactivity.setScoreLabel();}
+						//-2 points if you get hit
 						else{
 							setScore(getScore()-2);
 							gameactivity.setScoreLabel();}

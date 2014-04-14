@@ -23,18 +23,19 @@ public class SimpleAI implements AI{
 	 * Set the ships: result [[ship],[ship id , position (x),position (y), ship direction]]
 	 * Ship:					Direction:
 	 * Flightdeckship = 0	5	From origin west = 1 (horizontal)
-	 * Battleship = 1		4	
-	 * Submarine = 2		3
-	 * Torpedohunter = 3	3
-	 * Minesweeper = 4		2
+	 * Battleship = 1,2		4	
+	 * Submarine = 3,4		3
+	 * Torpedohunter = 5	3
+	 * Minesweeper = 6-9	2
 	 */
 	public int[][] getShips(){
-		int r = (int) (Math.random() * 9);
+		int r = (int) (Math.random() * 0);
 		int[][] result = null;
 		switch (r){
-		case 0:  int[][] result1 = {{0,1,0,1},{1,8,1,0},{2,3,3,1},{3,4,9,1},{4,2,5,0}}; 
+		case 0:  int[][] result1 = {{0,1,0,1},{1,8,1,0},{1,4,5,1},{2,3,3,1},{2,5,7,1},{3,4,9,1},{4,2,5,0},{4,0,8,0},{4,9,5,0},{4,9,8,0}}; 
 			result = result1;
 			break;
+			//TODO: more boats
 		case 1: int[][] result2 = {{0,1,1,0},{1,8,3,0},{2,3,1,1},{3,1,8,1},{4,3,5,0}}; 
 			result = result2;
 			break;
